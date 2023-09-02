@@ -26,7 +26,5 @@ I have a lot of personal interests **(!= "programming")** which include some of 
   - **Art** (I've done mostly waxed-based color pencil, but I've also tried digital.)
   - **Woodworking** (I don't have the money to persue this yet)
 
----
-
 [![github](./icons8-github.svg)](https://github.com/aaatipamula) [![linkedin](./icons8-linkedin.svg)](https://www.linkedin.com/in/aniketh-aatipamula-a0a120150/)
 
