@@ -1,12 +1,10 @@
 ---
-layout: page
+layout: default
 title: Who Am I
-permalink /
+permalink: /
 ---
 
 # About Me
-
-Hi, my name is **Aniketh Aatipmula**.
 
 I'm currently pursuing a **B.S. in Computer Science** at [The University of Kansas](https://eecs.ku.edu/).
 
