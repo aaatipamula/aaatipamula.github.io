@@ -1,3 +1,9 @@
+---
+layout: default
+title: Interests
+permalink: /interests
+---
+
 # Custom Mechanical Keyboards
 
 ## An Introduction
