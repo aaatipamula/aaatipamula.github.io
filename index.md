@@ -1,6 +1,8 @@
 ---
-layout: page
-title: Hello
+layout: home
+title: About Me
+welcome: Hi, I'm Aniketh
+subtitle: An average enjoyer of things
 permalink: /
 ---
 
@@ -9,9 +11,10 @@ permalink: /
 I’m currently pursuing a B.S. in Computer Science at The University of Kansas.
 
 I’m also working at vCom Solutions as a Software Development Intern.
-Interests
 
-I have a lot of personal interests **(!= “programming”)** which include some of the following:
+# [Interests](/interests)
+
+I have a lot of personal interests `(!= “programming”)` which include some of the following:
 
 - Custom Mechanical Keyboards/Computer Hardware
 - Hiking/Biking/Camping/Backpacking (Favorite hike to date is Mt. Quandry in Breckenridge Colorado)

@@ -1,9 +1,9 @@
 <div class="footer">
   <div>Made by {{ site.author }}</div>
   <a href="https://github.com/{{ site.github }}">
-    <img src="{{ site.baseurl }}/assets/images/github.svg" alt="github" class="icon">
+    {% include github_icon.html %}
   </a>
-  <a href="https://linkedin.com/{{ site.github }}">
-    <img src="{{ site.baseurl }}/assets/images/linkedin.svg" alt="linkedin" class="icon">
+  <a href="https://linkedin.com/{{ site.linkedin }}">
+    {% include linkedin_icon.html %}
   </a>
 </div>
