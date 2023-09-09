@@ -1,9 +1,8 @@
 ---
 layout: page
-title: Interests
-permalink: /interests
+title: Custom Mech Keyboards
+permalink: /interests/custom_mechs
 ---
-
 # Custom Mechanical Keyboards
 
 ## An Introduction
@@ -32,32 +31,3 @@ Anyways, after building that first keyboard I dove headfirst into the hobby, buy
 | SKErgo | Gateron Ink Blacks | Keycreative Blanks | My first ergo board | n/a |
 | Corne V3 | Cannon Keys Lilac Linears | Random Set | My first dive into 40% split keyboards | n/a |
 | Butterfly | Aquakings (52g) | NP Japanese | I designed this board, check it out [here](https://github.com/aaatipamula/butterfly)! | n/a |
-
-# Hiking/Biking/Camping/Backpacking
-
-> TBD
-
-# Cooking
-
-> TBD
-
-# Motor Sport/Motors
-
-> TBD
-
-# Music/Movies
-
-> TBD
-
-# Anime
-
-> TBD
-
-# Reading
-
-> TBD
-
-# Art
-
-> TBD
-
