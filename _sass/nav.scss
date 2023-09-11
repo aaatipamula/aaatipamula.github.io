@@ -16,6 +16,12 @@ nav a {
 }
 
 nav a:hover {
-  background-color: $tertiary;
+  background-color: $accenthl;
   color: $secondary;
+}
+
+@media screen and (min-width: 480px) {
+  nav {
+    width: 60%;
+  }
 }

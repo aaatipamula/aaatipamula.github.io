@@ -6,11 +6,6 @@ body {
   height: 100vh;
 }
 
-.content {
-  min-height: 100%;
-  margin: auto;
-  width: 78%;
-}
 
 hr {
   color: $accent;
@@ -31,14 +26,38 @@ h1 {
   color: $accent;
 }
 
-h5 {
-  color: $tertiary;
-}
-
 b {
   color: $accent;
 }
 
 em {
   color: $tertiaryhl;
+}
+
+pre code {
+  background-color: $primaryhl;
+}
+
+blockquote {
+  border-left: 3px solid $accent;
+  padding-left: 1rem;
+  page-break-inside: avoid;
+}
+
+code {
+  background-color: $primaryhl;
+  color: $accent;
+}
+
+.content {
+  min-height: 100%;
+  margin: auto;
+  width: 80%;
+}
+
+/* Make content width smaller on big screens */
+@media screen and (min-width: 480px) {
+  .content {
+    width: 60%;
+  }
 }
