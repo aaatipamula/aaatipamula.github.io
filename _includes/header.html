@@ -1,12 +1,6 @@
-<div class="header">
-  <div class="header-logo">
-    <a href="{{ site.baseurl }}/">
-      <img src="{{ site.baseurl }}/favicon.ico">
-    </a>
-  </div>
-  <nav>
-      {% for page in site.data.nav %}
-        <a href="{{ page.link | absolute_url }}">{{ page.name }}</a>
-      {% endfor %}
-  </nav>
-</div>
+<nav>
+  <a href="{{ site.baseurl }}/">Home</a>
+  {% for page in site.data.nav %}
+    <a href="{{ page.link | absolute_url }}">{{ page.name }}</a>
+  {% endfor %}
+</nav>

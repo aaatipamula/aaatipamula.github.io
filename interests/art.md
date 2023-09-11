@@ -1,6 +1,6 @@
 ---
 layout: page
 title: 
-permalink: /interests/
+permalink: /interests/art
 ---
 

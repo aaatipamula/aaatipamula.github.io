@@ -3,10 +3,14 @@
   {% include head.html %}
   <body>
     {% include header.html %}
-    <h1 class="home-title">{{ page.welcome }}</h1>
-    <h5 class="home-subtitle">{{ page.subtitle }}</h5>
-    <hr>
-    {{ content }}
+    <div class="content">
+      <div class="intro">
+        <h1 class="home-title">{{ page.welcome }}</h1>
+        <h5 class="home-subtitle">{{ page.subtitle }}</h5>
+        <hr>
+      </div>
+      {{ content }}
+    </div>
     {% include footer.html %}
   </body>
 </html>

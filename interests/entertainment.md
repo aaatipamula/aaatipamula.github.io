@@ -1,6 +1,14 @@
 ---
 layout: page
 title: 
-permalink: /interests/
+permalink: /interests/entertainment
 ---
+
+# Music
+
+# Movies
+
+# Anime
+
+# Reading
 

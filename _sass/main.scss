@@ -1,25 +1,44 @@
-$primary: #2F3E46;
-$secondary: #CAD2C5;
-$accent: #52796F;
+@import "color";
 
 body {
   background: $primary;
   color: $secondary;
+  height: 100vh;
+}
+
+.content {
+  min-height: 100%;
+  margin: auto;
+  width: 78%;
 }
 
 hr {
-  color: $accent
+  color: $accent;
+  background-color: $accent;
+  height: 3px;
 }
 
 a {
   text-decoration: none;
-  color: $accent;
-}
-
-h1 {
-  color: $accent
+  color: $tertiary;
 }
 
 a:hover {
-  color: $secondary;
+  color: $tertiaryhl;
+}
+
+h1 {
+  color: $accent;
+}
+
+h5 {
+  color: $tertiary;
+}
+
+b {
+  color: $accent;
+}
+
+em {
+  color: $tertiaryhl;
 }
