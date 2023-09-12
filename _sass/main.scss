@@ -1,11 +1,21 @@
 @import "color";
 
+html {
+  font-size: 13px;
+}
+
 body {
   background: $primary;
   color: $secondary;
-  height: 100vh;
+  font-family: "Rubik", sans-serif;
+  line-height: 1.45;
+  margin: 1rem auto 1rem;
+  padding: .25rem;
 }
 
+blockquote {
+  margin-left: 1rem;
+}
 
 hr {
   color: $accent;
@@ -45,6 +55,7 @@ blockquote {
 }
 
 code {
+  font-family: Menlo, Monaco, "Courier New", monospace;
   background-color: $primaryhl;
   color: $accent;
 }
@@ -55,9 +66,18 @@ code {
   width: 80%;
 }
 
+.footer {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
 /* Make content width smaller on big screens */
 @media screen and (min-width: 480px) {
   .content {
     width: 60%;
+  }
+
+  html {
+    font-size: 18px;
   }
 }

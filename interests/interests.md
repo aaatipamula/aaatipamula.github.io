@@ -26,13 +26,13 @@ I have a lot of personal interests `(!= “programming”)` which include some o
 
 # [Motorsport](/interests/motorsport)
 
-> Favorite car, any 90’s Porche 911.
+> Favorite car, any 90’s Porsche 911.
 
 # [Entertainment](/interests/entertainment)
 
-- [Music](/interests/entertainment#music)
-- [Movies](/interests/entertainment#movies) (Favorite music genre/movie to date is City Pop/Dune.)
-- [Anime](/interests/entertainment#anime) (Only the good stuff like Mob Psycho or EVA.)
+- [Music](/interests/entertainment#music) (Favorite genre is City Pop.)
+- [Movies](/interests/entertainment#movies) (Favorite movie to date is Dune.)
+- [Anime](/interests/entertainment#anime) (Only the good stuff like  or EVA.)
 - [Reading](/interests/entertainment#reading) (Mostly fantasy/sci-fi but occasionally a biography.)
 
 # [Art](/interests/art)
