@@ -2,7 +2,7 @@
 layout: home
 title: About Me
 welcome: Hi, I'm Aniketh
-subtitle: An average enjoyer of things
+subtitle: Just a guy
 permalink: /
 ---
 

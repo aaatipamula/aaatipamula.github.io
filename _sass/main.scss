@@ -25,27 +25,28 @@ hr {
 
 a {
   text-decoration: none;
-  color: $tertiary;
+  transition: .25s;
+  transition-timing-function: ease-in-out;
 }
 
 a:hover {
-  color: $tertiaryhl;
+  color: $accenthl;
 }
 
-h1 {
+b,
+a,
+em,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: $accent;
 }
 
-b {
-  color: $accent;
-}
-
-em {
-  color: $tertiaryhl;
-}
-
-pre code {
-  background-color: $primaryhl;
+i {
+  padding: .25rem;
 }
 
 blockquote {
@@ -54,10 +55,20 @@ blockquote {
   page-break-inside: avoid;
 }
 
+// Change code fornt maybe
 code {
   font-family: Menlo, Monaco, "Courier New", monospace;
   background-color: $primaryhl;
-  color: $accent;
+}
+
+#logo-background {
+  stroke: $primaryhl;
+  fill: $primary;
+}
+
+#logo-text {
+  stroke: $accent;
+  fill: $accent;
 }
 
 .content {
@@ -66,12 +77,9 @@ code {
   width: 80%;
 }
 
-.footer {
-  padding-bottom: 1rem;
-  margin-bottom: 1rem;
-}
-
-/* Make content width smaller on big screens */
+/* Make content width smaller on big screens
+ * Make font size bigger on big screens
+ */
 @media screen and (min-width: 480px) {
   .content {
     width: 60%;
