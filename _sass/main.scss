@@ -24,17 +24,18 @@ hr {
 }
 
 a {
-  text-decoration: none;
+  color: $emphasis;
   transition: .25s;
+  text-decoration: none;
   transition-timing-function: ease-in-out;
 }
 
 a:hover {
-  color: $accenthl;
+  color: $emphasishl;
 }
 
 b,
-a,
+strong,
 em,
 h1,
 h2,
