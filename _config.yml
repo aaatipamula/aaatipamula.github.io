@@ -39,16 +39,7 @@ markdown: kramdown
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
-=======
-domain: aaatipamula.github.io
-url: https://aaatipamula.github.io
-remote_theme: tajacks/lightspeed
 
-name: Aniketh Aatipmula
-description: A simple Jekyll theme
-author: aaatipamula
 timezone: America/Chicago
 timezone_short: CST
 
-# Keywords
-keywords: ['Aniketh', 'working']
