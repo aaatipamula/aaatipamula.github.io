@@ -1,0 +1,102 @@
+@import "color";
+
+html {
+  font-size: 13px;
+}
+
+body {
+  background: $primary;
+  color: $secondary;
+  font-family: "Rubik", sans-serif;
+  line-height: 1.45;
+  margin: 1rem auto 1rem;
+  padding: .25rem;
+}
+
+blockquote {
+  margin-left: 1rem;
+}
+
+hr {
+  color: $accent;
+  background-color: $accent;
+  height: 3px;
+}
+
+a {
+  color: $emphasis;
+  transition: .25s;
+  text-decoration: none;
+  transition-timing-function: ease-in-out;
+}
+
+a:hover {
+  color: $emphasishl;
+}
+
+b,
+strong,
+em,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $accent;
+}
+
+i {
+  padding: .25rem;
+}
+
+blockquote {
+  border-left: 3px solid $accent;
+  padding-left: 1rem;
+  page-break-inside: avoid;
+}
+
+// Change code fornt maybe
+code {
+  font-family: Menlo, Monaco, "Courier New", monospace;
+  background-color: $primaryhl;
+}
+
+table, th, td {
+  border: 2px solid;
+  border-color: $accent;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: .5rem;
+}
+
+#logo-background {
+  stroke: $primaryhl;
+  fill: $primary;
+}
+
+#logo-text {
+  stroke: $accent;
+  fill: $accent;
+}
+
+.content {
+  min-height: 100%;
+  margin: auto;
+  width: 80%;
+}
+
+/* Make content width smaller on big screens
+ * Make font size bigger on big screens
+ */
+@media screen and (min-width: 480px) {
+  .content {
+    width: 60%;
+  }
+
+  html {
+    font-size: 18px;
+  }
+}

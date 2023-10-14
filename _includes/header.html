@@ -1,8 +1,6 @@
-<div class="header">
-    <h1>Hi, I'm Aniketh</h1>
-    <br>
-    <h5><i>Just a guy.</i></h5>
-    <br>
-    {% include nav.html %}
-    <hr>
-</div>
+<nav>
+  <a href="{{ site.baseurl }}/">Home</a>
+  {% for page in site.data.nav %}
+    <a href="{{ page.link | absolute_url }}">{{ page.name }}</a>
+  {% endfor %}
+</nav>
