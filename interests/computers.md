@@ -23,15 +23,71 @@ Anyways, after building that first keyboard I dove headfirst into the hobby, buy
 
 > This is by no means the extent of my collection, just a collection of the few that I've particularly enjoyed.
 
-| Keyboard/Kit | Switches | Keycaps | Notes | Picture |
-| --- | --- | --- | --- | --- |
-| Mode Eighty 2022 (Green) | Gateron CJs | Osume Matcha | This is my nicest (and most expensive) board | n/a |
-| KBDfans 65% Low Profile | Gateron Milky Yellows | Grey Scale | This was my first ever keyboard! | n/a | 
-| Tofu 65 Acylic | Durock Smoky Teal (62g) | Drop 9009 | I like the switches in this one :) | n/a | 
-| SKErgo | Gateron Ink Blacks | Keycreative Blanks | My first ergo board | n/a |
-| Corne V3 | Cannon Keys Lilac Linears | Random Set | My first dive into 40% split keyboards | n/a |
-| Butterfly | Aquakings (52g) | NP Japanese | I designed this board, check it out [here](https://github.com/aaatipamula/butterfly)! | n/a |
+<div style="overflow-x: auto;">
+  <table>
+    <tr>
+      <th>Keyboard/Kit</th>
+      <th>Switches</th> 
+      <th>Keycaps</th>
+      <th>Notes</th>
+    </tr>
+    <tr>
+      <td>Mode Eighty 2022 (Green)</td>
+      <td>Gateron CJs</td>
+      <td>Osume Matcha</td>
+      <td>This is my nicest (and most expensive) board</td>
+    </tr>
+    <tr>
+      <td>KBDfans 65% Low Profile</td>
+      <td>Gateron Milky Yellows</td>
+      <td>Grey Scale</td>
+      <td>This was my first ever keyboard!</td>
+    </tr>
+    <tr>
+      <td>Tofu 65 Acylic</td>
+      <td>Durock Smoky Teal (62g)</td>
+      <td>Drop 9009</td>
+      <td>I like the switches in this one :)</td>
+    </tr>
+    <tr>
+      <td>SKErgo</td>
+      <td>Gateron Ink Blacks</td>
+      <td>Keycreative Blanks</td>
+      <td>My first ergo board</td>
+    </tr>
+    <tr>
+      <td>Corne V3</td>
+      <td>Cannon Keys Lilac Linears</td>
+      <td>Random Set</td>
+      <td>My first dive into 40% split keyboards</td>
+    </tr>
+    <tr>
+      <td>Butterfly</td>
+      <td>Aquakings (52g)</td>
+      <td>NP Japanese</td>
+      <td>I designed this board, check it out <a href="https://github.com/aaatipamula/butterfly">here</a>!</td>
+    </tr>
+  </table>
+</div>
 
 # Computer Hardware
 
+## A (Quicker) Introduction
+
+My interest in computer hardware began in middle school. This hobby started with pure chance. I was scolling through YouTube, as middle schoolers my age tend to do, when I found a video that showed the process of custom building a computer. I didn't even know computers come in parts up intil that point, but watching the entire PC being assembled reminded me of putting together LEGOes in some way.
+
+From there my curiosity was very throughly ignited and I continued to watch more and more videos. After about a month or so of watching videos and doing research in parts I asked my dad, a tech nerd himself, if I could build my own. Unfortunately the timing wasn't right and he didn't bite. However, my interest in computer hardware continued to turn into a passion as I did more research and watched more videos.
+
+Eventually in my sophmore year of highschool, my dad finally budged and allowed me to buy the parts for my first PC. Giddy with excitement, I went to the closest Micro Center and picked out all the parts for a price I thought was pretty reasonable. I put together a build just over 1k, which is what I still use today, with a few upgrades to cooling, PSU, and storage.
+
+Similar to custom mechs, I find most of the joy in this hobby with the fact that I get to custom build my own computer just for my use. I can talior it to what I want and need. 
+
+As for my current PC's specs:
+
+**GPU**: EVGA 2060 Super
+**CPU**: AMD Ryzen 3600
+**RAM**: 16GB Trident Z at 3200Mhz
+**Storage**: 1TB Samsung Evo Pro
+**Case**: NZXT H10 Pro
+**PSU**: EVGA 700W Gold
 

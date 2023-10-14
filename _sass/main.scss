@@ -61,6 +61,16 @@ code {
   background-color: $primaryhl;
 }
 
+table, th, td {
+  border: 2px solid;
+  border-color: $accent;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: .5rem;
+}
+
 #logo-background {
   stroke: $primaryhl;
   fill: $primary;
