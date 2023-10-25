@@ -5,7 +5,7 @@ permalink: /portfolio
 
 # Skills
 
-Most of my experience lies in **Python**, **Linux**, **APIs**, and **Web Development**. I am interested in learning more about *databases* and backend development.
+Most of my experience lies in **Python**, **Linux**, **APIs**, and **Web Development**. I am interested in learning more about *databases* and *backend development*.
 
 ## Languages
 
