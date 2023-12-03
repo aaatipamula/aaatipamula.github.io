@@ -41,9 +41,9 @@ This is also where I learned a lot about good programing practices and reading d
 
 This is a keyboard I designed out of my interest in [Custom Mechanical Keyboards](/interests/computers#custom-kechanical-keyboards). This was a pretty big learning curve for me as I had to learn about different types of *microcontrollers*, conventional *keyboard design* with microcontrollers, and *PCB design*. However I feel like the payoff was immensely satisfying. 
 
-The board I designed is pretty crude and only includes the bare minimum for a functioning keyboard but I learned a lot about embeded systems and keyboard design throught this project. I am planning on either redesigning the board or desiging something completely different!
+The board I designed is pretty crude and only includes the bare minimum for a functioning keyboard, regardless however it was a great learning experience for me. I am planning on either redesigning the board or desiging something completely different!
 
 ## [CD Server](https://github.com/aaatipamula/cd-server)
 
-Although this project is more of a work in progress I designed this to help me contiously deploy my personal projects with docker. This utilizes a lot of things I learnt about web APIs including *authentication*, and *deploying* a web API.
+Although this project is more of a work in progress I designed this to help me contiously deploy my personal projects with *Docker*. This utilizes many of the fundementals I learnt about web APIs including *authentication*, and *deploying* a web API.
 

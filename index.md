@@ -13,3 +13,4 @@ I’m currently pursuing a *B.S. in Computer Science* at [The University of Kans
 I’m also working at [vCom Solutions](https://vcomsolutions.com) as a *Software Development Intern*
 
 Feel free to reach out to me at *aaatipamula@gmail.com*
+
