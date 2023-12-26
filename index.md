@@ -1,15 +1,16 @@
 ---
 layout: home
 title: About Me
-welcome: Hi, I'm Aniketh
-subtitle: An enthusiast
+welcome: Hey, I'm Aniketh
+subtitle: A casual enjoyer of things
 permalink: /
 ---
 
 # About Me
 
-I’m currently pursuing a *B.S. in Computer Science* at [The University of Kansas](https://eecs.ku.edu)
+Currently pursuing a *B.S. in Computer Science* at [The University of Kansas](https://eecs.ku.edu)
 
-I’m also working at [vCom Solutions](https://vcomsolutions.com) as a *Software Development Intern*
+My favorite color is red
 
-Feel free to reach out to me at *aaatipamula@gmail.com*
+*That's not my actual signature so don't bother learning how to copy it :)*
+
