@@ -1,9 +1,11 @@
 @import "color";
 
+// set fontsize
 html {
   font-size: 13px;
 }
 
+// main content
 body {
   background: $primary;
   color: $secondary;
@@ -13,16 +15,8 @@ body {
   padding: .25rem;
 }
 
-blockquote {
-  margin-left: 1rem;
-}
 
-hr {
-  color: $accent;
-  background-color: $accent;
-  height: 3px;
-}
-
+// hyperlinks
 a {
   color: $emphasis;
   transition: .25s;
@@ -30,10 +24,12 @@ a {
   transition-timing-function: ease-in-out;
 }
 
+// hyperlink hover
 a:hover {
   color: $emphasishl;
 }
 
+// bold, italics, headers etc.
 b,
 strong,
 em,
@@ -50,28 +46,52 @@ i {
   padding: .25rem;
 }
 
+// indented and highlighted blocks of words
 blockquote {
   border-left: 3px solid $accent;
   padding-left: 1rem;
   page-break-inside: avoid;
+  margin-left: 1rem;
 }
 
-// Change code fornt maybe
+// code blocks
+// change code fornt maybe
 code {
   font-family: Menlo, Monaco, "Courier New", monospace;
   background-color: $primaryhl;
 }
 
+// table, table headers and rows
 table, th, td {
   border: 2px solid;
   border-color: $accent;
   border-collapse: collapse;
 }
 
+// table headers and rows
 th, td {
   padding: .5rem;
 }
 
+// visible line breaks
+hr {
+  color: $accent;
+  background-color: $accent;
+  height: 3px;
+}
+
+// svg images
+svg {
+  max-width: 100%;
+  max-height: auto;
+}
+
+// iframes
+iframe {
+  max-width: 100%;
+}
+
+// logo stuff
 #logo-background {
   stroke: $primaryhl;
   fill: $primary;
@@ -82,15 +102,33 @@ th, td {
   fill: $accent;
 }
 
+// set container sizes
 .content {
   min-height: 100%;
   margin: auto;
   width: 80%;
 }
 
-/* Make content width smaller on big screens
- * Make font size bigger on big screens
- */
+// set svg path colors
+#signature {
+  stroke: $secondary;
+  stroke-width: 5px;
+}
+
+// set circle fill for svg
+circle {
+  fill: $secondary;
+}
+
+
+// fade in animation, may use for something eventually
+@keyframes fadein {
+  from {opacity: 0}
+  to {opacity: 100}
+}
+
+// Make content width smaller on big screens
+// Make font size bigger on big screens
 @media screen and (min-width: 480px) {
   .content {
     width: 60%;
@@ -99,4 +137,9 @@ th, td {
   html {
     font-size: 18px;
   }
+
+  iframe {
+    width: 70%;
+  }
 }
+

@@ -2,15 +2,22 @@
 <html>
   {% include head.html %}
   <body>
+    <script type="text/javascript">
+      window.addEventListener('load', (event) => {
+        hideChildren('signature')
+        animateSignature('signature', 1.3)
+      })
+    </script>
     {% include header.html %}
     <div class="content">
       <div class="intro">
-        <h1 class="home-title">{{ page.welcome }}</h1>
-        <p class="home-subtitle">{{ page.subtitle }}</p>
+        <h1 id="home-title">{{ page.welcome }}</h1>
+        <p id="home-subtitle">{{ page.subtitle }}</p>
         <br>
-        <hr>
+        {% include name.svg %} 
+        <hr id="home-break">
       </div>
-      {{ content }}
+      <div id="markdown">{{ content }}</div>
     </div>
     {% include footer.html %}
   </body>

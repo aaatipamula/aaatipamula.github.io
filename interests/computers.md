@@ -7,7 +7,7 @@ permalink: /interests/computers
 
 ## An Introduction
 
-My interest in this hobby stared back when the Covid-19 pandemic hit in 2020 when a few friends of mine introduced me to the idea of a custom mechanical keyboard. Up until that poit I had owned a fairly nice gaming keyboard that had Cherry MX Blues which I had come to enjoy using, but the idea of building something custom for myself piqued my curiosity.
+My interest in this hobby started back in 2020 when a few friends of mine introduced me to the idea of a custom mechanical keyboard. Up until that point I had owned a fairly nice gaming keyboard that had Cherry MX Blues which I had come to enjoy using, but the idea of building something custom for myself piqued my curiosity.
 
 The only real barrier to entry for me like most other people was the cost of most kits and boards at the time (which still applies as of 2023). Luckily, or perhaps unluckily for my wallet, I had just acquired my first job in retail where I made just enough to splurge and buy all the parts for my first custom mechanical keyboard. 
 
@@ -21,7 +21,7 @@ Anyways, after building that first keyboard I dove headfirst into the hobby, buy
 
 ## My Collection
 
-> This is by no means the extent of my collection, just a collection of the few that I've particularly enjoyed.
+> This isn't extent of my collection, just a list of the few that I've particularly enjoyed.
 
 <div style="overflow-x: auto;">
   <table>
@@ -44,7 +44,7 @@ Anyways, after building that first keyboard I dove headfirst into the hobby, buy
       <td>This was my first ever keyboard!</td>
     </tr>
     <tr>
-      <td>Tofu 65 Acylic</td>
+      <td>Tofu 65 Acrylic</td>
       <td>Durock Smoky Teal (62g)</td>
       <td>Drop 9009</td>
       <td>I like the switches in this one :)</td>
@@ -74,20 +74,25 @@ Anyways, after building that first keyboard I dove headfirst into the hobby, buy
 
 ## A (Quicker) Introduction
 
-My interest in computer hardware began in middle school. This hobby started with pure chance. I was scolling through YouTube, as middle schoolers my age tend to do, when I found a video that showed the process of custom building a computer. I didn't even know computers come in parts up intil that point, but watching the entire PC being assembled reminded me of putting together LEGOes in some way.
+My interest in computer hardware began in middle school. This hobby started with pure chance. I was scrolling through YouTube, as middle schoolers my age tend to do, when I found a video that showed the process of custom building a computer. I didn't even know computers come in parts up until that point, but watching the entire PC being assembled reminded me of putting together LEGOes in some way.
 
-From there my curiosity was very throughly ignited and I continued to watch more and more videos. After about a month or so of watching videos and doing research in parts I asked my dad, a tech nerd himself, if I could build my own. Unfortunately the timing wasn't right and he didn't bite. However, my interest in computer hardware continued to turn into a passion as I did more research and watched more videos.
+From there my curiosity was very thoroughly ignited and I continued to watch more and more videos. After about a month or so of watching videos and doing research in parts I asked my dad, a tech nerd himself, if I could build my own. Unfortunately the timing wasn't right and he didn't bite. However, my interest in computer hardware continued to turn into a passion as I did more research and watched more videos.
 
-Eventually in my sophmore year of highschool, my dad finally budged and allowed me to buy the parts for my first PC. Giddy with excitement, I went to the closest Micro Center and picked out all the parts for a price I thought was pretty reasonable. I put together a build just over 1k, which is what I still use today, with a few upgrades to cooling, PSU, and storage.
+Eventually in my sophomore year of high school, my dad finally budged and allowed me to buy the parts for my first PC. Giddy with excitement, I went to the closest Micro Center and picked out all the parts for a price I thought was pretty reasonable. I put together a build just over 1k, which is what I still use today, with a few upgrades to cooling, PSU, and storage.
 
-Similar to custom mechs, I find most of the joy in this hobby with the fact that I get to custom build my own computer just for my use. I can talior it to what I want and need. 
+Similar to custom mechs, I find most of the joy in this hobby with the fact that I get to custom build my own computer just for my use. I can tailor it to what I want and need. 
 
 As for my current PC's specs:
 
 **GPU**: EVGA 2060 Super
+
 **CPU**: AMD Ryzen 3600
+
 **RAM**: 16GB Trident Z at 3200Mhz
+
 **Storage**: 1TB Samsung Evo Pro
+
 **Case**: NZXT H10 Pro
+
 **PSU**: EVGA 700W Gold
 

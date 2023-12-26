@@ -1,4 +1,4 @@
-- name: Interests
-  link: /interests
 - name: Portfolio
   link: /portfolio
+- name: Interests
+  link: /interests

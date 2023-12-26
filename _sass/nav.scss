@@ -1,29 +1,35 @@
 @import "color";
 
+// nav box sizing and positioning
 nav {
   margin: auto;
   overflow: hidden;
   margin-bottom: 2rem;
   border-radius: .25rem;
   background-color: $accent;
+  display: flex;
+  justify-content: center;
   width: 81%;
 }
 
+// make links blocks and change the colors
 nav a {
-  float: left;
   display: block;
   text-align: center;
   color: $primary;
   padding: 1rem 1rem;
 }
 
+// change the hover color
 nav a:hover {
   background-color: $accenthl;
   color: $primaryhl;
 }
 
+// adjust size of nav when on a bigger screen
 @media screen and (min-width: 480px) {
   nav {
     width: 61%;
+    justify-content: left;
   }
 }
