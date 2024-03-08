@@ -16,6 +16,7 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+
 // animate my signature
 async function animateSignature(signatureID, durationMultiplier) {
   const signature = document.getElementById(signatureID);
@@ -82,5 +83,12 @@ function spotifyFrames(addBeforeID) {
   let child = document.getElementById(addBeforeID);
 
   parent.insertBefore(musicDiv, child)
+}
+
+function highlightNav() {
+  for (const child of document.querySelector("nav").children) {
+    let basepath = window.location.pathname.split("/")[1];
+    child.classList.toggle("onpage", child.id === basepath);
+  }
 }
 
