@@ -1,6 +1,7 @@
 <nav>
   <a href="{{ site.baseurl }}/">Home</a>
   {% for page in site.data.nav %}
-    <a href="{{ page.link | absolute_url }}">{{ page.name }}</a>
+  <a id="{{ page.name. | downcase }}" href="{{ page.link | absolute_url }}">{{ page.name }}</a>
   {% endfor %}
 </nav>
+<script type="text/javascript">highlightNav()</script>
