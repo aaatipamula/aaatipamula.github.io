@@ -6,34 +6,37 @@ nav {
   overflow: hidden;
   margin-bottom: 2rem;
   border-radius: .25rem;
+  padding: .8rem;
   background-color: $accent;
   display: flex;
   justify-content: space-around;
   width: 81%;
 }
 
-// make links blocks and change the colors
+// Make links blocks and change the colors
 nav a {
   display: block;
   text-align: center;
   color: $primary;
-  padding: 1rem 1em;
+  padding: 1rem 1.5rem;
+  border-radius: .25rem;
+  font-size: 15px;
 }
 
-nav a.onpage {
-  background-color: $accenthl;
+
+// Change the hover color
+nav a:hover, nav a.onpage{
+  background: $accenthl;
   color: $primaryhl;
 }
 
-// change the hover color
-nav a:hover {
-  background-color: $accenthl;
-  color: $primaryhl;
-}
-
-// adjust size of nav when on a bigger screen
+// Adjust size of nav when on a bigger screen
 @media screen and (min-width: 480px) {
   nav {
     width: 61%;
+  }
+
+  nav a {
+    font-size: 19px;
   }
 }
