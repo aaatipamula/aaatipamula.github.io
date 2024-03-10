@@ -1,3 +1,4 @@
+// Used to hide children on load
 function hideChildren(elemID) {
   const elem = document.getElementById(elemID);
   for (const child of elem.children) {
@@ -8,14 +9,12 @@ function hideChildren(elemID) {
 // timeout function
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
 
-// get random int in range
-// here for posterity
+// get random int in range (unused currently)
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
 
 // animate my signature
 async function animateSignature(signatureID, durationMultiplier) {
@@ -26,7 +25,7 @@ async function animateSignature(signatureID, durationMultiplier) {
     child.style.visibility = 'visible'
 
     let signatureLen = child.getTotalLength();
-    let duration = Math.floor(signatureLen * durationMultiplier)
+    let duration = Math.floor(signatureLen * durationMultiplier);
 
     child.style.strokeDasharray = signatureLen + ' ' + signatureLen;
     child.style.strokeDashoffset = signatureLen;
@@ -34,55 +33,94 @@ async function animateSignature(signatureID, durationMultiplier) {
     let animation = child.animate(
       [{strokeDashoffset: signatureLen}, {strokeDashoffset: 0}],
       {duration: duration, iterations: 1}
-    )
+    );
 
-    animation.onfinish = (event) => {
+    animation.onfinish = () => {
       child.style.strokeDasharray = 0;
       child.style.strokeDashoffset = 0;
     }
 
-    await sleep(duration)
+    await sleep(duration);
   }
 
-  for (const child of signature.getElementsByTagName('circle')) {
-    child.style.visibility = 'visible'
-  }
+  signature.querySelector('circle').style.visibility = 'visible';
 }
 
 // dynamically add in divs to add iframes in for spotify songs
-function spotifyFrames(addBeforeID) {
+async function spotifyFrames(addBeforeID) {
   const musicDiv = document.createElement("div");
+  const carousel = document.createElement("div");
   const subHead = document.createElement("h2");
-  const headText = document.createTextNode("Linked Music");
 
-  musicDiv.id = "linked-music"
+  musicDiv.id = "linked-music";
+  carousel.classList.add("carousel-container");
+  subHead.innerText = "Linked Music";
 
-  subHead.appendChild(headText)
-  musicDiv.appendChild(subHead)
+  let back = document.createElement('i');
+  back.classList.add("fa-solid", "fa-arrow-left", "fa-xl", "carousel-control");
+  back.id = "carousel-back";
+
+  let forward = document.createElement('i');
+  forward.classList.add("fa-solid", "fa-arrow-right", "fa-xl", "carousel-control");
+  forward.id = "carousel-forward";
+
+  let child = document.getElementById(addBeforeID);
+  child.parentNode.insertBefore(musicDiv, child);
+
+  musicDiv.appendChild(subHead);
+  musicDiv.appendChild(back);
+  musicDiv.appendChild(forward);
+  musicDiv.appendChild(carousel);
+
+  let itemCount = 0;
+  const carouselItems = []
 
   for (const link of document.links) {
     if (link.hostname.startsWith("open.spotify.com")) {
-      let spotifyFrame = document.createElement("iframe");
-      let songID = link.pathname.substring(link.pathname.lastIndexOf('/') + 1);
+      let res = await fetch("https://open.spotify.com/oembed?url=" + link);
+      let songInfo = await res.json();
 
-      spotifyFrame.id = "spotify:track:" + songID
-      spotifyFrame.src = "https://open.spotify.com/embed/track/" + songID + "?utm_source=generator&theme=0"
-      spotifyFrame.height = 152
-      spotifyFrame.allowFullscreen = false
-      spotifyFrame.allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-      spotifyFrame.loading = "lazy"
-      spotifyFrame.style.borderRadius = "12px"
-      spotifyFrame.style.border = 0
+      let card = document.createElement("div");
+      card.classList.add("carousel-item");
 
+      let thumbnail = new Image(songInfo.thumbnail_width, songInfo.thumbnail_height);
+      thumbnail.src = songInfo.thumbnail_url;
+      thumbnail.style.borderRadius = ".25rem"
 
-      musicDiv.appendChild(spotifyFrame)
+      let text = document.createTextNode(songInfo.title)
+
+      card.appendChild(thumbnail);
+      card.appendChild(text);
+      
+      carousel.appendChild(card);
+      carouselItems.push(card);
+      itemCount++;
     }
   }
 
-  const parent = document.getElementById(addBeforeID).parentNode;
-  let child = document.getElementById(addBeforeID);
+  // Assumes constant size for all elements
+  let itemWidth = carousel.firstChild.getBoundingClientRect().width + 20;
+  let currentIndex = Math.floor(itemCount/2);
+  let offsetWidth = (currentIndex) * itemWidth;
 
-  parent.insertBefore(musicDiv, child)
+  carouselItems[currentIndex].classList.toggle("carousel-active")
+
+  function goToIndex(index) {
+    if (index < 0) {
+      index = itemCount - 1;
+    } else if (index >= itemCount) {
+      index = 0; 
+    }
+
+    carouselItems[currentIndex].classList.toggle("carousel-active")
+    carouselItems[index].classList.toggle("carousel-active")
+
+    carousel.style.transform = `translateX(${-(index * itemWidth) + offsetWidth}px)`;
+    currentIndex = index;
+  }
+
+  back.addEventListener("click", () => goToIndex(currentIndex - 1));
+  forward.addEventListener("click", () => goToIndex(currentIndex + 1));
 }
 
 function highlightNav() {
