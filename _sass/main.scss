@@ -133,6 +133,10 @@ circle {
 // iframes
 iframe {
   max-width: 100%;
+  margin: 2rem auto;
+  border-radius: .25rem;
+  border: 0;
+  display: block;
 }
 
 // set container sizes

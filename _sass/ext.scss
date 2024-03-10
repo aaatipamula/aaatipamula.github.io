@@ -4,13 +4,16 @@
   stroke-width: 5px;
 }
 
-#music-links {
-  overflow: hidden;
+.control-container {
+  max-width: fit-content;
+  margin: 2rem auto;
+  display: block;
 }
 
 .carousel-control {
   cursor: pointer;
   padding: 1rem;
+  margin-inline: auto;
 }
 
 .carousel-control:hover {
@@ -41,6 +44,7 @@
   line-height: 1.5rem;
   border-radius: .25rem;
   transition: transform 0.4s ease-in-out;
+  cursor: pointer;
 }
 
 .carousel-active {
