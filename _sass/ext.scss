@@ -43,12 +43,21 @@
   text-align: center;
   line-height: 1.5rem;
   border-radius: .25rem;
-  transition: transform 0.4s ease-in-out;
+  transition: 0.4s ease-in-out;
   cursor: pointer;
 }
 
 .carousel-active {
   transform: scale(1.1);
   color: $secondaryhl;
+}
+
+img.thumbnail-art {
+  border-radius: .25rem;
+  transition: .25s ease-in-out;
+}
+
+img.thumbnail-art:hover {
+  filter: brightness(80%);
 }
 
