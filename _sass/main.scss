@@ -125,9 +125,18 @@ svg {
   max-height: auto;
 }
 
+// set circle fill for svg
+circle {
+  fill: $secondary;
+}
+
 // iframes
 iframe {
   max-width: 100%;
+  margin: 2rem auto;
+  border-radius: .25rem;
+  border: 0;
+  display: block;
 }
 
 // set container sizes
@@ -135,24 +144,6 @@ iframe {
   min-height: 100%;
   margin: auto;
   width: 80%;
-}
-
-// set svg path colors
-#signature {
-  stroke: $secondary;
-  stroke-width: 5px;
-}
-
-// set circle fill for svg
-circle {
-  fill: $secondary;
-}
-
-
-// fade in animation, may use for something eventually
-@keyframes fadein {
-  from {opacity: 0}
-  to {opacity: 100}
 }
 
 // Make content width smaller on big screens

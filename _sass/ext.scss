@@ -1,0 +1,54 @@
+// set svg path colors
+#signature {
+  stroke: $secondary;
+  stroke-width: 5px;
+}
+
+.control-container {
+  max-width: fit-content;
+  margin: 2rem auto;
+  display: block;
+}
+
+.carousel-control {
+  cursor: pointer;
+  padding: 1rem;
+  margin-inline: auto;
+}
+
+.carousel-control:hover {
+  color: $accent;
+}
+
+.carousel-container {
+  transition: transform 0.4s ease-in-out;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+#carousel-forward {
+  margin-right: auto;
+}
+
+#carousel-back {
+  margin-right: auto;
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  width: 300px; /* adjust this width according to your needs */
+  margin-right: 20px; /* adjust the spacing between items */
+  background-color: $accent;
+  text-align: center;
+  line-height: 1.5rem;
+  border-radius: .25rem;
+  transition: transform 0.4s ease-in-out;
+  cursor: pointer;
+}
+
+.carousel-active {
+  transform: scale(1.1);
+  color: $secondaryhl;
+}
+
