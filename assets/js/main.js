@@ -100,12 +100,10 @@ async function spotifyFrames(addBeforeID) {
 
       let thumbnail = new Image(songInfo.thumbnail_width, songInfo.thumbnail_height);
       thumbnail.src = songInfo.thumbnail_url;
-      thumbnail.style.borderRadius = ".25rem"
-
-      let text = document.createTextNode(songInfo.title)
+      thumbnail.alt = songInfo.title;
+      thumbnail.classList.add("thumbnail-art")
 
       card.appendChild(thumbnail);
-      card.appendChild(text);
       
       carousel.appendChild(card);
       carouselItems.push(card);
