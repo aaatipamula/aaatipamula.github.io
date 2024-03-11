@@ -3,38 +3,46 @@
 
 // main content
 body {
-  color: $secondary;
-  background: $primary;
-  font-size: 13px;
-  font-family: "Rubik", Helvetica, Arial, Freesans, clean, sans-serif;
+  color: $text;
+  background: $background;
+
+  font-size: 16px;
   line-height: 1.45;
+  font-family: "Rubik", Helvetica, Arial, Freesans, clean, sans-serif;
+
   margin: 1rem auto 1rem;
   padding: .25rem;
   overflow-x: clip;
+
+  user-select: none;
 }
 
 
 // hyperlinks
 a {
-  color: $emphasis;
-  transition: .25s;
+  color: $link;
   text-decoration: none;
-  transition-timing-function: ease-in-out;
+  transition: .25s ease-in-out;
 }
 
 // hyperlink hover
 a:hover {
-  color: $emphasishl;
+  color: $link-hov;
 }
 
 // italics
 em {
-  color: $accent;
+  color: $italic;
 }
 
 // bold and header properties
-b, strong, h1, h2, h3, h4, h5, h6 {
-  color: $accent;
+b, strong {
+  color: $bold;
+  font-weight: bold;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $heading;
   font-weight: bold;
 }
 
@@ -47,11 +55,11 @@ h2 {
 }
 
 h3 {
-    font-size: 18px;
+    font-size: 20px;
 }
 
 h4 {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 h5 {
@@ -77,8 +85,8 @@ blockquote {
 
 // code blocks
 code, pre {
+    background-color: $background-dr;
     font-family: "Rubik Mono One", Menlo, Monaco, "Courier New", monospace;
-    background-color: $primaryhl;
     border-radius: 3px;
 }
 
@@ -89,8 +97,8 @@ code {
 
 pre {
     line-height: 1.25em;
-    overflow: auto;
     padding: 6px 10px;
+    overflow: auto;
 }
 
 pre > code {
@@ -116,8 +124,8 @@ th, td {
 hr {
   color: $accent;
   background-color: $accent;
-  height: 3px;
   border-radius: 3px;
+  height: 3px;
 }
 
 // svg images
@@ -128,7 +136,7 @@ svg {
 
 // set circle fill for svg
 circle {
-  fill: $secondary;
+  fill: $accent-hl;
 }
 
 // iframes
@@ -144,18 +152,24 @@ iframe {
 .content {
   min-height: 100%;
   margin: auto;
-  width: 80%;
+  width: 60%;
 }
 
-// Make content width smaller on big screens
-// Make font size bigger on big screens
-@media screen and (min-width: 480px) {
-  .content {
-    width: 60%;
+/* Adjust sizing for smaller screens */
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 14px; 
   }
 
+  .content {
+    width: 80%;
+  }
+}
+
+/* Adjust sizing for larger screens */
+@media screen and (min-width: 1200px) {
   body {
-    font-size: 18px;
+    font-size: 18px; 
   }
 
   iframe {

@@ -1,16 +1,23 @@
-// background color
-$primary: #E8EBE4;
-$primaryhl: #CDD4C4;
+@charset "utf-8";
 
-// main text
-$secondary: #5b7d76;
-$secondaryhl: #779687;
+// Any main color
+$accent: #283618;
+$accent-hl: #606c38;
 
-// main color to display
-$accent: #354f52;
-$accenthl: #52796f;
+// Should be a lighter shade and hue of accent
+$background: #fefae0;
+$background-dr: #f5f1ce;
 
-// color for links
-$emphasis: #A35255;
-$emphasishl: #BB777A;
+// Darker shade and hue of accent
+$text: #415428;
+$text-hl: #505c31;
+
+// Can be a complementary color
+$link: #bc6c25;
+$link-hov: #dda15e;
+
+$heading: #c95020;
+
+$bold: #c95020;
+$italic: #c95020;
 

@@ -1,6 +1,9 @@
+@import "color";
+@charset "utf-8";
+
 // set svg path colors
 #signature {
-  stroke: $secondary;
+  stroke: $accent-hl;
   stroke-width: 5px;
 }
 
@@ -17,7 +20,7 @@
 }
 
 .carousel-control:hover {
-  color: $accent;
+  color: $text-hl;
 }
 
 .carousel-container {
@@ -35,11 +38,12 @@
   margin-right: auto;
 }
 
+// NOTE: This needs to change
 .carousel-item {
   flex: 0 0 auto;
   width: 300px; /* adjust this width according to your needs */
   margin-right: 20px; /* adjust the spacing between items */
-  background-color: $accent;
+  background-color: $accent-hl;
   text-align: center;
   line-height: 1.5rem;
   border-radius: .25rem;
@@ -49,7 +53,8 @@
 
 .carousel-active {
   transform: scale(1.1);
-  color: $secondaryhl;
+  color: $text-hl;
+  background-color: $accent;
 }
 
 img.thumbnail-art {
@@ -58,6 +63,6 @@ img.thumbnail-art {
 }
 
 img.thumbnail-art:hover {
-  filter: brightness(80%);
+  filter: brightness(90%);
 }
 
