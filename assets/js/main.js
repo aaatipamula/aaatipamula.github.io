@@ -91,7 +91,7 @@ async function spotifyFrames(addBeforeID) {
   for (const link of document.links) {
     if (link.hostname.startsWith("open.spotify.com")) {
       var songID = link.pathname.substring(link.pathname.lastIndexOf('/') + 1);
-      let res = await fetch("https://open.spotify.com/oembed?url=" + link);
+      let res = await fetch("https://open.spotify.com/oembed?url=" + link, {mode: "cors"});
       let songInfo = await res.json();
 
       let card = document.createElement("div");
