@@ -3,7 +3,7 @@
 
 // set svg path colors
 #signature {
-  stroke: $accent-hl;
+  stroke: $accent;
   stroke-width: 5px;
 }
 
@@ -43,7 +43,7 @@
   flex: 0 0 auto;
   width: 300px; /* adjust this width according to your needs */
   margin-right: 20px; /* adjust the spacing between items */
-  background-color: $accent-hl;
+  background-color: $accent;
   text-align: center;
   line-height: 1.5rem;
   border-radius: .25rem;
@@ -63,6 +63,6 @@ img.thumbnail-art {
 }
 
 img.thumbnail-art:hover {
-  filter: brightness(90%);
+  filter: brightness(80%);
 }
 

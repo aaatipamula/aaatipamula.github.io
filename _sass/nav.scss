@@ -27,8 +27,10 @@ nav a {
 
 // Change the hover color
 nav a:hover, nav a.onpage{
-  background: $accent-hl;
-  color: $text;
+  -webkit-box-shadow: 1px -8px 31px -5px rgba(0,0,0,0.44);
+  -moz-box-shadow: 1px -8px 31px -5px rgba(0,0,0,0.44);
+  box-shadow: 1px -8px 31px -5px rgba(0,0,0,0.44);
+  color: $background;
 }
 
 /* Adjust sizing for smaller screens */
