@@ -20,16 +20,15 @@ nav a {
   display: block;
   text-align: center;
   color: $background-dr;
-  padding: 1rem 1.5rem;
-  border-radius: 1rem;
+  border-bottom: .25rem solid $accent;
+  border-radius: .125rem;
+  padding: 0.5rem 1rem;
   font-size: 17px;
 }
 
 // Change the hover color
 nav a:hover, nav a.onpage{
-  -webkit-box-shadow: 1px -8px 31px -5px rgba(0,0,0,0.44);
-  -moz-box-shadow: 1px -8px 31px -5px rgba(0,0,0,0.44);
-  box-shadow: 1px -8px 31px -5px rgba(0,0,0,0.44);
+  border-color: $background;
   color: $background;
 }
 
