@@ -18,9 +18,6 @@ github: aaatipamula
 linkedin: aniketh-aatipamula-a0a120150/
 email: aaatipamula@gmail.com
 
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-
 sass:
   sass_dir: _sass
   style: compressed
@@ -42,4 +39,8 @@ markdown: kramdown
 
 timezone: America/Chicago
 timezone_short: CST
+
+# Serve
+host: 0.0.0.0
+port: 4000
 

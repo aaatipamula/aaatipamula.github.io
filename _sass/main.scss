@@ -8,7 +8,7 @@ body {
 
   font-size: 16px;
   line-height: 1.45;
-  font-family: "Rubik", Helvetica, Arial, Freesans, clean, sans-serif;
+  font-family: "Rubik", sans-serif;
 
   margin: 1rem auto 1rem;
   padding: .25rem;
@@ -86,7 +86,7 @@ blockquote {
 // code blocks
 code, pre {
     background-color: $background-dr;
-    font-family: "Rubik Mono One", Menlo, Monaco, "Courier New", monospace;
+    font-family: "Fira Code", monospace;
     border-radius: 3px;
 }
 
