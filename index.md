@@ -12,9 +12,9 @@ Currently pursuing a *B.S. in Computer Science* at [The University of Kansas](ht
 
 Artist Spotlights:
 
-- [Worry Club](https://worryclub.com/)
-- [Sakkaris](https://www.instagram.com/sakkarismusic/?hl=en)
-- [MASS OF THE FERMENTING DREGS](https://en.wikipedia.org/wiki/Mass_of_the_Fermenting_Dregs)
+- [Worry Club](https://open.spotify.com/artist/7Fkc1Q81Zy25eZ5dmnURGl?si=DpXwGeS0Rpq5Xm3uCibalg)
+- [Sakkaris](https://open.spotify.com/artist/4S4HXXp7lMA41ttdFGpDIn?si=QG7-RhrQQFmsDPwHK8ajiw)
+- [MASS OF THE FERMENTING DREGS](https://open.spotify.com/artist/14d5KCX9nprUcxnKIShrr1?si=TqtFAvw3SUWuIEfDY9POew)
 
 Check out my [digital garden](https://garden.aniketh.dev).
 
