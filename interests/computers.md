@@ -46,26 +46,32 @@ Anyways, after building that first keyboard I dove headfirst into the hobby, buy
     <tr>
       <td>Tofu 65 Acrylic</td>
       <td>Durock Smoky Teal (62g)</td>
-      <td>Drop 9009</td>
+      <td>NicePBT Grey Scale</td>
       <td>I like the switches in this one :)</td>
     </tr>
     <tr>
       <td>SKErgo</td>
       <td>Gateron Ink Blacks</td>
-      <td>Keycreative Blanks</td>
+      <td>GMK Olivia</td>
       <td>My first ergo board</td>
     </tr>
     <tr>
       <td>Corne V3</td>
       <td>Cannon Keys Lilac Linears</td>
-      <td>Random Set</td>
+      <td>Keycreative Blanks</td>
       <td>My first dive into 40% split keyboards</td>
     </tr>
     <tr>
       <td>Butterfly</td>
       <td>Aquakings (52g)</td>
       <td>NP Japanese</td>
-      <td>I designed this board, check it out <a href="https://github.com/aaatipamula/butterfly">here</a>!</td>
+      <td>I designed this board! Check it out <a href="https://github.com/aaatipamula/butterfly">here</a>!</td>
+    </tr>
+    <tr>
+      <td>Devastating TKL</td>
+      <td>Cherry MX Purples</td>
+      <td>GMK Rainy Day</td>
+      <td></td>
     </tr>
   </table>
 </div>

@@ -18,9 +18,9 @@ I have a lot of personal interests `(!= “programming”)` which include some o
 > 
 > [Camping](/interests/outdoors#camping)
 
-[Entertainment](/interests/entertainment)
+[Media](/interests/media)
 
-> [Music](/interests/entertainment#music)
+> [Music](/interests/media#music)
 > 
-> [Movies](/interests/entertainment#movies)
+> [Movies](/interests/media#movies)
 
