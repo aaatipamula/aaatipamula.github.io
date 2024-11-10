@@ -2,7 +2,7 @@
 layout: home
 title: About Me
 welcome: Hey, I'm Aniketh
-subtitle: A student of the practice.
+subtitle: A developer, student, and hobbyist
 permalink: /
 ---
 
@@ -16,5 +16,5 @@ Artist Spotlights:
 - [Sakkaris](https://open.spotify.com/artist/4S4HXXp7lMA41ttdFGpDIn?si=QG7-RhrQQFmsDPwHK8ajiw)
 - [MASS OF THE FERMENTING DREGS](https://open.spotify.com/artist/14d5KCX9nprUcxnKIShrr1?si=TqtFAvw3SUWuIEfDY9POew)
 
-Check out my [digital garden](https://garden.aniketh.dev).
+Also check out my [digital garden](https://garden.aniketh.dev).
 

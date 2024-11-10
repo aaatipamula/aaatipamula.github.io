@@ -20,16 +20,42 @@ nav a {
   display: block;
   text-align: center;
   color: $background-dr;
-  border-bottom: .25rem solid $accent;
-  border-radius: .125rem;
   padding: 0.5rem 1rem;
   font-size: 17px;
 }
 
+nav a::after {
+  content: '';
+  display: block;
+  background-color: $background;
+  border-radius: .125rem;
+  width: 0;
+  height: .25rem;
+  animation-name: contract;
+  animation-duration: 0.4s;
+  margin: auto;
+}
+
 // Change the hover color
-nav a:hover, nav a.onpage{
-  border-color: $background;
+nav a:hover, nav a.onpage {
   color: $background;
+}
+
+// Change after block hover
+nav a:hover::after, nav a.onpage::after {
+  animation-name: expand;
+  animation-duration: 0.4s;
+  width: 100%;
+}
+
+@keyframes expand {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes contract {
+  from { width: 100% }
+  to { width: 0 }
 }
 
 /* Adjust sizing for smaller screens */
