@@ -164,7 +164,7 @@ async function spotifyFrames(addBeforeID) {
 
 function highlightNav() {
   for (const child of document.querySelector("nav").children) {
-    let basepath = window.location.pathname.split("/")[1];
+    let basepath = window.location.pathname.split("/").at(-1);
     child.classList.toggle("onpage", child.id === basepath);
   }
 }

@@ -98,7 +98,7 @@ As for my current PC's specs:
 
 **Storage**: 1TB Samsung Evo Pro
 
-**Case**: NZXT H10 Pro
+**Case**: NZXT H510
 
 **PSU**: EVGA 700W Gold
 

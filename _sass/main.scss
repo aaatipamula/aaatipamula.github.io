@@ -22,7 +22,7 @@ body {
 a {
   color: $link;
   text-decoration: none;
-  transition: .25s ease-in-out;
+  transition: .23s ease-in-out;
 }
 
 // hyperlink hover
@@ -85,26 +85,26 @@ blockquote {
 
 // code blocks
 code, pre {
-    background-color: $background-dr;
-    font-family: "Fira Code", monospace;
-    border-radius: 3px;
+  background-color: $background-dr;
+  font-family: "Fira Code", monospace;
+  border-radius: 3px;
 }
 
 code {
-    margin: 0 2px;
-    padding: 0 5px;
+  margin: 0 2px;
+  padding: 0 5px;
 }
 
 pre {
-    line-height: 1.25em;
-    padding: 6px 10px;
-    overflow: auto;
+  line-height: 1.25em;
+  padding: 6px 10px;
+  overflow: auto;
 }
 
 pre > code {
-    border: 0;
-    margin: 0;
-    padding: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
 }
 
 // table, table headers and rows
