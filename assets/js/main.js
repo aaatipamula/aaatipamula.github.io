@@ -2,7 +2,7 @@
 function hideChildren(elemID) {
   const elem = document.getElementById(elemID);
   for (const child of elem.children) {
-    child.style.visibility = 'hidden' 
+    child.style.visibility = 'hidden';
   }
 }
 
@@ -22,7 +22,7 @@ async function animateSignature(signatureID, durationMultiplier) {
 
 
   for (const child of signature.getElementsByTagName('path')) {
-    child.style.visibility = 'visible'
+    child.style.visibility = 'visible';
 
     let signatureLen = child.getTotalLength();
     let duration = Math.floor(signatureLen * durationMultiplier);
@@ -48,7 +48,6 @@ async function animateSignature(signatureID, durationMultiplier) {
 
 // Dynamically add a card carousel and iframe for all the Spotify links that exist
 async function spotifyFrames(addBeforeID) {
-  // Create all of our DOM elments 
   const musicDiv = document.createElement("div");
   const carousel = document.createElement("div");
   const subHead = document.createElement("h2");
@@ -58,17 +57,17 @@ async function spotifyFrames(addBeforeID) {
   subHead.innerText = "Linked Music";
 
   let controlSpan = document.createElement("span");
-  controlSpan.classList.add("control-container")
+  controlSpan.classList.add("control-container");
 
   let back = document.createElement('i');
   back.classList.add("fa-solid", "fa-arrow-left", "fa-xl", "carousel-control");
   back.id = "carousel-back";
-  controlSpan.appendChild(back)
+  controlSpan.appendChild(back);
 
   let forward = document.createElement('i');
   forward.classList.add("fa-solid", "fa-arrow-right", "fa-xl", "carousel-control");
   forward.id = "carousel-forward";
-  controlSpan.appendChild(forward)
+  controlSpan.appendChild(forward);
 
   let child = document.getElementById(addBeforeID);
   child.parentNode.insertBefore(subHead, child);
@@ -82,7 +81,7 @@ async function spotifyFrames(addBeforeID) {
  
   musicDiv.appendChild(controlSpan);
   musicDiv.appendChild(carousel);
-  musicDiv.appendChild(frame)
+  musicDiv.appendChild(frame);
 
   let itemCount = 0;
   const carouselItems = []
@@ -111,6 +110,7 @@ async function spotifyFrames(addBeforeID) {
     }
   }
 
+  // The margin should not exist for the last carousel item
   carouselItems[carouselItems.length - 1].style.marginRight = "0px";
 
   // Assumes constant size for all elements (refer to ext.sass for margin size)
@@ -140,6 +140,9 @@ async function spotifyFrames(addBeforeID) {
       index = 0; 
     }
 
+    // Don't reload anything if trying to go to the card we are on
+    if (index === currentIndex) return console.log("Carousel: Already on index");
+
     loadFrame(index);
 
     carouselItems[currentIndex].classList.toggle("carousel-active");
@@ -155,16 +158,20 @@ async function spotifyFrames(addBeforeID) {
 
   // Make the forward/back elements and carousel card clickable
   back.addEventListener("click", () => goToIndex(currentIndex - 1));
-  for (let i = 0; i < itemCount; i++) {
+  forward.addEventListener("click", () => goToIndex(currentIndex + 1));
+
+  // Make individual cards clickable
+  for (let i=0; i < itemCount; i++) {
     carouselItems[i].addEventListener("click", () => goToIndex(i));
   }
-  forward.addEventListener("click", () => goToIndex(currentIndex + 1));
 
 }
 
 function highlightNav() {
+  const paths = window.location.pathname.split("/").filter((v) => v != "")
+  const basepath = paths.at(-1) === undefined ? "" : paths.at(-1)
+
   for (const child of document.querySelector("nav").children) {
-    let basepath = window.location.pathname.split("/").at(-1);
     child.classList.toggle("onpage", child.id === basepath);
   }
 }
