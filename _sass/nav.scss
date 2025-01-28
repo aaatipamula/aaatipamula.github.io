@@ -27,10 +27,12 @@ nav a {
 nav a::after {
   content: '';
   display: block;
+  opacity: 0;
   background-color: $background;
   border-radius: .125rem;
-  width: 0;
+  width: 100%;
   height: .25rem;
+  transition: opacity 0.4s linear;
   animation-name: contract;
   animation-duration: 0.4s;
   margin: auto;
@@ -43,6 +45,7 @@ nav a:hover, nav a.onpage {
 
 // Change after block hover
 nav a:hover::after, nav a.onpage::after {
+  opacity: 100%;
   animation-name: expand;
   animation-duration: 0.4s;
   width: 100%;

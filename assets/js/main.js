@@ -47,14 +47,20 @@ async function animateSignature(signatureID, durationMultiplier) {
 }
 
 // Dynamically add a card carousel and iframe for all the Spotify links that exist
-async function spotifyFrames(addBeforeID) {
+/**
+  * @param {string} addBeforeID - Add before an element's id
+  * @param {string} heading - Text to add to section heading
+  * @param {boolean} scrapePage - Scrape the page for spotify links
+  * @param {string | null} playlistUrl - Spotify playlist URL to scrape
+  */
+async function spotifyFrames(addBeforeID, heading, scrapePage, playlistUrl) {
   const musicDiv = document.createElement("div");
   const carousel = document.createElement("div");
   const subHead = document.createElement("h2");
 
-  musicDiv.id = "linked-music";
+  musicDiv.id = heading.toLowerCase().replace(' ', '-')
   carousel.classList.add("carousel-container");
-  subHead.innerText = "Linked Music";
+  subHead.innerText = heading;
 
   let controlSpan = document.createElement("span");
   controlSpan.classList.add("control-container");
@@ -86,28 +92,48 @@ async function spotifyFrames(addBeforeID) {
   let itemCount = 0;
   const carouselItems = []
 
-  // Populate the carousel with cards 
-  for (const link of document.links) {
-    if (link.hostname.startsWith("open.spotify.com")) {
-      var songID = link.pathname.substring(link.pathname.lastIndexOf('/') + 1);
-      let res = await fetch("https://open.spotify.com/oembed?url=" + link, {mode: "cors"});
-      let songInfo = await res.json();
+  let songs = Array.from(document.links).filter(link => link.hostname.startsWith("open.spotify.com"));
+  console.log(songs);
 
-      let card = document.createElement("div");
-      card.classList.add("carousel-item");
-      card.id = "spotify:song:" + songID
+  if (!scrapePage && playlistUrl) {
+    const playlistID = playlistUrl.substring(playlistUrl.lastIndexOf('/') + 1);
+    const res = await fetch("https://api.spotify.com/v1/playlists/" + playlistID, {mode: "cors"});
 
-      let thumbnail = new Image(songInfo.thumbnail_width, songInfo.thumbnail_height);
-      thumbnail.src = songInfo.thumbnail_url;
-      thumbnail.alt = songInfo.title;
-      thumbnail.classList.add("thumbnail-art")
-
-      card.appendChild(thumbnail);
-      
-      carousel.appendChild(card);
-      carouselItems.push(card);
-      itemCount++;
+    if (!res.ok) {
+      console.log("Failed to fetch Spotify playlist.");
+      return;
     }
+
+    const playlistInfo = await res.json();
+    songs = playlistInfo.tracks.items.map(obj => { obj.track.external_urls.spotify })
+  }
+
+  // Populate the carousel with cards 
+  for (const link of songs) {
+    const songID = link.pathname.substring(link.pathname.lastIndexOf('/') + 1);
+    let res = await fetch("https://open.spotify.com/oembed?url=" + link, {mode: "cors"});
+
+    if (!res.ok) {
+      console.error("Failed to fetch Spotify embed.");
+      return;
+    }
+
+    const songInfo = await res.json();
+
+    const card = document.createElement("div");
+    card.classList.add("carousel-item");
+    card.id = "spotify:song:" + songID
+
+    const thumbnail = new Image(songInfo.thumbnail_width, songInfo.thumbnail_height);
+    thumbnail.src = songInfo.thumbnail_url;
+    thumbnail.alt = songInfo.title;
+    thumbnail.classList.add("thumbnail-art")
+
+    card.appendChild(thumbnail);
+
+    carousel.appendChild(card);
+    carouselItems.push(card);
+    itemCount++;
   }
 
   // The margin should not exist for the last carousel item
