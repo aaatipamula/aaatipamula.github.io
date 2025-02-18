@@ -32,9 +32,9 @@ nav a::after {
   border-radius: .125rem;
   width: 100%;
   height: .25rem;
-  transition: opacity 0.4s linear;
+  transition: opacity 0.35s linear;
   animation-name: contract;
-  animation-duration: 0.4s;
+  animation-duration: 0.35s;
   margin: auto;
 }
 
@@ -43,12 +43,17 @@ nav a:hover, nav a.onpage {
   color: $background;
 }
 
-// Change after block hover
-nav a:hover::after, nav a.onpage::after {
+// Change animate expansion on block hover
+nav a:hover::after {
   opacity: 100%;
   animation-name: expand;
-  animation-duration: 0.4s;
-  width: 100%;
+  animation-duration: 0.35s;
+}
+
+// The current page has no nav animations
+nav a.onpage::after {
+  opacity: 100%;
+  animation-name: unset;
 }
 
 @keyframes expand {

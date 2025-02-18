@@ -14,8 +14,13 @@ body {
   padding: .25rem;
   overflow-x: clip;
   overflow-x: hidden; /* Fallback */
+  
+  max-width: 100vw;
 }
 
+.invisible {
+  opacity: 0;
+}
 
 // hyperlinks
 a {
@@ -158,6 +163,7 @@ iframe {
   min-height: 100%;
   margin: auto;
   width: 60%;
+  transition: .4s ease-in;
 }
 
 /* Adjust sizing for smaller screens */
