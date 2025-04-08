@@ -1,17 +1,26 @@
 <head>
   <title>{% if page.title %} {{ page.title }} {% else %} {{site.title}} {% endif %}</title>
+
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-
-  <script src="{{ site.baseurl }}/assets/js/main.js"></script>
   <link rel="icon" href="{{ site.baseurl }}/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css"/>
 
-  <!-- Include fontawesome icons  -->
-  <script src="https://kit.fontawesome.com/ccfc031c94.js" crossorigin="anonymous"></script>
+  <script src="./assets/js/main.js"></script>
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
 
+  <!-- Configure TailwindCSS -->
+  <script>
+    // Configure Tailwind to use class-based dark mode
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
+  <style>
+    * {
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+  </style>
 </head>

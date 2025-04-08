@@ -1,31 +1,85 @@
 <!DOCTYPE html>
 <html>
   {% include head.html %}
-  <body class="">
-    <script type="text/javascript">
-      window.addEventListener('load', (event) => {
-        document.getElementById('home-content').classList.toggle('invisible');
-        hideChildren('signature');
-        animateSignature('signature', 1.3);
-        <!-- spotifyFrames( -->
-        <!--   'about-me', --> 
-        <!--   'What I\'ve Been Listening To', --> 
-        <!--   false, --> 
-        <!--   'https://open.spotify.com/playlist/0PfJ8774zq3ippFWJleapl?si=48d2ad617394421e' -->
-        <!-- ); -->
-      })
-    </script>
+  <body class="text-zinc-900 dark:text-zinc-100">
+    <!-- Toggle theme button -->
+    <button 
+      id="theme-toggle"
+      class="fixed top-4 right-4 p-2 rounded-lg bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700"
+    >
+      <span id="sun" class="inline dark:hidden">🌞</span>
+      <span id="moon" class="hidden dark:inline">🌙</span>
+    </button>
+
+    <!-- Navbar includes -->
     {% include nav.html %}
-    <div id="home-content" class="content invisible">
-      <div class="intro">
-        <h1 id="home-title">{{ page.welcome }}</h1>
-        <p id="home-subtitle">{{ page.subtitle }}</p>
-        <br>
-        {% include name.svg %} 
-        <hr id="home-break">
+
+    <!-- Overlay page -->
+
+    <!-- Command bar -->
+    <div class="bg-zinc-100 dark:bg-zinc-900 flex-col justify-center h-screen w-screen">
+      <div class="w-3/4 md:w-1/2 m-auto py-20 ">
+        <input
+          placeholder="type /help"
+          name="command"
+          id="navigation"
+          type="text"
+          class="rounded focus:outline-hidden w-full p-2
+            outline outline-2 outline-stone-300 focus:outline-stone-500 dark:outline-stone-700 dark:focus:outline-stone-500
+            bg-zinc-200 dark:bg-zinc-800"
+        >
       </div>
-      <div id="markdown">{{ content }}</div>
+
+      <div class="flex flex-col justify-center gap-[0.3em] content-end h-fill">
+        <!-- Main board -->
+        {% for idxa in (0..2) %}
+        <div class="flex justify-center gap-[0.2em]">
+          {% for idxb in (1..12) %}
+            <div 
+              id="key_{{ idxa | times: 12 | plus: idxb }}"
+              class="relative hover:opacity-50 bg-stone-400 dark:bg-stone-800
+                rounded border-2 border 
+                border-t-stone-200 border-l-stone-200 border-r-stone-500 border-b-stone-500
+                dark:border-t-stone-600 dark:border-l-stone-600 dark:border-r-stone-900 dark:border-b-stone-900
+                h-7 w-7 md:h-15 md:w-15 lg:w-20 lg:h-20 
+                pt-px md:pt-[2px] px-[0.1em] md:px-1 pb-[0.2em] md:pb-2"
+            >
+                <div class="rounded bg-zinc-100 dark:bg-zinc-900 w-full h-full">
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        {% endfor %}
+
+        <!-- Thumb cluster -->
+        <div class="flex justify-center gap-[0.2em]">
+        {% for idxa in (37..42) %}
+          <div 
+            id="key_{{ idxa }}"
+            class="relative hover:opacity-50 bg-stone-400 dark:bg-stone-800
+              rounded border-2 border 
+              border-t-stone-200 border-l-stone-200 border-r-stone-500 border-b-stone-500
+              dark:border-t-stone-600 dark:border-l-stone-600 dark:border-r-stone-900 dark:border-b-stone-900
+              h-7 w-7 md:h-15 md:w-15 lg:w-20 lg:h-20 
+              pt-px md:pt-[2px] px-[0.1em] md:px-1 pb-[0.2em] md:pb-2"
+          >
+              <div class="rounded bg-zinc-100 dark:bg-zinc-900 w-full h-full">
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+      </div>
+      
+      <!-- Footer includes here -->
     </div>
-    {% include footer.html %}
+
+    <script>
+      // Toggle the current theme
+      const themeToggle = document.getElementById('theme-toggle');
+      themeToggle.addEventListener('click', () => toggleTheme());
+
+      // Initialize theme
+      initTheme();
+    </script
   </body>
 </html>

@@ -1,204 +1,140 @@
-// General purpose function to hide element children
-function hideChildren(elemID) {
-  const elem = document.getElementById(elemID);
-  for (const child of elem.children) {
-    child.style.visibility = 'hidden';
+function toggleTheme() {
+  const htmlEl = document.documentElement;
+  htmlEl.classList.toggle('dark');
+  localStorage.theme = htmlEl.classList.contains('dark') ? 'dark' : 'light';
+}
+
+function initTheme() {
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const storedTheme = localStorage.getItem('theme');
+
+  // Decision hierarchy: localStorage > system preference
+  if (storedTheme) {
+    document.documentElement.classList.toggle('dark', storedTheme === 'dark');
+  } else {
+    document.documentElement.classList.toggle('dark', prefersDark);
   }
 }
 
-// Timeout function
-const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+// TODO: Return multiple codes for numbers, F keys, and special characters etc
+function getId(keyCode) {
+  switch (keyCode) {
+    case 'Escape': return 1;
+    case 'KeyQ': return 2;
+    case 'KeyW': return 3;
+    case 'KeyE': return 4;
+    case 'KeyR': return 5;
+    case 'KeyT': return 6;
+    case 'KeyY': return 7;
+    case 'KeyU': return 8;
+    case 'KeyI': return 9;
+    case 'KeyO': return 10;
+    case 'KeyP': return 11;
+    case 'Backspace': return 12;
 
-// Get random int in range (unused currently)
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+    case 'Tab': return 13;
+    case 'KeyA': return 14;
+    case 'KeyS': return 15;
+    case 'KeyD': return 16;
+    case 'KeyF': return 17;
+    case 'KeyG': return 18;
+    case 'KeyH': return 19;
+    case 'KeyJ': return 20;
+    case 'KeyK': return 21;
+    case 'KeyL': return 22;
+    case 'Semicolon': return 23;
+    case 'Enter': return 24;
 
-// Animate my signature
-async function animateSignature(signatureID, durationMultiplier) {
-  const signature = document.getElementById(signatureID);
+    case 'ShiftLeft': return 25;
+    case 'KeyZ': return 26;
+    case 'KeyX': return 27;
+    case 'KeyC': return 28;
+    case 'KeyV': return 29;
+    case 'KeyB': return 30;
+    case 'KeyN': return 31;
+    case 'KeyM': return 32;
+    case 'Comma': return 33;
+    case 'Period': return 34;
+    case 'Slash': return 35;
+    case 'ShiftRight': return 36;
 
+    case 'MetaLeft': return 37;
+    case 'MetaRight': return 37;
+    case 'ControlLeft': return 38;
+    case 'Space': return 41;
+    case 'AltLeft': return 42;
+    case 'AltRight': return 42;
 
-  for (const child of signature.getElementsByTagName('path')) {
-    child.style.visibility = 'visible';
-
-    let signatureLen = child.getTotalLength();
-    let duration = Math.floor(signatureLen * durationMultiplier);
-
-    child.style.strokeDasharray = signatureLen + ' ' + signatureLen;
-    child.style.strokeDashoffset = signatureLen;
-
-    let animation = child.animate(
-      [{strokeDashoffset: signatureLen}, {strokeDashoffset: 0}],
-      {duration: duration, iterations: 1}
-    );
-
-    animation.onfinish = () => {
-      child.style.strokeDasharray = 0;
-      child.style.strokeDashoffset = 0;
-    }
-
-    await sleep(duration);
+    default: return 0;
   }
-
-  signature.querySelector('circle').style.visibility = 'visible';
 }
 
-// Dynamically add a card carousel and iframe for all the Spotify links that exist
+const pressedKeys = new Set();
+
+function toggleElemId(id) {
+  if (id === 0) return;
+  const key = document.getElementById(`key_${id}`);
+  key.classList.toggle('opacity-50');
+}
+
+// NOTE: Maybe refator this
+function processActions(event, navElement) {
+  switch (event.code) {
+    case 'Tab':
+      event.preventDefault();
+      navElement.focus();
+      break;
+
+    case 'Slash':
+      event.preventDefault();
+      navElement.value = "/";
+      navElement.focus();
+      break;
+
+    case 'Escape':
+      navElement.value = "";
+      navElement.focus();
+      break;
+
+    default:
+      break;
+  }
+}
+
 /**
-  * @param {string} addBeforeID - Add before an element's id
-  * @param {string} heading - Text to add to section heading
-  * @param {boolean} scrapePage - Scrape the page for spotify links
-  * @param {string | null} playlistUrl - Spotify playlist URL to scrape
+  * @param { string } str
+  * @returns { void }
   */
-async function spotifyFrames(addBeforeID, heading, scrapePage, playlistUrl) {
-  const musicDiv = document.createElement("div");
-  const carousel = document.createElement("div");
-  const subHead = document.createElement("h2");
-
-  musicDiv.id = heading.toLowerCase().replace(' ', '-')
-  carousel.classList.add("carousel-container");
-  subHead.innerText = heading;
-
-  let controlSpan = document.createElement("span");
-  controlSpan.classList.add("control-container");
-
-  let back = document.createElement('i');
-  back.classList.add("fa-solid", "fa-arrow-left", "fa-xl", "carousel-control");
-  back.id = "carousel-back";
-  controlSpan.appendChild(back);
-
-  let forward = document.createElement('i');
-  forward.classList.add("fa-solid", "fa-arrow-right", "fa-xl", "carousel-control");
-  forward.id = "carousel-forward";
-  controlSpan.appendChild(forward);
-
-  let child = document.getElementById(addBeforeID);
-  child.parentNode.insertBefore(subHead, child);
-  child.parentNode.insertBefore(musicDiv, child);
-
-  let frame = document.createElement("iframe");
-  frame.height = 152;
-  frame.allowFullscreen = false;
-  frame.allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
-  frame.loading = "lazy";
- 
-  musicDiv.appendChild(controlSpan);
-  musicDiv.appendChild(carousel);
-  musicDiv.appendChild(frame);
-
-  let itemCount = 0;
-  const carouselItems = []
-
-  let songs = Array.from(document.links).filter(link => link.hostname.startsWith("open.spotify.com"));
-  console.log(songs);
-
-  if (!scrapePage && playlistUrl) {
-    const playlistID = playlistUrl.substring(playlistUrl.lastIndexOf('/') + 1);
-    const res = await fetch("https://api.spotify.com/v1/playlists/" + playlistID, {mode: "cors"});
-
-    if (!res.ok) {
-      console.log("Failed to fetch Spotify playlist.");
-      return;
-    }
-
-    const playlistInfo = await res.json();
-    songs = playlistInfo.tracks.items.map(obj => { obj.track.external_urls.spotify })
-  }
-
-  // Populate the carousel with cards 
-  for (const link of songs) {
-    const songID = link.pathname.substring(link.pathname.lastIndexOf('/') + 1);
-    let res = await fetch("https://open.spotify.com/oembed?url=" + link, {mode: "cors"});
-
-    if (!res.ok) {
-      console.error("Failed to fetch Spotify embed.");
-      return;
-    }
-
-    const songInfo = await res.json();
-
-    const card = document.createElement("div");
-    card.classList.add("carousel-item");
-    card.id = "spotify:song:" + songID
-
-    const thumbnail = new Image(songInfo.thumbnail_width, songInfo.thumbnail_height);
-    thumbnail.src = songInfo.thumbnail_url;
-    thumbnail.alt = songInfo.title;
-    thumbnail.classList.add("thumbnail-art")
-
-    card.appendChild(thumbnail);
-
-    carousel.appendChild(card);
-    carouselItems.push(card);
-    itemCount++;
-  }
-
-  // The margin should not exist for the last carousel item
-  carouselItems[carouselItems.length - 1].style.marginRight = "0px";
-
-  // Assumes constant size for all elements (refer to ext.sass for margin size)
-  // TODO: Work on changing this to be a little more dynamic
-  let itemWidth = carousel.firstChild.getBoundingClientRect().width + 20;
-  let currentIndex = Math.floor(itemCount/2);
-  let offsetWidth = currentIndex * itemWidth;
-
-  // There is a slightly different offset when there are an even number of cards
-  if (itemCount % 2 === 0) {
-    carousel.style.transform = `translateX(${-itemWidth/2}px)`;
-    offsetWidth -= itemWidth/2;
-  }
-
-  // Reload our iframe based off what index we are at
-  function loadFrame(index) {
-    let tag = carouselItems[index].id;
-    songID = tag.split(":")[2];
-    frame.src = "https://open.spotify.com/embed/track/" + songID + "?utm_source=generator&theme=0";
-  }
-
-  // Go to a specific carousel card
-  function goToIndex(index) {
-    if (index < 0) {
-      index = itemCount - 1;
-    } else if (index >= itemCount) {
-      index = 0; 
-    }
-
-    // Don't reload anything if trying to go to the card we are on
-    if (index === currentIndex) return console.log("Carousel: Already on index");
-
-    loadFrame(index);
-
-    carouselItems[currentIndex].classList.toggle("carousel-active");
-    carouselItems[index].classList.toggle("carousel-active");
-
-    carousel.style.transform = `translateX(${-(index * itemWidth) + offsetWidth}px)`;
-    currentIndex = index;
-  }
-
-  // Initial load
-  carouselItems[currentIndex].classList.toggle("carousel-active")
-  loadFrame(currentIndex)
-
-  // Make the forward/back elements and carousel card clickable
-  back.addEventListener("click", () => goToIndex(currentIndex - 1));
-  forward.addEventListener("click", () => goToIndex(currentIndex + 1));
-
-  // Make individual cards clickable
-  for (let i=0; i < itemCount; i++) {
-    carouselItems[i].addEventListener("click", () => goToIndex(i));
-  }
-
-}
-
-function highlightNav() {
-  const paths = window.location.pathname.split("/").filter((v) => v != "")
-  const basepath = paths.at(-1) === undefined ? "" : paths.at(-1)
-
-  for (const child of document.querySelector("nav").children) {
-    child.classList.toggle("onpage", child.id === basepath);
+function evalNav(str) {
+  if (str === '/tt') {
+    toggleTheme();
   }
 }
+
+window.addEventListener("keydown", (event) => {
+  const nav = document.getElementById("navigation");
+  processActions(event, nav);
+  if (!pressedKeys.has(event.code)) {
+    pressedKeys.add(event.code);
+    toggleElemId(getId(event.code));
+  }
+  if (document.activeElement === nav && event.code === 'Enter') {
+    evalNav(nav.value)
+    nav.value = "";
+  }
+});
+
+window.addEventListener("keyup", (event) => {
+  if (pressedKeys.has(event.code)) {
+    pressedKeys.delete(event.code);
+    toggleElemId(getId(event.code));
+  }
+});
+
+window.addEventListener("focus", () => {
+  for (const key of pressedKeys) {
+    pressedKeys.delete(key);
+    toggleElemId(getId(key));
+  }
+});
 
