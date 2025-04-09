@@ -1,24 +1,54 @@
 <!DOCTYPE html>
 <html>
   {% include head.html %}
-  <body class="text-zinc-900 dark:text-zinc-100">
-    <!-- Toggle theme button -->
-    <button 
-      id="theme-toggle"
-      class="fixed top-4 right-4 p-2 rounded-lg bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300 dark:hover:bg-zinc-700"
-    >
-      <span id="sun" class="inline dark:hidden">🌞</span>
-      <span id="moon" class="hidden dark:inline">🌙</span>
-    </button>
+  <body class="text-zinc-700 dark:text-zinc-200">
 
-    <!-- Navbar includes -->
+<style>
+</style
+    <!-- Navbar -->
     {% include nav.html %}
 
-    <!-- Overlay page -->
-
-    <!-- Command bar -->
     <div class="bg-zinc-100 dark:bg-zinc-900 flex-col justify-center h-screen w-screen">
-      <div class="w-3/4 md:w-1/2 m-auto py-20 ">
+
+      <!-- Page display overlay -->
+      <!-- TODO: Fade in effect -->
+      <div id="page-overlay" class="hidden">
+        <div id="dark-bg" class="darken-bg" onclick="togglePage()"></div>
+        <div 
+          class="page-overlay flex flex-col bg-zinc-100/50 dark:bg-zinc-800/50 backdrop-blur-md
+            rounded-lg outline outline-2 outline-stone-500 dark:outline-stone-700"
+        >
+          <!-- Header section -->
+          <div class="flex w-full">
+            <button 
+              id="page-overlay-toggle"
+              class="p-2 m-2 rounded-lg hover:bg-stone-400 dark:hover:bg-stone-600
+                border border-2 border-stone-500 dark:border-stone-700"
+              >
+              <i class="bi bi-x-lg"></i>
+            </button>
+            <div 
+              id="page-overlay-title"
+              class="w-full rounded-lg my-2 mr-2 p-2
+                border border-2 border-stone-500 dark:border-stone-700">
+              <!-- TODO: Replace with page title -->
+              /help 
+            </div>
+          </div>
+
+          <!-- Content section -->
+          <div
+            id="md-content"
+            class="flex-1 overflow-y-auto m-2 p-1 rounded-lg 
+              border border-2 border-stone-500 dark:border-stone-700"
+          >
+            <!-- TODO: Add rendered md here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Command bar -->
+      <div class="w-3/4 lg:w-1/2 m-auto py-20 ">
         <input
           placeholder="type /help"
           name="command"
@@ -26,10 +56,13 @@
           type="text"
           class="rounded focus:outline-hidden w-full p-2
             outline outline-2 outline-stone-300 focus:outline-stone-500 dark:outline-stone-700 dark:focus:outline-stone-500
-            bg-zinc-200 dark:bg-zinc-800"
+            placeholder-zinc-400 dark:placeholder-zinc-500 bg-zinc-200 dark:bg-zinc-800"
         >
       </div>
 
+      {% include name.svg %}
+
+      <!-- Responsive keyboard --> 
       <div class="flex flex-col justify-center gap-[0.3em] content-end h-fill">
         <!-- Main board -->
         {% for idxa in (0..2) %}
@@ -70,16 +103,8 @@
         </div>
       </div>
       
-      <!-- Footer includes here -->
     </div>
-
-    <script>
-      // Toggle the current theme
-      const themeToggle = document.getElementById('theme-toggle');
-      themeToggle.addEventListener('click', () => toggleTheme());
-
-      // Initialize theme
-      initTheme();
-    </script
+    <!-- Footer -->
+    {% include footer.html %}
   </body>
 </html>

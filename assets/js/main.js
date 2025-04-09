@@ -1,3 +1,56 @@
+// Global keys pressed
+const pressedKeys = new Set();
+let isPageOverlayShowing = false;
+
+/**
+  * General purpose function to hide element children
+  * @param { HTMLElement } elemID 
+  * @returns { void }
+  */
+function hideChildren(elemID) {
+  const elem = document.getElementById(elemID);
+  for (const child of elem.children) {
+    child.style.visibility = 'hidden';
+  }
+}
+
+// Timeout function
+const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+
+/**
+  * Animate my signature
+  * @param { string } signatureID
+  * @param { number } durationMultiplier
+  * @returns { void }
+  */
+async function animateSignature(signatureID, durationMultiplier) {
+  const signature = document.getElementById(signatureID);
+
+  for (const child of signature.getElementsByTagName('path')) {
+    child.style.visibility = 'visible';
+
+    let signatureLen = child.getTotalLength();
+    let duration = Math.floor(signatureLen * durationMultiplier);
+
+    child.style.strokeDasharray = signatureLen + ' ' + signatureLen;
+    child.style.strokeDashoffset = signatureLen;
+
+    let animation = child.animate(
+      [{strokeDashoffset: signatureLen}, {strokeDashoffset: 0}],
+      {duration: duration, iterations: 1}
+    );
+
+    animation.onfinish = () => {
+      child.style.strokeDasharray = 0;
+      child.style.strokeDashoffset = 0;
+    }
+
+    await sleep(duration);
+  }
+
+  signature.querySelector('circle').style.visibility = 'visible';
+}
+
 function toggleTheme() {
   const htmlEl = document.documentElement;
   htmlEl.classList.toggle('dark');
@@ -16,7 +69,21 @@ function initTheme() {
   }
 }
 
-// TODO: Return multiple codes for numbers, F keys, and special characters etc
+function togglePage() {
+  const overlay = document.getElementById("page-overlay");
+  overlay.classList.toggle("hidden");
+  isPageOverlayShowing = !isPageOverlayShowing;
+}
+
+function initPageOverlay() {
+
+}
+
+/**
+  * TODO: Return multiple codes for numbers, F keys, and special characters etc
+  * @param { string } keyCode
+  * @returns { number }
+  */
 function getId(keyCode) {
   switch (keyCode) {
     case 'Escape': return 1;
@@ -67,17 +134,29 @@ function getId(keyCode) {
 
     default: return 0;
   }
+
 }
 
-const pressedKeys = new Set();
 
-function toggleElemId(id) {
-  if (id === 0) return;
-  const key = document.getElementById(`key_${id}`);
-  key.classList.toggle('opacity-50');
+/**
+  * @param { number[] } ids
+  * @returns { void }
+  */
+function toggleElemId(...ids) {
+  if (ids.length === 0) return;
+  for (const id of ids) {
+    if (id === 0) continue;
+    const key = document.getElementById(`key_${id}`);
+    key.classList.toggle('opacity-40');
+  }
 }
 
-// NOTE: Maybe refator this
+/**
+  * NOTE: Maybe refactor this
+  * @param { KeyboardEvent } event
+  * @param { HTMLInputElement } navElement
+  * @returns { void }
+  */
 function processActions(event, navElement) {
   switch (event.code) {
     case 'Tab':
@@ -92,8 +171,11 @@ function processActions(event, navElement) {
       break;
 
     case 'Escape':
+      if (isPageOverlayShowing) {
+        togglePage();
+      }
       navElement.value = "";
-      navElement.focus();
+      document.documentElement.focus();
       break;
 
     default:
@@ -107,7 +189,9 @@ function processActions(event, navElement) {
   */
 function evalNav(str) {
   if (str === '/tt') {
-    toggleTheme();
+    return toggleTheme();
+  } else if (str === '/help') {
+    return togglePage();
   }
 }
 
@@ -138,3 +222,4 @@ window.addEventListener("focus", () => {
   }
 });
 
+window.addEventListener('load', () => animateSignature('signature', 1.18));

@@ -1,5 +1,5 @@
 ---
-layout: entertain
+layout: page
 title: Media
 permalink: /interests/media
 ---
