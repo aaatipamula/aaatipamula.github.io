@@ -1,9 +1,19 @@
-<div class="footer" id="footer">
-  <div>Made by {{ site.author }}</div>
-  <a href="https://github.com/{{ site.github }}">
-    <i class="fa fa-github fa-lg"></i>
-  </a>
-  <a href="https://www.linkedin.com/in/{{ site.linkedin }}">
-    <i class="fa fa-linkedin fa-lg"></i>
-  </a>
-</div>
+<script>
+  // Prepare to animate signature
+  hideChildren('signature');
+
+  // Toggle the current theme
+  const themeToggle = document.getElementById('theme-toggle');
+  themeToggle.addEventListener('click', () => toggleTheme());
+
+  // Close the overlay page on click of the exit button
+  const pageClose = document.getElementById('page-overlay-toggle');
+  pageClose.addEventListener('click', () => {
+    if (isPageOverlayShowing) {
+      togglePage();
+    }
+  });
+
+  // Initialize theme
+  initTheme();
+</script>

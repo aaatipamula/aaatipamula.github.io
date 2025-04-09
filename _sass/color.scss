@@ -1,8 +1,12 @@
 @charset "utf-8";
 
-// Any main color
+// Legacy
 $accent: #697565;
-$accent-dr: #455656;
+$accent-dr: #f0d3c9;
+
+// Any main color
+$accent-light: #697565;
+$accent-dark: #f0d3c9;
 
 // Should be a lighter shade and hue of accent
 $background: #ECDFCC;
