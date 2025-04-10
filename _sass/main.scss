@@ -91,7 +91,7 @@ code, pre {
   border-radius: 3px;
 }
 
-.dark code, pre {
+.dark code, .dark pre {
   background-color: var(--color-zinc-800);
 }
 
@@ -115,15 +115,18 @@ pre > code {
 // table, table headers and rows
 table, th, td {
   border: 2px solid;
-  border-color: $accent;
+  border-color: $accent-light;
   border-collapse: collapse;
+}
+
+.dark table, .dark th, .dark td {
+  border-color: $accent-dark;
 }
 
 // Table headers and rows
 th, td {
   padding: .5rem;
 }
-
 
 // Visible line breaks
 hr {

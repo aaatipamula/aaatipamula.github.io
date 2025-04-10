@@ -1,13 +1,13 @@
 ---
 layout: page
-welcome: Hey, I'm Aniketh
-subtitle: A developer, student, and hobbyist
 permalink: /about
 ---
 
 # About Me
 
-Currently pursuing a *B.S. in Computer Science* at [The University of Kansas](https://eecs.ku.edu).
+**Hey, I'm Aniketh, a developer, student, and hobbyist.**
+
+I'm currently pursuing a *B.S. in Computer Science* at [The University of Kansas](https://eecs.ku.edu).
 
 Artist Spotlights:
 
