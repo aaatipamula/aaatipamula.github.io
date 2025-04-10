@@ -1,3 +1,7 @@
+.overlay-container {
+  // transition: backdrop-filter 0.3s ease, opacity 0.3s ease;
+}
+
 .page-overlay {
   position: fixed;
   top: 9rem;
@@ -19,6 +23,6 @@
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 15;
+  z-index: 10;
 }
 

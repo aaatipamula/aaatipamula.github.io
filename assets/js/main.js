@@ -1,6 +1,9 @@
 // Global keys pressed
 const pressedKeys = new Set();
 let isPageOverlayShowing = false;
+const shortPaths = {
+  '/media': '/interests/media',
+}
 
 // Timeout function
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
@@ -19,12 +22,26 @@ function hideChildren(elemID) {
 
 /**
   * Replace all the github links in the document
+  * @param { string } elemID
   * @returns { void }
   */
-function replaceGHLinks() {
-    for (const link of document.querySelectorAll('a')) {
+function replaceLinks(elemID) {
+  const content = document.getElementById(elemID);
+  const host = window.location.host;
+  for (const link of content.querySelectorAll('a')) {
     if (link.href.startsWith('https:\/\/github\.com') && link.innerText == 'Link') {
       link.innerHTML = '<i class="bi bi-github"></i>';
+    } else if (link.href.startsWith(`https://${host}/`) || link.hostname === 'localhost') {
+      console.log('htmx-swapping:', link.href);
+      link.setAttribute('hx-get', link.href);
+      link.setAttribute('hx-target', '#page-overlay-container');
+      link.setAttribute('hx-swap', 'innerHTML');
+      link.addEventListener('click', () => {
+        if (!isPageOverlayShowing) {
+          togglePage();
+        }
+      });
+      link.setAttribute('href', '');
     }
   }
 }
@@ -94,8 +111,9 @@ function initTheme() {
   * @returns { void }
   */
 function togglePage() {
-  const overlay = document.getElementById("page-overlay");
-  overlay.classList.toggle("hidden");
+  const overlayContainer = document.getElementById("page-overlay-container");
+  overlayContainer.classList.toggle("opacity-100");
+  overlayContainer.classList.toggle("pointer-events-none");
   isPageOverlayShowing = !isPageOverlayShowing;
 }
 
@@ -184,9 +202,17 @@ function processActions(event, navElement) {
       break;
 
     case 'Slash':
-      event.preventDefault();
-      navElement.value = "/";
-      navElement.focus();
+      if (document.activeElement != navElement) {
+        event.preventDefault();
+        navElement.value = "/";
+        navElement.focus();
+      }
+      break;
+
+    case 'Semicolon':
+      if (event.shiftKey) {
+        navElement.focus();
+      }
       break;
 
     case 'Escape':
@@ -207,10 +233,22 @@ function processActions(event, navElement) {
   * @returns { void }
   */
 function evalNav(str) {
-  if (str === '/tt') {
+  // const validSlug = /^(?!-)[a-z0-9-]+(?<!-)(\/(?!-)[a-z0-9-]+(?<!-))*$/gim
+  if (str === ':tt') {
     return toggleTheme();
-  } else if (str === '/page') {
+  } else if (str === '/') {
     return togglePage();
+  } else if (str.startsWith('/')) {
+    const path = shortPaths[str] || str
+    console.log('htmx-getting-path:', path)
+    htmx.ajax('GET', path, {
+      target: '#page-overlay-container',
+      swap: 'innerHTML',
+    });
+    if (!isPageOverlayShowing) {
+      togglePage();
+    }
+    // return
   }
 }
 
