@@ -12,37 +12,37 @@
 
       <!-- Page display overlay -->
       <!-- TODO: Fade in effect -->
-      <div id="page-overlay" class="hidden">
+      <div id="page-overlay" class="hidden transition-opacity duration-500 ease-in-out">
         <div id="dark-bg" class="darken-bg" onclick="togglePage()"></div>
         <div 
           class="page-overlay flex flex-col bg-zinc-100/50 dark:bg-zinc-800/50 backdrop-blur-md
-            rounded-lg outline outline-2 outline-stone-500 dark:outline-stone-700"
+            rounded-lg outline-2 outline-stone-500 dark:outline-stone-700"
         >
           <!-- Header section -->
           <div class="flex w-full">
             <button 
-              id="page-overlay-toggle"
+              id="page-overlay-close"
+              onclick="togglePage()"
               class="p-2 m-2 rounded-lg hover:bg-stone-400 dark:hover:bg-stone-600
-                border border-2 border-stone-500 dark:border-stone-700"
+                border-2 border-stone-500 dark:border-stone-700"
               >
               <i class="bi bi-x-lg"></i>
             </button>
             <div 
               id="page-overlay-title"
               class="w-full rounded-lg my-2 mr-2 p-2
-                border border-2 border-stone-500 dark:border-stone-700">
-              <!-- TODO: Replace with page title -->
-              /help 
+                border-2 border-stone-500 dark:border-stone-700">
+              {{ page.title }}
             </div>
           </div>
 
           <!-- Content section -->
           <div
             id="md-content"
-            class="flex-1 overflow-y-auto m-2 p-1 rounded-lg 
-              border border-2 border-stone-500 dark:border-stone-700"
+            class="content flex-1 overflow-y-auto m-2 p-3 rounded-lg text-lg
+              border-2 border-stone-500 dark:border-stone-700"
           >
-            <!-- TODO: Add rendered md here -->
+            {{ content }}
           </div>
         </div>
       </div>
@@ -50,12 +50,12 @@
       <!-- Command bar -->
       <div class="w-3/4 lg:w-1/2 m-auto py-20 ">
         <input
-          placeholder="type /help"
+          placeholder="type /page"
           name="command"
           id="navigation"
           type="text"
-          class="rounded focus:outline-hidden w-full p-2
-            outline outline-2 outline-stone-300 focus:outline-stone-500 dark:outline-stone-700 dark:focus:outline-stone-500
+          class="rounded w-full p-2
+            outline-2 outline-stone-300 focus:outline-stone-500 dark:outline-stone-700 dark:focus:outline-stone-500
             placeholder-zinc-400 dark:placeholder-zinc-500 bg-zinc-200 dark:bg-zinc-800"
         >
       </div>
@@ -71,8 +71,7 @@
             <div 
               id="key_{{ idxa | times: 12 | plus: idxb }}"
               class="relative hover:opacity-50 bg-stone-400 dark:bg-stone-800
-                rounded border-2 border 
-                border-t-stone-200 border-l-stone-200 border-r-stone-500 border-b-stone-500
+                rounded border-2 border-t-stone-200 border-l-stone-200 border-r-stone-500 border-b-stone-500
                 dark:border-t-stone-600 dark:border-l-stone-600 dark:border-r-stone-900 dark:border-b-stone-900
                 h-7 w-7 md:h-15 md:w-15 lg:w-20 lg:h-20 
                 pt-px md:pt-[2px] px-[0.1em] md:px-1 pb-[0.2em] md:pb-2"
@@ -90,8 +89,7 @@
           <div 
             id="key_{{ idxa }}"
             class="relative hover:opacity-50 bg-stone-400 dark:bg-stone-800
-              rounded border-2 border 
-              border-t-stone-200 border-l-stone-200 border-r-stone-500 border-b-stone-500
+              rounded border-2 border-t-stone-200 border-l-stone-200 border-r-stone-500 border-b-stone-500
               dark:border-t-stone-600 dark:border-l-stone-600 dark:border-r-stone-900 dark:border-b-stone-900
               h-7 w-7 md:h-15 md:w-15 lg:w-20 lg:h-20 
               pt-px md:pt-[2px] px-[0.1em] md:px-1 pb-[0.2em] md:pb-2"

@@ -6,14 +6,6 @@
   const themeToggle = document.getElementById('theme-toggle');
   themeToggle.addEventListener('click', () => toggleTheme());
 
-  // Close the overlay page on click of the exit button
-  const pageClose = document.getElementById('page-overlay-toggle');
-  pageClose.addEventListener('click', () => {
-    if (isPageOverlayShowing) {
-      togglePage();
-    }
-  });
-
   // Initialize theme
   initTheme();
 </script>

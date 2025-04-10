@@ -1,6 +1,5 @@
 ---
 layout: page
-title: /about
 welcome: Hey, I'm Aniketh
 subtitle: A developer, student, and hobbyist
 permalink: /about
