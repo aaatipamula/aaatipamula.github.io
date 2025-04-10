@@ -3,33 +3,45 @@
 
 // main content
 body {
-  line-height: 1.45;
+  line-height: 1.6;
   font-family: "Rubik", sans-serif;
   overflow-x: clip;
   overflow-x: hidden; /* Fallback */
 }
 
-// hyperlinks
-a {
-  transition: .23s ease-in-out;
+p {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
-// italics
-em {
-  color: $italic;
+// content links
+.content a {
+  color: $accent-light;
 }
 
-// bold and header properties
+// bold properties
 b, strong {
-  color: $bold;
   font-weight: bold;
 }
 
+// header properties
 h1, h2, h3, h4, h5, h6 {
-  color: $heading;
+  color: $accent-light;
   font-weight: bold;
 }
 
+// dark themeing
+.dark .content a,
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: $accent-dark;
+}
+
+// Header font sizes
 h1 {
     font-size: 28px;
 }
@@ -55,23 +67,32 @@ h6 {
     font-size: 14px;
 }
 
-i {
-  padding: .25rem;
-}
-
 // indented and highlighted blocks of words
 blockquote {
-  border-left: 3px solid $accent;
-  padding-left: 1rem;
+  background-color: var(--color-zinc-100);
+  border-radius: 0.1em;
+  border-left: 3px solid;
+  border-color: $accent-light;
+  margin: 0.5rem;
+  margin-left: 0;
+  padding-left: 0.5rem;
   page-break-inside: avoid;
-  margin-left: 1rem;
+}
+
+.dark blockquote {
+  background-color: var(--color-zinc-900);
+  border-color: $accent-dark;
 }
 
 // code blocks
 code, pre {
-  background-color: $background-dr;
+  background-color: var(--color-zinc-200);
   font-family: "Fira Code", monospace;
   border-radius: 3px;
+}
+
+.dark code, pre {
+  background-color: var(--color-zinc-800);
 }
 
 code {
@@ -106,20 +127,26 @@ th, td {
 
 // Visible line breaks
 hr {
-  color: $accent;
-  background-color: $accent;
+  color: $accent-light;
+  background-color: $accent-light;
   border-radius: 3px;
   height: 3px;
+}
+
+.dark hr {
+  color: $accent-dark;
+  background-color: $accent-dark;
 }
 
 // SVG images
 svg {
   margin: auto;
+  margin-bottom: 1rem;
   padding: 1rem;
   stroke: $accent-light;
   stroke-width: 5px;
-  max-width: 100%;
   max-height: auto;
+  max-width: 150%;
 }
 
 // Dark theme coloring
@@ -143,7 +170,6 @@ img {
   max-height: auto;
 }
 
-
 // iframes
 iframe {
   max-width: 100%;
@@ -153,3 +179,20 @@ iframe {
   display: block;
 }
 
+ul {
+  list-style: circle outside;
+  margin-left: 1rem;
+}
+
+i {
+  padding: .2rem;
+}
+
+* {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.bi {
+  width: 1.5rem;
+  height: 1.5rem;
+}

@@ -1,3 +1,9 @@
+# Build files
 _site
 .sass*
+
+# Log files
 http.log
+
+# Node.js
+node_modules/*

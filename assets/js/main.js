@@ -2,6 +2,9 @@
 const pressedKeys = new Set();
 let isPageOverlayShowing = false;
 
+// Timeout function
+const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+
 /**
   * General purpose function to hide element children
   * @param { HTMLElement } elemID 
@@ -14,8 +17,17 @@ function hideChildren(elemID) {
   }
 }
 
-// Timeout function
-const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+/**
+  * Replace all the github links in the document
+  * @returns { void }
+  */
+function replaceGHLinks() {
+    for (const link of document.querySelectorAll('a')) {
+    if (link.href.startsWith('https:\/\/github\.com') && link.innerText == 'Link') {
+      link.innerHTML = '<i class="bi bi-github"></i>';
+    }
+  }
+}
 
 /**
   * Animate my signature
@@ -51,12 +63,20 @@ async function animateSignature(signatureID, durationMultiplier) {
   signature.querySelector('circle').style.visibility = 'visible';
 }
 
+/**
+  * Toggle the css theme
+  * @returns { void }
+  */
 function toggleTheme() {
   const htmlEl = document.documentElement;
   htmlEl.classList.toggle('dark');
   localStorage.theme = htmlEl.classList.contains('dark') ? 'dark' : 'light';
 }
 
+/**
+  * Initalize the css theme
+  * @returns { void }
+  */
 function initTheme() {
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const storedTheme = localStorage.getItem('theme');
@@ -69,14 +89,14 @@ function initTheme() {
   }
 }
 
+/**
+  * Hide/show the overlay page
+  * @returns { void }
+  */
 function togglePage() {
   const overlay = document.getElementById("page-overlay");
   overlay.classList.toggle("hidden");
   isPageOverlayShowing = !isPageOverlayShowing;
-}
-
-function initPageOverlay() {
-
 }
 
 /**
@@ -137,7 +157,6 @@ function getId(keyCode) {
 
 }
 
-
 /**
   * @param { number[] } ids
   * @returns { void }
@@ -190,7 +209,7 @@ function processActions(event, navElement) {
 function evalNav(str) {
   if (str === '/tt') {
     return toggleTheme();
-  } else if (str === '/help') {
+  } else if (str === '/page') {
     return togglePage();
   }
 }
