@@ -1,6 +1,10 @@
 @import "color";
 @charset "utf-8";
 
+html, body {
+  overscroll-behavior: none;
+}
+
 // main content
 body {
   line-height: 1.6;

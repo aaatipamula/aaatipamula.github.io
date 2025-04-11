@@ -4,7 +4,7 @@ title: Help Me!
 permalink: /help
 ---
 
-# Navigation 🔎
+# Navigation
 
 **This is a website that is easily navigable with a keyboard!**
 
@@ -19,3 +19,9 @@ If you type `/` and don't enter a path it will toggle this page overlay.
 If you are on *mobile* you can still click links and buttons like normal!
 
 > TIP: Use `:tt` to quickly toggle the theme!
+
+# Fun Facts
+
+The keyboard you see is actually a reflection of my split keyboard layout! As you press the keys the corresponding keys for my specific keymap will be shown :)
+
+This site is statically generated using **Jekyll, TailwindCSS, and htmx**
