@@ -1,6 +1,7 @@
 // Global keys pressed
 const pressedKeys = new Set();
 let isPageOverlayShowing = false;
+
 const shortPaths = {
   '/media': '/interests/media',
 }
@@ -85,9 +86,9 @@ async function animateSignature(signatureID, durationMultiplier) {
   * @returns { void }
   */
 function toggleTheme() {
-  const htmlEl = document.documentElement;
-  htmlEl.classList.toggle('dark');
-  localStorage.theme = htmlEl.classList.contains('dark') ? 'dark' : 'light';
+  document.documentElement.classList.toggle('dark');
+  localStorage.theme = document.documentElement
+    .classList.contains('dark') ? 'dark' : 'light';
 }
 
 /**
@@ -95,8 +96,8 @@ function toggleTheme() {
   * @returns { void }
   */
 function initTheme() {
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const storedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
   // Decision hierarchy: localStorage > system preference
   if (storedTheme) {
@@ -172,7 +173,6 @@ function getId(keyCode) {
 
     default: return 0;
   }
-
 }
 
 /**
@@ -233,12 +233,12 @@ function processActions(event, navElement) {
   * @returns { void }
   */
 function evalNav(str) {
-  // const validSlug = /^(?!-)[a-z0-9-]+(?<!-)(\/(?!-)[a-z0-9-]+(?<!-))*$/gim
+  const validSlug = /^(\/(?!-)[a-z0-9-]+(?<!-))*$/gmi
   if (str === ':tt') {
     return toggleTheme();
   } else if (str === '/') {
     return togglePage();
-  } else if (str.startsWith('/')) {
+  } else if (str.match(validSlug)) {
     const path = shortPaths[str] || str
     console.log('htmx-getting-path:', path)
     htmx.ajax('GET', path, {
@@ -248,7 +248,6 @@ function evalNav(str) {
     if (!isPageOverlayShowing) {
       togglePage();
     }
-    // return
   }
 }
 
@@ -274,8 +273,8 @@ window.addEventListener("keyup", (event) => {
 
 window.addEventListener("focus", () => {
   for (const key of pressedKeys) {
-    pressedKeys.delete(key);
     toggleElemId(getId(key));
+    pressedKeys.delete(key);
   }
 });
 
