@@ -4,15 +4,18 @@
 
 .page-overlay {
   position: fixed;
-  top: 9rem;
-  bottom: 4rem;
-  left: 2rem;
-  right: 2rem;
+  top: 5rem;
+  bottom: 2rem;
+  left: 1.5rem;
+  right: 1.5rem;
   z-index: 20;
 
+  // Different styles for medium and larger screens
   @media (width >= 48rem) {
+    top: 9rem;
     left: 4rem;
     right: 4rem;
+    bottom: 4rem;
   }
 }
 
