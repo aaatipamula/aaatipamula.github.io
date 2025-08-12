@@ -16,5 +16,5 @@ Artist Spotlights:
 - [MASS OF THE FERMENTING DREGS](https://open.spotify.com/artist/14d5KCX9nprUcxnKIShrr1?si=TqtFAvw3SUWuIEfDY9POew)
 - [Satellite Lovers](https://www.youtube.com/watch?v=l--Uma_iDkI)
 
-Also check out my [digital garden](https://garden.aniketh.dev).
+Also check out my [preview website](https://preview.aniketh.dev), there's usually something new about it.
 
