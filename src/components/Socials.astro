@@ -1,0 +1,67 @@
+---
+interface Props {
+  linkedin?: string;
+  twitter?: string;
+  github?: string;
+  instagram?: string;
+  youtube?: string;
+  discord?: string;
+}
+
+const { linkedin, twitter, github, instagram, youtube, discord } = Astro.props;
+---
+<div>
+  {linkedin && (
+    <a target="_blank" rel="noreferrer noopener" href={linkedin}>
+      <i class="bi bi-linkedin"></i>
+    </a>
+  )}
+
+  {twitter && (
+    <a target="_blank" rel="noreferrer noopener" href={twitter}>
+      <i class="bi bi-twitter"></i>
+    </a>
+  )}
+
+  {github && (
+    <a target="_blank" rel="noreferrer noopener" href={github}>
+      <i class="bi bi-github"></i>
+    </a>
+  )}
+
+  {instagram && (
+    <a target="_blank" rel="noreferrer noopener" href={instagram}>
+      <i class="bi bi-instagram"></i>
+    </a>
+  )}
+
+  {youtube && (
+    <a target="_blank" rel="noreferrer noopener" href={youtube}>
+      <i class="bi bi-youtube"></i>
+    </a>
+  )}
+
+  {discord && (
+    <a target="_blank" rel="noreferrer noopener" href={discord}>
+      <i class="bi bi-discord"></i>
+    </a>
+  )}
+</div>
+
+<style>
+a {
+  padding: 0.3rem;
+}
+
+a:hover {
+  opacity: 70%;
+}
+
+div {
+  display: flex;
+  align-items: center;
+  float: right;
+  background-color: var(--bg_highlight);
+  height: 100%;
+}
+</style>

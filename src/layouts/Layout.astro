@@ -1,0 +1,317 @@
+---
+import CommonHead from "../components/CommonHead.astro";
+
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <CommonHead title={title}/>
+  <body>
+    <div class="app">
+      <slot />
+    </div>
+  </body>
+</html>
+
+<style is:global>
+:root {
+  /* Colors */
+  --bg: #1a1b26;
+  --bg_dark: #16161e;
+  --bg_dark1: #0C0E14;
+  --bg_highlight: #292e42;
+  --fg: #c0caf5;
+  --fg_dark: #a9b1d6;
+  --fg_gutter: #3b4261;
+  --blue: #7aa2f7;
+  --blue0: #3d59a1;
+  --blue1: #2ac3de;
+  --blue2: #0db9d7;
+  --blue5: #89ddff;
+  --blue6: #b4f9f8;
+  --blue7: #394b70;
+  --cyan: #7dcfff;
+  --green: #9ece6a;
+  --green1: #73daca;
+  --green2: #41a6b5;
+  --magenta: #bb9af7;
+  --magenta2: #ff007c;
+  --orange: #ff9e64;
+  --purple: #9d7cd8;
+  --red: #f7768e;
+  --red1: #db4b4b;
+  --teal: #1abc9c;
+  --yellow: #e0af68;
+  --dark3: #545c7e;
+  --dark5: #737aa2;
+  --comment: #565f89;
+  --terminal_black: #414868; 
+
+  /* Effects */
+  --tshadow: 0 0 8px;
+}
+
+* {
+  color: var(--fg);
+  text-shadow: var(--tshadow) var(--fg);
+  font-family: 'Fira Code', monospace;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+html, body {
+  overscroll-behavior: none; /* No scroll chaining or bounce */
+
+  /* /1* Last resort *1/ */
+  /* position: fixed; */
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  width: 100dvw;
+  height: 100dvh;
+  background-color: var(--bg);
+}
+
+.app {
+  height: 100%;
+  width: 100%;
+  filter: contrast(1.08) brightness(1.1);
+}
+
+.app::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  pointer-events: none;
+
+  /* Pixelated scan lines */
+  background: 
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+    linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background-size: 100% 2px, 3px 100%;
+}
+
+.app::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(18, 16, 16, 0.1);
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+  animation: flicker 0.2s infinite;
+}
+
+@keyframes flicker {
+  0% {
+  opacity: 0.27861;
+  }
+  5% {
+  opacity: 0.34769;
+  }
+  10% {
+  opacity: 0.23604;
+  }
+  15% {
+  opacity: 0.90626;
+  }
+  20% {
+  opacity: 0.18128;
+  }
+  25% {
+  opacity: 0.83891;
+  }
+  30% {
+  opacity: 0.65583;
+  }
+  35% {
+  opacity: 0.67807;
+  }
+  40% {
+  opacity: 0.26559;
+  }
+  45% {
+  opacity: 0.84693;
+  }
+  50% {
+  opacity: 0.96019;
+  }
+  55% {
+  opacity: 0.08594;
+  }
+  60% {
+  opacity: 0.20313;
+  }
+  65% {
+  opacity: 0.71988;
+  }
+  70% {
+  opacity: 0.53455;
+  }
+  75% {
+  opacity: 0.37288;
+  }
+  80% {
+  opacity: 0.71428;
+  }
+  85% {
+  opacity: 0.70419;
+  }
+  90% {
+  opacity: 0.7003;
+  }
+  95% {
+  opacity: 0.36108;
+  }
+  100% {
+  opacity: 0.24387;
+  }
+}
+
+p {
+  margin: 0.7rem 0;
+}
+
+a {
+  color: var(--orange);
+  text-shadow: var(--tshadow) var(--orange);
+  text-decoration: none;
+}
+
+/* bold properties */
+b, strong {
+  font-weight: bold;
+  color: var(--blue5);
+  text-shadow: var(--tshadow) var(--blue5);
+}
+
+/* header properties */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--teal);
+  text-shadow: var(--tshadow) var(--teal);
+  font-weight: bold;
+}
+
+/* indented and highlighted blocks of words */
+blockquote {
+  background-color: var(--bg_highlight);
+  border-radius: 3px;
+  border-left: 3px solid;
+  border-color: var(--blue5);
+
+  margin: 1em 0;
+  padding: 0.1em 0.5rem;
+
+  page-break-inside: avoid;
+
+  @media (min-width: 786px) {
+    width: 62%;
+  }
+}
+
+/* code blocks */
+code, pre {
+  border-radius: 3px;
+}
+
+code {
+  margin: 0 2px;
+  padding: 0 5px;
+  border: 1px var(--comment) solid;
+}
+
+pre {
+  line-height: 1.25em;
+  padding: 6px 10px;
+  overflow: auto;
+}
+
+pre > code {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* table, table headers and rows */
+table, th, td {
+  border: 2px solid;
+  border-color: var(--dark3);
+  border-collapse: collapse;
+}
+
+/* Table headers and rows */
+th, td {
+  padding: .5rem;
+}
+
+/* Visible line breaks */
+hr {
+  color: var(--blue7);
+  text-shadow: var(--tshadow) var(--blue7);
+  background-color: var(--blue7);
+  border-radius: 3px;
+  height: 3px;
+}
+
+/* SVG images */
+svg {
+  margin: auto;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  stroke: var(--orange);
+  stroke-width: 5px;
+  max-height: auto;
+  max-width: 150%;
+}
+
+/* Set circle fill for svg */
+circle {
+  fill: var(--orange);
+}
+
+/* Bitmap images */
+img {
+  max-width: 75%;
+  height: auto;
+  display: block;
+}
+
+iframe {
+  max-width: 100%;
+  margin: 2rem auto;
+  border-radius: 3px;
+  border: 0;
+  display: block;
+}
+
+ul {
+  list-style: circle outside;
+  margin: 0 0.5rem;
+}
+
+i {
+  padding: .2rem;
+}
+
+em {
+  font-style: italic;
+  color: var(--yellow);
+  text-shadow: var(--tshadow) var(--yellow);
+}
+</style>

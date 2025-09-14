@@ -1,0 +1,116 @@
+---
+import Socials from '@components/Socials.astro';
+import { getGitInfo } from 'src/util/gitInfo';
+
+const { branch, commit } = getGitInfo();
+const commitUrl = `https://github.com/${import.meta.env.PUBLIC_GH_URL}/commit/${commit}`
+---
+
+<div class="container">
+  <div class="left">
+    <div class="mode-indicator">
+      NORMAL
+    </div>
+    <div class="git-info">
+      <i style={{ color: 'var(--blue)', textShadow: 'var(--tshadow) var(--blue)' }} class="bi bi-git"></i>
+      <span class="git-branch">
+        {branch}
+      </span>
+      <a href={commitUrl} class="git-commit">
+        #{commit}
+      </a>
+    </div>
+  </div>
+
+  <div class="center">
+    Aniketh Aatipamula 🐼 
+  </div>
+
+  <div class="right">
+    <Socials
+      linkedin='https://www.linkedin.com/in/aniketh-aatipamula-a0a120150/'
+      github='https://github.com/aaatipamula'
+    />
+  </div>
+</div>
+
+<style>
+.container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  height: 2rem;
+
+  background-color: var(--bg_dark);
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.left, .center, .right {
+  flex: 1;
+  text-align: center;
+  height: 100%;
+}
+
+.center {
+  display: none; 
+
+  padding: 0.5rem 0;
+
+  @media (min-width: 768px) {
+    display: initial;
+  }
+}
+
+.left {
+  display: flex;
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.mode-indicator {
+  background-color: var(--blue);
+
+  color: var(--bg);
+  text-shadow: 0 0 2px var(--bg);
+  font-weight: bold;
+  padding: 0 0.2rem;
+
+  display: flex;
+  align-items: center;   /* vertical */
+}
+
+.git-info {
+  padding: 0 0.5rem;
+  background-color: var(--bg_highlight);
+
+  /* display: none; */ 
+
+  /* @media (min-width: 768px) { */
+    display: flex;
+    align-items: center;
+
+  /* } */
+}
+
+.git-branch {
+  color: var(--blue);
+  text-shadow: var(--tshadow) var(--blue);
+}
+
+.git-commit {
+  margin-left: 0.5rem;
+  color: var(--teal);
+  text-shadow: var(--tshadow) var(--teal);
+}
+
+.git-commit:hover {
+  opacity: 70%;
+}
+</style>

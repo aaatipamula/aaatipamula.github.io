@@ -1,0 +1,98 @@
+---
+import SignSVG from '../assets/signature.svg';
+---
+
+<div class="modal-backdrop">
+  <div class="text-container">
+    <SignSVG id="ani-signature" />
+    <p id="comment" class="start-text">Click anywhere to start</p>
+  </div>
+</div>
+
+<style>
+.modal-backdrop {
+  display: flex;
+  flex-wrap: wrap;
+  place-content: center;
+
+  /* Stay in place */
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  /* Sit on top */
+  z-index: 1000;
+
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+
+  transition: opacity 0.3s ease-out;
+}
+
+.text-container {
+  text-align: center;
+}
+
+.start-text {
+  transition: opacity 0.4s ease-out;
+  transition-delay: 0.3s;
+  color: var(--comment);
+  opacity: 0;
+}
+
+.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+</style>
+
+<script>
+const sleep = (delay: number) => new Promise((resolve) => setTimeout(resolve, delay))
+
+function hideChildren(elemID: string) {
+  const elem = document.getElementById(elemID);
+  if (!elem) return;
+  for (let child of elem.children) {
+    child.style.visibility = 'hidden';
+  }
+}
+
+async function animateSignature(signatureID: string, durationMultiplier: number) {
+  const signature = document.getElementById(signatureID)!;
+
+  for (const child of signature.getElementsByTagName('path')) {
+    child.style.visibility = 'visible';
+
+    let signatureLen = child.getTotalLength();
+    let duration = Math.floor(signatureLen * durationMultiplier);
+
+    child.style.strokeDasharray = signatureLen + ' ' + signatureLen;
+    child.style.strokeDashoffset = signatureLen;
+
+    let animation = child.animate(
+      [{strokeDashoffset: signatureLen}, {strokeDashoffset: 0}],
+      {duration: duration, iterations: 1}
+    );
+
+    animation.onfinish = () => {
+      child.style.strokeDasharray = 0;
+      child.style.strokeDashoffset = 0;
+    }
+
+    await sleep(duration);
+  }
+
+  signature.querySelector('circle')!.style.visibility = 'visible';
+  const comment = document.getElementById('comment')!;
+  comment.style.opacity = '100%';
+}
+
+hideChildren('ani-signature');
+const modal = document.querySelector('div.modal-backdrop')!;
+modal.addEventListener('click', () => modal.classList.add('hide'));
+
+window.addEventListener('load', async () => {
+  await animateSignature('ani-signature', 1.4);
+})
+</script>

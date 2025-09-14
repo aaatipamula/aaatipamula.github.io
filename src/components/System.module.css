@@ -1,0 +1,65 @@
+.painter {
+  position: absolute;
+  bottom: 2rem;
+  right: 1rem;
+  z-index: 10;
+  opacity: 40%;
+
+  cursor: pointer;
+
+  /* TODO: have a button display the tree on mobile */
+  display: none;
+
+  @media (min-width: 768px) {
+    display: unset;
+  }
+}
+
+.modalBackdrop {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  place-content: center;
+
+  /* Stay in place */
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  /* Sit on top */
+  z-index: 1000;
+
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.textContainer {
+  position: relative;
+  background-color: var(--bg_dark1);
+  border: 2px var(--blue7) solid;
+  border-radius: 7px;
+
+  overflow: auto;
+
+  width: 70%;
+  max-height: 80%;
+  padding: 0.5rem 2rem 2rem 2rem;
+
+  @media (min-width: 768px) {
+    width: 60%;
+    max-height: 60%;
+    padding: 0.5rem 2rem 2rem 2rem;
+  }
+
+}
+
+.systemTextContainer {
+  padding: 1rem;
+  background-color: var(--bg);
+  border: 2px var(--fg_gutter) solid;
+  border-radius: 7px;
+
+  overflow: auto;
+}
+

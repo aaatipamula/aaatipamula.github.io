@@ -1,0 +1,62 @@
+.componentContainer {
+  margin-left: 1rem;
+}
+
+.folderSpan {
+  color: var(--blue0);
+  text-shadow: var(--tshadow) var(--blue0);
+  cursor: pointer;
+}
+
+.fileButton {
+  display: block;
+  margin: 0.2rem 0;
+  padding: 0.1rem 0;
+
+  text-decoration: none;
+
+  font: inherit;
+  color: var(--comment);
+  text-shadow: var(--tshadow) var(--comment);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.fileButton:hover {
+  color: var(--fg);
+  text-shadow: var(--tshadow) var(--fg);
+}
+
+.purpleText {
+  color: var(--purple);
+  text-shadow: var(--tshadow) var(--purple);
+}
+
+/* Hide the default marker */
+details summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+/* Remove default WebKit arrow */
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Add Bootstrap Icon as pseudo-element */
+details summary:before {
+  font-family: "bootstrap-icons";
+  content: "\F3D3"; /* folder plus */
+  display: inline-block;
+  margin-right: 0.5rem;
+  transition: transform 0.2s;
+  padding: 0.2rem;
+}
+
+/* Rotate icon when details are open */
+details[open] summary:before {
+  content: "\F3D2"; /* folder minus */
+  /* OR use transform with the same icon: */
+  /* transform: rotate(90deg); */
+}
