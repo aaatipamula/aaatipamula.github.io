@@ -18,5 +18,5 @@ Check out a few of my other websites:
 
 - [sandbox.aniketh.dev](https://sandbox.aniketh.dev) - *A collection of random pages*
 - [garden.aniketh.dev](https://garden.aniketh.dev) - *Some notes n stuff*
-- [terminal.aniketh.dev](https://terminal.aniketh.dev) - *A terminal-like experice to browse GitHub profiles and projects*
+- [terminal.aniketh.dev](https://terminal.aniketh.dev) - *A terminal-like experience to browse GitHub profiles and projects*
 
