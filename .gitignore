@@ -7,3 +7,6 @@ http.log
 
 # Node.js
 node_modules/*
+
+# Gems
+.gem/

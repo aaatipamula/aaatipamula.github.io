@@ -1,0 +1,15 @@
+---
+layout: null
+permalink: /sitemap.json
+---
+[
+  {%- for page in site.pages -%}
+    {%- unless page.url contains '/assets/' -%}
+      {{ page.path | jsonify }}{%- unless forloop.last -%},{%- endunless -%}
+    {%- endunless -%}
+  {%- endfor -%}
+  {%- if site.posts.size > 0 -%},{%- endif -%}
+  {%- for post in site.posts -%}
+  {{ post.url | absolute_url | jsonify }}{%- unless forloop.last -%},{%- endunless -%}
+  {%- endfor -%}
+]
