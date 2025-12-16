@@ -7,7 +7,7 @@ permalink: /about
 
 **Hey, I'm Aniketh, a developer, student, and hobbyist.**
 
-I'm currently pursuing a *B.S. in Computer Science* at [The University of Kansas](https://eecs.ku.edu).
+I'm currently pursuing a *B.S. in Computer Science* with a Minor in Math at [The University of Kansas](https://eecs.ku.edu).
 
 Artist Spotlights:
 
@@ -16,7 +16,11 @@ Artist Spotlights:
 - [MASS OF THE FERMENTING DREGS](https://open.spotify.com/artist/14d5KCX9nprUcxnKIShrr1?si=TqtFAvw3SUWuIEfDY9POew)
 - [Satellite Lovers](https://www.youtube.com/watch?v=l--Uma_iDkI)
 
-- [sandbox.aniketh.dev](https://sandbox.aniketh.dev) - *A collection of random pages*
-- [garden.aniketh.dev](https://garden.aniketh.dev) - *Some notes n' stuff*
-- [preview.aniketh.dev](https://preview.aniketh.dev) - *This is more of an experimental website to mess around with stuff*
+Check out some of my other websites:
+
+- [blog.aniketh.dev](https://blog.aniketh.dev) - *My personal blog!*
+- [garden.aniketh.dev](https://garden.aniketh.dev) - *Some notes n' reference stuff*
+- [terminal.aniketh.dev](https://terminal.aniketh.dev) - *A command line way to browse GitHub*
+- [sandbox.aniketh.dev](https://sandbox.aniketh.dev) - *A collection of random single page apps*
+- [preview.aniketh.dev](https://preview.aniketh.dev) - *An experimental website to mess around with stuff*
 
