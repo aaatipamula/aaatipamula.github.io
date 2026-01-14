@@ -9,16 +9,23 @@
     <div class="bg-zinc-100 dark:bg-zinc-900 flex-col justify-center h-dvh md:h-screen w-screen">
 
       <!-- Command bar -->
-      <div class="w-3/4 lg:w-1/2 m-auto py-20 ">
+      <div class="w-3/4 lg:w-1/2 m-auto py-20 relative box-border">
         <input
           placeholder="type /help"
           name="command"
           id="navigation"
           type="text"
-          class="rounded w-full p-2
+          class="rounded w-full p-2 relative z-10
             outline-2 outline-stone-300 focus:outline-stone-500 dark:outline-stone-700 dark:focus:outline-stone-500
             placeholder-zinc-400 dark:placeholder-zinc-500 bg-zinc-200 dark:bg-zinc-800"
         >
+        <div
+          type="text"
+          class="absolute top-0 bottom-0 left-0 right-0 z-0 flex items-center
+            rounded w-full p-2 z-10 pointer-events-none"
+        >
+          <span id="predict-text" class="text-zinc-400 dark:text-zinc-500"></span>
+        </div>
       </div>
 
       {% include name.svg %}
