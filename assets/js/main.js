@@ -1,5 +1,7 @@
 // Global keys pressed
 const pressedKeys = new Set();
+// Layer keys (Usually not on keyboards)
+const activeMods = new Set();
 // Aliased paths
 const shortPaths = {
   '/media': '/interests/media',
@@ -204,8 +206,6 @@ function togglePage() {
 }
 
 /**
-  * BUG: Layer keys don't have a keycode to attach to them which means
-  *      They toggle on/off when multiple keys with the same layer bind are pressed
   * @param { string } key - This should be KeyboardEvent.key
   * @param { number } key - This should be the lcoation of the key (1, 2) for (left, right) respectively
   * @returns { number[] }
@@ -248,10 +248,10 @@ function getIds(key, location = 1) {
     case ')': return [40, 12];
     // R2
     case '\'': return [40, 13];
-    case '-': return [40, 14];
-    case '=': return [40, 15];
-    case '[': return [40, 16];
-    case ']': return [40, 17];
+    case '-':  return [40, 14];
+    case '=':  return [40, 15];
+    case '[':  return [40, 16];
+    case ']':  return [40, 17];
     case '\\': return [40, 18];
     // R3
     case '"': return [40, 25];
@@ -313,11 +313,33 @@ function getIds(key, location = 1) {
 
 /**
   * @param { number[] } ids - the list of ids to toggle
+  * @param { boolean } isKeyDown - if the key is being pressed down
   * @returns { void }
   */
-function toggleElemId(...ids) {
+function toggleElemId(ids, isKeyDown) {
   if (ids.length === 0) return;
-  for (const id of ids) {
+
+  const [modifier, ...otherIds] = ids;
+
+  // Handle modifier key (layer indicator)
+  if (modifier >= 39 && modifier <= 40) {
+    const key = document.getElementById(`key_${modifier}`);
+    if (isKeyDown) {
+      if (!activeMods.has(modifier)) {
+        activeMods.add(modifier);
+        key.classList.add('opacity-40');
+      }
+    } else {
+      activeMods.delete(modifier);
+      if (activeMods.size === 0 || !activeMods.has(modifier)) {
+        key.classList.remove('opacity-40');
+      }
+    }
+  } else {
+    otherIds.push(modifier);
+  }
+
+  for (const id of otherIds) {
     if (id === 0) continue;
     const key = document.getElementById(`key_${id}`);
     key.classList.toggle('opacity-40');
@@ -387,12 +409,20 @@ function evalNav(str) {
   }
 }
 
+/**
+  * @param { string } value - The value to replace
+  */
+function updatePredict(value) {
+  const textSpan = document.getElementById("predict-text");
+  textSpan.innerText = "/" + value;
+}
+
 window.addEventListener("keydown", async (event) => {
   const nav = document.getElementById("navigation");
   processActions(event, nav);
   if (!pressedKeys.has(event.code)) {
+    toggleElemId(getIds(event.key, event.location), true);
     pressedKeys.add(event.code);
-    toggleElemId(...getIds(event.key, event.location));
   }
   if (document.activeElement === nav) {
     const predictPath = await findBestMatch(nav.value);
@@ -406,14 +436,14 @@ window.addEventListener("keydown", async (event) => {
 
 window.addEventListener("keyup", (event) => {
   if (pressedKeys.has(event.code)) {
+    toggleElemId(getIds(event.key, event.location), false);
     pressedKeys.delete(event.code);
-    toggleElemId(...getIds(event.key, event.location));
   }
 });
 
 window.addEventListener("focus", () => {
   for (const key of pressedKeys) {
-    toggleElemId(...getIds(key));
+    toggleElemId(getIds(key), false);
     pressedKeys.delete(key);
   }
 });
