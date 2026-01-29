@@ -1,0 +1,63 @@
+---
+import siteinfo from "../data/siteinfo.json";
+---
+
+<div class="fixed right-0 left-0 py-2 z-50 bg-inherit rounded-b-lg">
+  <a href="/" class="absolute p-1 left-2 md:left-4 top-2">/home</a>
+
+  <div class="flex justify-center md:gap-3 md:text-lg">
+    {siteinfo.navLinks.map(navItem => (
+    (new URL(navItem.link, Astro.site).pathname === Astro.url.pathname) ? (
+    <!-- The buttons are for nav items on the current page -->
+    <button 
+      data-sectionid={navItem.id}
+      id=`nav_${navItem.name}`
+      class="p-1 text-zinc-600 dark:text-zinc-400 hover:opacity-50 cursor-pointer"
+    >
+      /{navItem.name}
+    </button>
+    ) : (
+    <!-- Links are for nav items not on the current page -->
+    <a 
+      href={navItem.link}
+      class="p-1 !text-zinc-600 dark:!text-zinc-400 cursor-pointer"
+    >
+      /{navItem.name}
+    </a>
+    )))}
+  </div>
+
+  <!-- Toggle theme button -->
+  <button 
+    id="theme-toggle"
+    class="absolute p-1 top-2 right-2 md:right-4
+      rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-700"
+  >
+    <i id="sun" class="bi bi-sun hidden dark:inline"></i>
+    <i id="moon" class="bi bi-moon-stars inline dark:hidden"></i>
+  </button>
+</div>
+
+<style>
+button {
+  transition: opacity 0.3s ease;
+  font-weight: 500;
+}
+</style>
+
+<script>
+import { scrollToSection } from "@util/scroll";
+import { toggleTheme } from "@util/theme";
+
+// Toggle the current theme
+const themeToggle = document.getElementById('theme-toggle')!;
+themeToggle.addEventListener('click', () => toggleTheme());
+
+// Add click event for each section header
+const navButtons = document.querySelectorAll<HTMLButtonElement>("button[data-sectionId]");
+navButtons.forEach(button => {
+  const sectionId = button.dataset.sectionid!;
+  button.addEventListener("click", () => scrollToSection(sectionId));
+});
+</script>
+

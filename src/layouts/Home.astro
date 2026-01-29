@@ -1,0 +1,33 @@
+---
+import Base from "./Base.astro";
+import Signature from "@components/Signature.astro";
+import Keyboard from "@components/Keyboard.astro";
+---
+<Base>
+  <div class="h-dvh w-dvw flex flex-col justify-center items-center fixed -z-10">
+    <Signature />
+    <Keyboard />
+    <span class="hidden lg:block text-zinc-500 mt-6">
+      <code class="bg-zinc-200 dark:bg-zinc-800 rounded-md p-1">Ctrl+p</code> to Open Command Palette
+    </span>
+  </div>
+
+  <div class="h-dvh">
+    <i id="more-content-button" class="bi bi-arrow-down-short absolute bottom-10 text-2xl right-1/2 translate-x-1/2 hover:translate-y-1"></i>
+  </div>
+
+  <div id="content-container" class="backdrop-blur-sm bg-black/20 rounded-t-xl divide-y divide-zinc-600 dark:divide-zinc-400">
+    <slot />
+  </div>
+
+  <script>
+  function scrollToContent() {
+    const content = document.getElementById("content-container")!;
+    content.scrollIntoView({ behavior: "smooth" });
+  }
+
+  const scrollDown = document.getElementById("more-content-button")!;
+  scrollDown.onclick = scrollToContent;
+  </script>
+</Base>
+

@@ -1,0 +1,60 @@
+---
+import type { MarkdownHeading } from "astro";
+
+import Head from "@components/Head.astro";
+import Nav from "@components/Nav.astro";
+import CommandPalette from "@components/CommandPalette";
+import Footer from "@components/Footer.astro";
+
+import siteinfo from "@data/siteinfo.json";
+
+interface Props {
+  headings?: MarkdownHeading[];
+}
+
+function filterNavItems(navItem: NavLinkItem) {
+  const navPath = new URL(navItem.link, Astro.site).pathname;
+  return Astro.url.pathname === navPath;
+}
+
+function transformHeading(heading: MarkdownHeading): NavLinkItem {
+  return {
+    id: heading.slug,
+    name: heading.text,
+    link: ""
+  }
+}
+
+const { headings } = Astro.props;
+
+console.log(headings);
+
+const commandPaletteLocations = headings ? headings.map(transformHeading) : siteinfo.navLinks.filter(filterNavItems);
+---
+<html lang="en">
+  <Head />
+  <body class="bg-zinc-100 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-200">
+    <Nav />
+    <CommandPalette locations={commandPaletteLocations} client:load />
+
+    <slot />
+
+    <Footer />
+    <script>
+    function initTheme() {
+      const storedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      // Decision hierarchy: localStorage > system preference
+      if (storedTheme) {
+        document.documentElement.classList.toggle('dark', storedTheme === 'dark');
+      } else {
+        document.documentElement.classList.toggle('dark', prefersDark);
+      }
+    }
+
+    // Initialize theme
+    initTheme();
+    </script>
+  </body>
+</html>
