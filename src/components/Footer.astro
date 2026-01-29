@@ -1,0 +1,24 @@
+---
+import Socials from '@components/Socials.astro';
+import { getGitInfo } from '@util/gitInfo';
+
+const { branch, commit } = getGitInfo();
+const commitUrl = `https://github.com/${import.meta.env.PUBLIC_GH_URL}/commit/${commit}`
+---
+
+<div class="flex items-center justify-between py-1 px-4 dark:bg-zinc-900 bg-zinc-100">
+  <div class="flex-1">
+    <i class="bi bi-git"></i>
+    <span class="">{branch}</span>
+    <a href={commitUrl} class=""> #{commit} </a>
+  </div>
+
+  <div class="flex-1 text-center hidden md:block">
+    Aniketh Aatipamula 🐼 
+  </div>
+
+  <Socials
+    linkedin='https://www.linkedin.com/in/aniketh-aatipamula-a0a120150/'
+    github='https://github.com/aaatipamula'
+  />
+</div>

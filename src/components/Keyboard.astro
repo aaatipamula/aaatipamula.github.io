@@ -1,0 +1,224 @@
+---
+import { range } from "@util/arrays.ts";
+---
+
+<!-- Responsive keyboard --> 
+<div class="flex flex-col justify-center gap-[0.3em]">
+  <!-- Main board -->
+  {range(0, 2).map(index_a => (
+  <div class="flex justify-center gap-[0.2em]">
+    {range(1, 12).map(index_b => (
+    <div 
+      id=`key_${index_a * 12 + index_b}`
+      class="relative hover:opacity-50 bg-stone-400 dark:bg-stone-800
+      nth-[6]:mr-1 md:nth-[6]:mr-4
+      rounded border-2 border-t-stone-200 border-l-stone-200 border-r-stone-500 border-b-stone-500
+      dark:border-t-stone-600 dark:border-l-stone-600 dark:border-r-stone-900 dark:border-b-stone-900
+      h-7 w-7 md:h-15 md:w-15 lg:w-20 lg:h-20 
+      pt-px md:pt-[2px] px-[0.1em] md:px-1 pb-[0.2em] md:pb-2"
+    >
+      <div class="rounded bg-zinc-100 dark:bg-zinc-900 w-full h-full"></div>
+    </div>
+    ))}
+  </div>
+  ))}
+
+  <!-- Thumb cluster -->
+  <div class="flex justify-center gap-[0.2em]">
+    {range(37, 42).map(index => (
+    <div 
+      id=`key_${index}`
+      class="relative hover:opacity-50 bg-stone-400 dark:bg-stone-800
+      nth-[3]:mr-1 md:nth-[3]:mr-4
+      rounded border-2 border-t-stone-200 border-l-stone-200 border-r-stone-500 border-b-stone-500
+      dark:border-t-stone-600 dark:border-l-stone-600 dark:border-r-stone-900 dark:border-b-stone-900
+      h-7 w-7 md:h-15 md:w-15 lg:w-20 lg:h-20 
+      pt-px md:pt-[2px] px-[0.1em] md:px-1 pb-[0.2em] md:pb-2"
+    >
+      <div class="rounded bg-zinc-100 dark:bg-zinc-900 w-full h-full"></div>
+    </div>
+    ))}
+  </div>
+</div>
+
+<script>
+// Global keys pressed
+const pressedKeys = new Set<string>();
+// Layer keys (Usually not on keyboards)
+const activeMods = new Set<number>();
+
+/**
+  * @param key - This should be KeyboardEvent.key
+  * @param location - This should be the lcoation of the key (1, 2) for (left, right) respectively
+  */
+function getIds(key: string, location: number = 1) {
+  switch (key) {
+    // Layer Down 
+    // R1
+    case '`': return [39, 1];
+    case '1': return [39, 2];
+    case '2': return [39, 3];
+    case '3': return [39, 4];
+    case '4': return [39, 5];
+    case '5': return [39, 6];
+    case '6': return [39, 7];
+    case '7': return [39, 8];
+    case '8': return [39, 9];
+    case '9': return [39, 10];
+    case '0': return [39, 11];
+    case 'Delete': return [39, 11];
+    // R2
+    case '~': return [39, 1];
+    case 'ArrowLeft':  return [39, 19];
+    case 'ArrowDown':  return [39, 20];
+    case 'ArrowUp':    return [39, 21];
+    case 'ArrowRight': return [39, 22];
+
+    // Layer Up
+    // R1
+    case '!': return [40, 2];
+    case '@': return [40, 3];
+    case '#': return [40, 4];
+    case '$': return [40, 5];
+    case '%': return [40, 6];
+    case '%': return [40, 7];
+    case '^': return [40, 8];
+    case '&': return [40, 9];
+    case '*': return [40, 10];
+    case '(': return [40, 11];
+    case ')': return [40, 12];
+    // R2
+    case '\'': return [40, 13];
+    case '-':  return [40, 14];
+    case '=':  return [40, 15];
+    case '[':  return [40, 16];
+    case ']':  return [40, 17];
+    case '\\': return [40, 18];
+    // R3
+    case '"': return [40, 25];
+    case '_': return [40, 26];
+    case '+': return [40, 27];
+    case '{': return [40, 28];
+    case '}': return [40, 29];
+    case '|': return [40, 30];
+
+    // Layer Norm
+    // R1
+    case 'Q': case 'q': return [2];
+    case 'W': case 'w': return [3];
+    case 'E': case 'e': return [4];
+    case 'R': case 'r': return [5];
+    case 'T': case 't': return [6];
+    case 'Y': case 'y': return [7];
+    case 'U': case 'u': return [8];
+    case 'I': case 'i': return [9];
+    case 'O': case 'o': return [10];
+    case 'P': case 'p': return [11];
+    case 'Backspace': return [12];
+    // R2
+    case 'Tab': return [13];
+    case 'A': case 'a': return [14];
+    case 'S': case 's': return [15];
+    case 'D': case 'd': return [16];
+    case 'F': case 'f': return [17];
+    case 'G': case 'g': return [18];
+    case 'H': case 'h': return [19];
+    case 'J': case 'j': return [20];
+    case 'K': case 'k': return [21];
+    case 'L': case 'l': return [22];
+    case ':': case ';': return [23];
+    case 'Enter': return [24];
+    // R3
+    case 'Z': case 'z': return [26];
+    case 'X': case 'x': return [27];
+    case 'C': case 'c': return [28];
+    case 'V': case 'v': return [29];
+    case 'B': case 'b': return [30];
+    case 'N': case 'n': return [31];
+    case 'M': case 'm': return [32];
+    case '<': case ',': return [33];
+    case '>': case '.': return [34];
+    case '?': case '/': return [35];
+    case 'Shift': 
+      if (location === 1) return [25];  
+      else if (location === 2) return [36];
+    // R4
+    case 'Control': return [38];
+    case 'Space': return [41];
+    case 'Meta': return [37];
+    case 'Alt': return [42];
+
+    default: return [0];
+  }
+}
+
+/**
+  * @param ids - the list of ids to toggle
+  * @param isKeyDown - if the key is being pressed down
+  */
+function toggleElemId(ids: number[], isKeyDown: boolean) {
+  if (ids.length === 0) return;
+
+  const [modifier, ...otherIds] = ids;
+
+  // Handle modifier key (layer indicator)
+  if (modifier >= 39 && modifier <= 40) {
+    const key = document.getElementById(`key_${modifier}`)!;
+    if (isKeyDown) {
+      if (!activeMods.has(modifier)) {
+        activeMods.add(modifier);
+        key.classList.add('opacity-40');
+      }
+    } else {
+      activeMods.delete(modifier);
+      if (activeMods.size === 0 || !activeMods.has(modifier)) {
+        key.classList.remove('opacity-40');
+      }
+    }
+  } else {
+    otherIds.push(modifier);
+  }
+
+  for (const id of otherIds) {
+    if (id === 0) continue;
+    const key = document.getElementById(`key_${id}`)!;
+    key.classList.toggle('opacity-40');
+  }
+}
+
+let verticalScrollIndex = 0;
+
+window.addEventListener("keydown", (event) => {
+  /*
+  if (event.code === "KeyJ") {
+    verticalScrollIndex = (verticalScrollIndex + 100) % document.body.clientHeight;
+    console.log(verticalScrollIndex);
+    window.scroll({ top: verticalScrollIndex, behavior: "smooth" });
+    // event.preventDefault();
+  } else if (event.code === "KeyK") {
+    verticalScrollIndex -= 100;
+    window.scroll({ top: verticalScrollIndex, behavior: "smooth" });
+    // event.preventDefault();
+  }
+  */
+
+  if (!pressedKeys.has(event.code)) {
+    toggleElemId(getIds(event.key, event.location), true);
+    pressedKeys.add(event.code);
+  }
+});
+
+window.addEventListener("keyup", (event) => {
+  if (pressedKeys.has(event.code)) {
+    toggleElemId(getIds(event.key, event.location), false);
+    pressedKeys.delete(event.code);
+  }
+});
+
+window.addEventListener("focus", () => {
+  for (const key of pressedKeys) {
+    toggleElemId(getIds(key), false);
+    pressedKeys.delete(key);
+  }
+});
+</script>

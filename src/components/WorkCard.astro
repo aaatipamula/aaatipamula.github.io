@@ -1,0 +1,37 @@
+---
+import SkillList from './SkillList.astro';
+
+export interface WorkItem {
+  jobTitle: string;
+  company: string;
+  startDate: string;
+  endDate?: string;
+  skills?: string[];
+  notes: string[];
+}
+
+interface Props {
+  details: WorkItem[];
+}
+
+const { details } = Astro.props;
+
+details.reverse() // Show most recent first
+---
+
+<div class="flex flex-col gap-4">
+  {details.map(item => (
+  <div class="rounded-lg bg-zinc-100 dark:bg-zinc-900 p-4 inset-shadow-xs inset-shadow-zinc-300 dark:inset-shadow-zinc-700">
+    <h1>{item.company}</h1>
+    <p class="text-sm dark:text-zinc-300">{item.startDate} - {item.endDate ? item.endDate : "Present"}</p>
+    <b>Role</b>: {item.jobTitle}
+    {item.skills && <SkillList list={item.skills} />}
+    <ul>
+      {item.notes.map(item => (
+      <li>{item}</li>
+      ))}
+    </ul>
+  </div>
+  ))}
+</div>
+

@@ -1,0 +1,31 @@
+---
+import SkillList from './SkillList.astro';
+
+export interface ProjectItem {
+  name: string;
+  link: string;
+  skills?: string[];
+  notes: string;
+}
+
+interface Props {
+  details: ProjectItem[];
+}
+
+const { details } = Astro.props;
+---
+
+<div class="flex flex-col gap-4">
+  {details.map(item => (
+  <div class="rounded-lg bg-zinc-100 dark:bg-zinc-900 p-4 inset-shadow-xs inset-shadow-zinc-300 dark:inset-shadow-zinc-700">
+    <div class="flex gap-3 items-center">
+      <h1 class="!m-0">{item.name}</h1> 
+      <a href={item.link}>
+        <i class="bi bi-github text-zinc-700 hover:text-zinc-600 dark:text-zinc-300 dark:hover:text-zinc-400"></i>
+      </a>
+    </div>
+    {item.skills && <SkillList list={item.skills} />}
+    <p class="whitespace-pre-wrap">{item.notes}</p>
+  </div>
+  ))}
+</div>
