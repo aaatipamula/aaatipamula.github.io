@@ -1,0 +1,13 @@
+---
+interface Props {
+  list: string[];
+}
+
+const { list } = Astro.props;
+---
+
+<div class="flex flex-wrap my-4">
+  {list.map(skill => (
+  <span class="rounded bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-800 dark:hover:bg-zinc-700 p-2 m-1">{skill}</span>
+  ))}
+</div>

@@ -1,0 +1,20 @@
+{
+  "title": "aniketh.dev",
+  "navLinks": [
+    {
+      "name": "about",
+      "id": "about",
+      "link": "/#section-about"
+    },
+    {
+      "name": "portfolio",
+      "id": "portfolio",
+      "link": "/#section-portfolio"
+    },
+    {
+      "name": "interests",
+      "id": "interests",
+      "link": "/interests/"
+    }
+  ]
+}

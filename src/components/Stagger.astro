@@ -1,0 +1,38 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+export interface DisplayItem {
+  image: ImageMetadata;
+  caption: string;
+  link: string;
+  note?: string;
+}
+
+interface Props {
+  items: DisplayItem[];
+  vertical?: boolean;
+}
+
+const { items, vertical } = Astro.props;
+---
+
+<div class=`${vertical ? "flex justify-center md:justify-between flex-wrap" : "divide-y md:w-4/5 m-auto"} divide-zinc-700 `>
+  {items.map(item => (
+  <div class="flex not-even:flex-row-reverse not-even:text-right justify-between items-center py-4">
+    {!vertical && item.note && <div class="hidden md:block">{item.note}</div>}
+
+    <a href={item.link} class="text-center">
+      <Image src={item.image} alt=`img-${item.caption}` />
+      <span>{item.caption}</span>
+    </a>
+  </div>
+  ))}
+</div>
+
+<style>
+img {
+  width: 20em;
+  height: auto;
+}
+</style>
