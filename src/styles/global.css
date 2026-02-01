@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Rubik";
+  src: url("/fonts/Rubik/Rubik-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: "Fira Code";
+  src: url("/fonts/Fira_Code/FiraCode-VariableFont_wght.ttf");
+}
+
+
 :root {
   --accent-dark: hsl(15 64% 86%);
   --accent-light: hsl(105 16% 43%);
@@ -135,6 +146,7 @@ hr {
 }
 
 code {
+  font-size: "Fira Code";
   padding: 2px 4px;
   background-color: var(--color-zinc-200);
   border-radius: var(--radius-md);

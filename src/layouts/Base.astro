@@ -40,21 +40,5 @@ const commandPaletteLocations = headings ? headings.map(transformHeading) : site
     <slot />
 
     <Footer />
-    <script>
-    function initTheme() {
-      const storedTheme = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-      // Decision hierarchy: localStorage > system preference
-      if (storedTheme) {
-        document.documentElement.classList.toggle('dark', storedTheme === 'dark');
-      } else {
-        document.documentElement.classList.toggle('dark', prefersDark);
-      }
-    }
-
-    // Initialize theme
-    initTheme();
-    </script>
   </body>
 </html>
