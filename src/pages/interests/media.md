@@ -16,9 +16,3 @@ I'm also a casual enjoyer of movies and TV. I don't really have a personal ranki
 # Reading
 
 I'm a big fan of fantasy. Ever since I read the [Percy Jackson and the Olympians](https://rickriordan.com/series/percy-jackson-and-the-olympians/) series in 3rd grade I've been on a huge fantasy streak. I would and should list everything I read somehwere but I've read so much at this point it's really hard for me to remember specifics. Lately I haven't been picking up books, but I *have* been reading Manga/Manhwa ever since I discovered that in 2019. 
-
-```js
-function balls() {
-    console.log("balls");
-}
-```

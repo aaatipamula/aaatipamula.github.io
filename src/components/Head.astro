@@ -17,5 +17,22 @@ import siteinfo from "@data/siteinfo.json";
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+  <script is:inline>
+  /* Function must be inline to prevent flash of color on page load */
+  function initTheme() {
+    const storedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    // Decision hierarchy: localStorage > system preference
+    if (storedTheme) {
+      document.documentElement.classList.toggle('dark', storedTheme === 'dark');
+    } else {
+      document.documentElement.classList.toggle('dark', prefersDark);
+    }
+  }
+
+  /* Initialize theme */
+  initTheme();
+  </script>
 </head>
 
