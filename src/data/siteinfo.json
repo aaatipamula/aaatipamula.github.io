@@ -15,6 +15,11 @@
       "name": "interests",
       "id": "interests",
       "link": "/interests/"
+    },
+    {
+      "name": "media",
+      "id": "media",
+      "link": "/interests/media"
     }
   ]
 }

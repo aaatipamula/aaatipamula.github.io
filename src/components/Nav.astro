@@ -6,13 +6,13 @@ import siteinfo from "../data/siteinfo.json";
   <a href="/" class="absolute p-1 left-2 md:left-4 top-2">/home</a>
 
   <div class="flex justify-center md:gap-3 md:text-lg">
-    {siteinfo.navLinks.map(navItem => (
+    {siteinfo.navLinks.map((navItem, index) => (
     (new URL(navItem.link, Astro.site).pathname === Astro.url.pathname) ? (
     <!-- The buttons are for nav items on the current page -->
     <button 
       data-sectionid={navItem.id}
       id=`nav_${navItem.name}`
-      class="p-1 text-zinc-600 dark:text-zinc-400 hover:opacity-50 cursor-pointer"
+      class=`p-1 text-zinc-600 dark:text-zinc-400 hover:opacity-50 cursor-pointer ${index >= 3 ? "hidden md:block" : ""}`
     >
       /{navItem.name}
     </button>
@@ -20,7 +20,7 @@ import siteinfo from "../data/siteinfo.json";
     <!-- Links are for nav items not on the current page -->
     <a 
       href={navItem.link}
-      class="p-1 !text-zinc-600 dark:!text-zinc-400 cursor-pointer"
+      class=`p-1 !text-zinc-600 dark:!text-zinc-400 cursor-pointer ${index >= 3 ? "hidden md:block" : ""}`
     >
       /{navItem.name}
     </a>
@@ -30,8 +30,7 @@ import siteinfo from "../data/siteinfo.json";
   <!-- Toggle theme button -->
   <button 
     id="theme-toggle"
-    class="absolute p-1 top-2 right-2 md:right-4
-      rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-700"
+    class="absolute p-1 top-2 right-2 md:right-4 rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-700"
   >
     <i id="sun" class="bi bi-sun hidden dark:inline"></i>
     <i id="moon" class="bi bi-moon-stars inline dark:hidden"></i>

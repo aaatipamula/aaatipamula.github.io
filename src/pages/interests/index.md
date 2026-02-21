@@ -8,20 +8,17 @@ I have a lot of personal interests `(!= “programming”)` which include some o
 
 [Computers](/interests/computers)
 
-> [Custom Mechanical Keyboards](/interests/computers#custom-mechanical-keyboards)
->
-> [Computer Hardware](/interests/computers#computer-hardware)
+- [Custom Mechanical Keyboards](/interests/computers#custom-mechanical-keyboards)
+- [Computer Hardware](/interests/computers#computer-hardware)
 
 [Outdoors](/interests/outdoors)
 
-> [Hiking/Backpacking](/interests/outdoors#hikingbackpacking)
-> 
-> [Camping](/interests/outdoors#camping)
+- [Hiking/Backpacking](/interests/outdoors#hikingbackpacking)
+- [Camping](/interests/outdoors#camping)
 
 [Media](/interests/media)
 
-> [Music](/interests/media#music)
-> 
-> [Movies](/interests/media#movies)
+- [Music](/interests/media#music)
+- [Movies](/interests/media#movies)
 
 

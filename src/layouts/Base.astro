@@ -26,9 +26,6 @@ function transformHeading(heading: MarkdownHeading): NavLinkItem {
 }
 
 const { headings } = Astro.props;
-
-console.log(headings);
-
 const commandPaletteLocations = headings ? headings.map(transformHeading) : siteinfo.navLinks.filter(filterNavItems);
 ---
 <html lang="en">
