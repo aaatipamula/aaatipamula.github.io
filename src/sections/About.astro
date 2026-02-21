@@ -1,21 +1,14 @@
 ---
-import type { DisplayItem } from "@components/Stagger.astro";
+import type { DisplayItem } from "@components/Websites.astro";
 
 import Section from "@layouts/Section.astro";
-import Stagger from "@components/Stagger.astro";
-
-/* Import images */
-import worryClubJpg from "@img/worry-club-1000x1000.jpg";
-import sakkarisPng from "@img/sakkaris-640x640.png";
-import mofdJpg from "@img/mass-of-the-fermenting-dregs-1000x1000.jpg";
-import satelliteLoversJpg from "@img/satellite-lovers-948x948.jpg";
+import Websites from "@components/Websites.astro";
 
 import blogPng from "@img/2026-01-17-133100_hyprshot.png";
 import gardenPng from "@img/2026-01-17-133131_hyprshot.png";
 import terminalPng from "@img/2026-01-17-133143_hyprshot.png";
 import sandboxPng from "@img/2026-01-17-133204_hyprshot.png";
 import previewPng from "@img/2026-01-17-133223_hyprshot.png";
-
 
 const WEBSITES: DisplayItem[] = [ 
   {
@@ -49,45 +42,17 @@ const WEBSITES: DisplayItem[] = [
     note: "An experimental website to mess around with stuff",
   },
 ]
-
-const ARTISTS: DisplayItem[] = [
-  {
-    image: worryClubJpg,
-    link: "https://open.spotify.com/artist/7Fkc1Q81Zy25eZ5dmnURGl?si=DpXwGeS0Rpq5Xm3uCibalg",
-    caption: "Worry Club",
-  },
-  {
-    image: sakkarisPng,
-    link: "https://open.spotify.com/artist/4S4HXXp7lMA41ttdFGpDIn?si=QG7-RhrQQFmsDPwHK8ajiw",
-    caption: "Sakkaris",
-  },
-  {
-    image: mofdJpg,
-    link: "https://open.spotify.com/artist/14d5KCX9nprUcxnKIShrr1?si=TqtFAvw3SUWuIEfDY9POew",
-    caption: "MASS OF THE FERMENTING DREGS",
-  },
-  {
-    image: satelliteLoversJpg,
-    link: "https://open.spotify.com/artist/6rPCGt1PlG8UsBvQFjqshc?si=RuKHkg3iTHWQazzCeITmUg",
-    caption: "Satellite Lovers",
-  },
-]
 ---
 
 <Section name="about">
   <h1>About Me</h1>
   <span class="tagline">Hey, I'm Aniketh, a developer, student, and hobbyist.</span>
   <p>
-I'm currently pursuing a <i>B.S. in Computer Science</i> with a Minor in Math at <a href="https://eecs.ku.edu"> University of Kansas</a>.
+I'm currently pursuing a <em>B.S. in Computer Science</em> with a Minor in Math at <a href="https://eecs.ku.edu"> University of Kansas</a>.
   </p>
 
-  <h2 class="text-center">Artist Spotlights</h2>
-
-  <Stagger vertical items={ARTISTS} />
-
   <h2 class="text-center">Other Websites</h2>
-
-  <Stagger items={WEBSITES} />
+  <Websites items={WEBSITES} />
 
 </Section>
 

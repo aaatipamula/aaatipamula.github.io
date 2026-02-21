@@ -24,6 +24,8 @@ jobs:
         uses: withastro/action@v4
         env:
           PUBLIC_GH_URL: ${{ github.repository }}
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
 
   deploy:
     needs: build

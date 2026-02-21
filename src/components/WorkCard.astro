@@ -22,8 +22,10 @@ details.reverse() // Show most recent first
 <div class="flex flex-col gap-4">
   {details.map(item => (
   <div class="rounded-lg bg-zinc-100 dark:bg-zinc-900 p-4 inset-shadow-xs inset-shadow-zinc-300 dark:inset-shadow-zinc-700">
-    <h1>{item.company}</h1>
-    <p class="text-sm dark:text-zinc-300">{item.startDate} - {item.endDate ? item.endDate : "Present"}</p>
+    <div class="md:flex md:justify-between md:text-center">
+      <h1>{item.company}</h1>
+      <p class="text-sm text-zinc-500">{item.startDate} - {item.endDate ? item.endDate : "Present"}</p>
+    </div>
     <b>Role</b>: {item.jobTitle}
     {item.skills && <SkillList list={item.skills} />}
     <ul>

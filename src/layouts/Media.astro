@@ -1,0 +1,65 @@
+---
+import type { MarkdownLayoutProps } from "astro";
+
+import Base from "@layouts/Base.astro";
+import Section from "@layouts/Section.astro";
+import SpotifyMedia from "@components/SpotifyMedia.astro";
+
+/* Import images */
+// import worryClubJpg from "@img/worry-club-1000x1000.jpg";
+// import sakkarisPng from "@img/sakkaris-640x640.png";
+// import mofdJpg from "@img/mass-of-the-fermenting-dregs-1000x1000.jpg";
+// import satelliteLoversJpg from "@img/satellite-lovers-948x948.jpg";
+// import personaNonGrataJpg from "@img/persona-non-grata.jpg";
+
+interface MarkDownFrontmatter {
+  title?: string;
+  id: string;
+  featuredArtists: string[];
+  featuredTracks: string[];
+}
+
+type Props = MarkdownLayoutProps<MarkDownFrontmatter>;
+
+const { frontmatter, headings } = Astro.props;
+
+// const ARTISTS: DisplayItem[] = [
+//   {
+//     image: worryClubJpg,
+//     link: "https://open.spotify.com/artist/7Fkc1Q81Zy25eZ5dmnURGl?si=DpXwGeS0Rpq5Xm3uCibalg",
+//     caption: "Worry Club",
+//   },
+//   {
+//     image: sakkarisPng,
+//     link: "https://open.spotify.com/artist/4S4HXXp7lMA41ttdFGpDIn?si=QG7-RhrQQFmsDPwHK8ajiw",
+//     caption: "Sakkaris",
+//   },
+//   {
+//     image: mofdJpg,
+//     link: "https://open.spotify.com/artist/14d5KCX9nprUcxnKIShrr1?si=TqtFAvw3SUWuIEfDY9POew",
+//     caption: "MASS OF THE FERMENTING DREGS",
+//   },
+//   {
+//     image: satelliteLoversJpg,
+//     link: "https://open.spotify.com/artist/6rPCGt1PlG8UsBvQFjqshc?si=RuKHkg3iTHWQazzCeITmUg",
+//     caption: "Satellite Lovers",
+//   },
+//   {
+//     image: personaNonGrataJpg,
+//     link: "https://open.spotify.com/artist/11soTz40tSuidki8qC6OPl?si=RkbksGThQmqji_oNXfoz3Q",
+//     caption: "Persona non grata"
+//   }
+// ]
+---
+
+<Base headings={headings}>
+  <Section name={frontmatter.id}>
+    {frontmatter.title && <h1>{frontmatter.title}</h1>}
+    <h2>Artist Spotlights</h2>
+    <SpotifyMedia artists={frontmatter.featuredArtists}/>
+    <h2>Track Spotlights</h2>
+    <SpotifyMedia tracks={frontmatter.featuredTracks}/>
+    <slot />
+  </Section>
+</Base>
+

@@ -1,6 +1,19 @@
 ---
-layout: "@layouts/Default.astro"
+layout: "@layouts/Media.astro"
+title: Media
 id: media
+featuredArtists:
+    - https://open.spotify.com/artist/7Fkc1Q81Zy25eZ5dmnURGl?si=DpXwGeS0Rpq5Xm3uCibalg # Worry Club
+    - https://open.spotify.com/artist/4S4HXXp7lMA41ttdFGpDIn?si=QG7-RhrQQFmsDPwHK8ajiw # Sakkaris
+    - https://open.spotify.com/artist/14d5KCX9nprUcxnKIShrr1?si=TqtFAvw3SUWuIEfDY9POew # Mass of the Fermenting Dregs
+    - https://open.spotify.com/artist/6rPCGt1PlG8UsBvQFjqshc?si=RuKHkg3iTHWQazzCeITmUg # Satellite Lovers
+    - https://open.spotify.com/artist/11soTz40tSuidki8qC6OPl?si=RkbksGThQmqji_oNXfoz3Q # Persona Non Grata
+featuredTracks:
+    - https://open.spotify.com/track/4TUYyjQ9SvdYJP0BDXduT6?si=d19e2659e91e4dae # FASHION ICON
+    - https://open.spotify.com/track/1AJHaJFNM2Q4UpJ1fG1bIi?si=a5365341c985442b # Ssx
+    - https://open.spotify.com/track/5vPUv0xziXbV4lnWeVNXNq?si=e81d83dd35d44ee7 # Roommates
+    - https://open.spotify.com/track/46H9VQlQW2Aqf4zVY60cYR?si=84247c279f094819 # Analog Sentamentalism
+    - https://open.spotify.com/track/0FAlG6uOeaXWuRdDxaeIQY?si=90b8b9678b16497f # I'll Take It
 ---
 
 # Music

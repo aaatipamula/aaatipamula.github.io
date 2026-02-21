@@ -1,0 +1,136 @@
+---
+import type { SpotifyImage } from '@util/spotify';
+
+// import { Image } from 'astro:assets';
+import { SpotifyClient } from "@util/spotify";
+
+export interface DisplayItem {
+  image: SpotifyImage | null;
+  caption: string;
+  link: string;
+}
+
+interface Props {
+  // items: DisplayItem[];
+  tracks?: string[]
+  artists?: string[]
+}
+
+const client = new SpotifyClient({
+  clientId: import.meta.env.SPOTIFY_CLIENT_ID,
+  clientSecret: import.meta.env.SPOTIFY_CLIENT_SECRET,
+  redirectUri: import.meta.env.SPOTIFY_REDIRECT_URL,
+  scopes: ["playlist-read-private"],
+});
+
+// Server auth
+await client.authenticateAsApp();
+
+function getImageMetaData(images: SpotifyImage[]): SpotifyImage {
+  // const randImg = images[Math.floor(Math.random() * images.length)];
+  const highestRes = images[0];
+
+  return highestRes 
+}
+
+async function getArtistInfo(uri: string): Promise<DisplayItem> {
+  const uriObj = new URL(uri);
+
+  if (uriObj.host != "open.spotify.com") {
+    throw new Error("Invalid spotify uri");
+  }
+
+  const trackId = uriObj.pathname.split("/").at(-1);
+
+  if (!trackId) {
+    throw new Error("No Track ID found.");
+  }
+
+  // Use placeholders for development to avoid rate-limits
+  if (import.meta.env.DEV) {
+    return {
+      image: {url: "https://placehold.co/640x640", width: 640, height: 640},
+      caption: "ARTIST - PLACEHOLDER",
+      link: uri,
+    } as DisplayItem;
+  }
+
+  const artist = await client.getArtist(trackId);
+
+  return {
+    image: artist.images ? getImageMetaData(artist.images) : null,
+    caption: artist.name,
+    link: uri,
+  } as DisplayItem;
+}
+
+async function getTrackInfo(uri: string): Promise<DisplayItem> {
+  const uriObj = new URL(uri);
+
+  if (uriObj.host != "open.spotify.com") {
+    throw new Error("Invalid spotify uri");
+  }
+
+  const trackId = uriObj.pathname.split("/").at(-1);
+
+  if (!trackId) {
+    throw new Error("No Track ID found.");
+  }
+
+  // Use placeholders for development to avoid rate-limits
+  if (import.meta.env.DEV) {
+    return {
+      image: {url: "https://placehold.co/640x640", width: 640, height: 640},
+      caption: "TRACK - PLACEHOLDER",
+      link: uri,
+    } as DisplayItem;
+  }
+
+  const track = await client.getTrack(trackId);
+
+  return {
+    image: getImageMetaData(track.album.images),
+    caption: track.name,
+    link: uri,
+  } as DisplayItem;
+}
+
+
+const { tracks, artists } = Astro.props;
+
+let displayItems: DisplayItem[];
+
+if (artists && tracks) {
+  throw new Error("Cannot define both artists and tracks!");
+} else if (artists) {
+  displayItems = await Promise.all(artists.map(getArtistInfo));
+} else if (tracks) {
+  displayItems = await Promise.all(tracks.map(getTrackInfo));
+} else {
+  throw new Error("Must have at either tracks or artists displayed");
+}
+---
+
+<div class="flex justify-center md:justify-start flex-wrap gap-2">
+  {displayItems.map(item => (
+  <div class="flex not-even:flex-row-reverse not-even:text-right justify-between items-center py-4">
+    <a href={item.link} class="text-center">
+      {item.image && (
+        <img src={item.image.url} width={item.image.width} height={item.image.height} alt=`img-${item.caption}` />
+      )}
+      <div class="img-caption">{item.caption}</div>
+    </a>
+  </div>
+  ))}
+</div>
+
+<style>
+.img-caption {
+  width: 15em;
+}
+
+img {
+  width: 15em;
+  aspect-ratio: 1/1;
+}
+</style>
