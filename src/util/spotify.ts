@@ -360,7 +360,8 @@ export class SpotifyClient {
   async request<T>(
     method: string,
     path: string,
-    options: { params?: Record<string, string | number>; body?: unknown } = {}
+    options: { params?: Record<string, string | number>; body?: unknown } = {},
+    retries = 3
   ): Promise<T> {
     const token = await this.getValidAccessToken();
 
@@ -383,6 +384,12 @@ export class SpotifyClient {
       },
       ...(options.body ? { body: JSON.stringify(options.body) } : {}),
     });
+
+    if (res.status === 429 && retries > 0) {
+      const retryAfter = Number(res.headers.get("Retry-After") ?? 1);
+      await new Promise(resolve => setTimeout(resolve, retryAfter * 1000));
+      return this.request<T>(method, path, options, retries - 1);
+    }
 
     if (res.status === 204) return undefined as unknown as T;
 
