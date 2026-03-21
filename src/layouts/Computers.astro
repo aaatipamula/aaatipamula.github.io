@@ -1,0 +1,33 @@
+---
+import type { MarkdownLayoutProps } from "astro";
+
+import Base from "@layouts/Base.astro";
+import Section from "@layouts/Section.astro";
+import ImageGallery from "@components/ImageGallery.astro";
+
+interface KeyboardImage {
+  src: string;
+  title: string; 
+}
+
+interface MarkDownFrontmatter {
+  title?: string;
+  id: string;
+  keyboardImages: KeyboardImage[];
+}
+
+
+type Props = MarkdownLayoutProps<MarkDownFrontmatter>;
+
+const { frontmatter, headings } = Astro.props;
+
+console.log(frontmatter);
+---
+
+<Base headings={headings}>
+  <Section name={frontmatter.id}>
+    {frontmatter.title && <h1>{frontmatter.title}</h1>}
+    <ImageGallery images={frontmatter.keyboardImages}/>
+    <slot />
+  </Section>
+</Base>

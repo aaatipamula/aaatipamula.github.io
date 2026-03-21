@@ -2,22 +2,22 @@
   "title": "aniketh.dev",
   "navLinks": [
     {
-      "name": "about",
+      "name": "About",
       "id": "about",
       "link": "/#section-about"
     },
     {
-      "name": "portfolio",
+      "name": "Portfolio",
       "id": "portfolio",
       "link": "/#section-portfolio"
     },
     {
-      "name": "interests",
+      "name": "Interests",
       "id": "interests",
       "link": "/interests/"
     },
     {
-      "name": "media",
+      "name": "Media",
       "id": "media",
       "link": "/interests/media"
     }

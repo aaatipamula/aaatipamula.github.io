@@ -16,6 +16,13 @@
   --accent-light: hsl(105 16% 43%);
 }
 
+/* Focus outline for all selectable elements */
+:focus-visible {
+  outline: 2px solid var(--color-zinc-500);
+  outline-offset: var(--spacing);
+  border-radius: var(--radius-md);
+}
+
 * {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -38,18 +45,23 @@ p {
   margin-bottom: 1rem;
 }
 
+li > a,
+p > a {
+  border-bottom: 2px dotted var(--color-zinc-500);
+}
+
 a {
   color: var(--accent-light);
   transition: opacity 0.3s ease;
   font-weight: 500;
 }
 
-.dark a {
-  color: var(--accent-dark);
-}
-
 a:hover {
   opacity: 0.5;
+}
+
+.dark a {
+  color: var(--accent-dark);
 }
 
 em {
@@ -112,25 +124,35 @@ blockquote {
   border-color: var(--accent-dark);
 }
 
-table,
-th,
-td {
-  border: 2px solid;
-  border-color: var(--color-zinc-500);
-  border-collapse: collapse;
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-height: 450px; /* required — sticky needs a scroll container with a defined height */
+  overflow-y: auto;
 }
 
-th {
+table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 500px;
+}
+
+td {
+  border: 2px solid var(--color-zinc-500);
+  padding: 0.5rem;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   color: var(--accent-light);
+  background: var(--color-zinc-100); /* must be opaque — sticky elements are see-through by default */
 }
 
 .dark th {
   color: var(--accent-dark);
-}
-
-th,
-td {
-  padding: .5rem;
+  background: var(--color-zinc-900); /* must be opaque — sticky elements are see-through by default */
 }
 
 hr {

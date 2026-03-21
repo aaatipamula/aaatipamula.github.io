@@ -1,0 +1,270 @@
+---
+import { Image } from 'astro:assets';
+
+interface Image {
+  src: string;
+  title: string;
+}
+
+interface Props {
+  images: Image[];
+}
+
+const { images } = Astro.props;
+
+// Load all images from src/assets/images at build time
+const imageAssets = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/images/**/*.{jpg,JPG,jpeg,JPEG,png,webp,avif}'
+);
+ 
+// Resolve each keyboard image src string to its ImageMetadata
+const resolvedImages = await Promise.all(
+  images.map(async (img) => {
+    // Normalize the src to match the glob key format: /src/assets/images/filename.jpg
+    const key = img.src.startsWith('/src/assets/images/')
+      ? img.src
+      : `/src/assets/images/${img.src.replace(/^.*[\\/]/, '')}`;
+ 
+    const loader = imageAssets[key];
+    if (!loader) {
+      throw new Error(`Image not found in src/assets/images: ${img.src}`);
+    }
+    const mod = await loader();
+    return { ...img, resolved: mod.default };
+  })
+);
+ 
+// Classic layout: first image is the tall feature cell
+const [feature, ...rest] = resolvedImages;
+
+console.log(resolvedImages);
+---
+ 
+<div class="mosaic-grid">
+  {feature && (
+    <div class="cell cell--feature" data-index="0">
+      <Image src={feature.resolved} alt={feature.title} class="cell-img" />
+      <span class="cell-label">{feature.title}</span>
+    </div>
+  )}
+  {rest.map((img, i) => (
+    <div class="cell" data-index={i + 1}>
+      <Image src={img.resolved} alt={img.title} class="cell-img" />
+      <span class="cell-label">{img.title}</span>
+    </div>
+  ))}
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Image gallery">
+  <button class="lightbox-close bi bi-x-lg" id="lightbox-close" aria-label="Close"></button>
+  <button class="lightbox-prev bi bi-chevron-left" id="lightbox-prev" aria-label="Previous"></button>
+  <button class="lightbox-next bi bi-chevron-right" id="lightbox-next" aria-label="Next"></button>
+ 
+  <div class="lightbox-content">
+    <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+    <p class="lightbox-title" id="lightbox-title"></p>
+    <p class="lightbox-counter" id="lightbox-counter"></p>
+  </div>
+</div>
+ 
+<script define:vars={{ resolvedImages }}>
+  const images = resolvedImages.map(img => ({
+    src: img.resolved.src,
+    title: img.title,
+  }));
+ 
+  let current = 0;
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  const lbTitle = document.getElementById('lightbox-title');
+  const lbCounter = document.getElementById('lightbox-counter');
+ 
+  function open(index) {
+    current = index;
+    update();
+    lightbox.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+ 
+  function close() {
+    lightbox.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+ 
+  function update() {
+    const img = images[current];
+    lbImg.src = img.src;
+    lbImg.alt = img.title;
+    lbTitle.textContent = img.title;
+    lbCounter.textContent = `${current + 1} / ${images.length}`;
+  }
+ 
+  function prev() { current = (current - 1 + images.length) % images.length; update(); }
+  function next() { current = (current + 1) % images.length; update(); }
+ 
+  document.querySelectorAll('.cell').forEach(cell => {
+    cell.addEventListener('click', () => open(Number(cell.dataset.index)));
+  });
+ 
+  document.getElementById('lightbox-close').addEventListener('click', close);
+  document.getElementById('lightbox-prev').addEventListener('click', prev);
+  document.getElementById('lightbox-next').addEventListener('click', next);
+ 
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+ 
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('is-open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') prev();
+    if (e.key === 'ArrowRight') next();
+  });
+</script>
+ 
+<style>
+  .mosaic-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 220px 160px;
+    gap: 3px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+ 
+  .cell {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+ 
+  .cell--feature {
+    grid-row: span 2;
+  }
+ 
+  .cell :global(.cell-img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+ 
+  .cell:hover :global(.cell-img) {
+    transform: scale(1.05);
+  }
+ 
+  .cell-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 6px 10px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #fff;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+ 
+  .cell:hover .cell-label {
+    opacity: 1;
+  }
+ 
+  /* Lightbox */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.92);
+    align-items: center;
+    justify-content: center;
+  }
+ 
+  .lightbox.is-open {
+    display: flex;
+  }
+ 
+  .lightbox-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 90vw;
+    max-height: 90vh;
+    gap: 12px;
+  }
+ 
+  .lightbox-img {
+    max-width: 90vw;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 4px;
+    display: block;
+  }
+ 
+  .lightbox-title {
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+ 
+  .lightbox-counter {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.75rem;
+    margin: 0;
+  }
+ 
+  .lightbox-close,
+  .lightbox-prev,
+  .lightbox-next {
+    position: fixed;
+    background: rgba(255, 255, 255, 0.08);
+    border: 0.5px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition: background 0.15s;
+  }
+ 
+  .lightbox-close:hover,
+  .lightbox-prev:hover,
+  .lightbox-next:hover {
+    background: rgba(255, 255, 255, 0.18);
+  }
+ 
+  .lightbox-close { top: 1.25rem; right: 1.25rem; font-size: 1rem; }
+  .lightbox-prev  { left: 1.25rem; top: 50%; transform: translateY(-50%); font-size: 1.5rem; }
+  .lightbox-next  { right: 1.25rem; top: 50%; transform: translateY(-50%); font-size: 1.5rem; }
+ 
+  @media (max-width: 600px) {
+    .mosaic-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+    }
+ 
+    .cell--feature {
+      grid-column: span 2;
+      grid-row: span 1;
+      height: 200px;
+    }
+ 
+    .cell {
+      height: 140px;
+    }
+ 
+    .lightbox-prev { left: 0.5rem; }
+    .lightbox-next { right: 0.5rem; }
+  }
+</style>

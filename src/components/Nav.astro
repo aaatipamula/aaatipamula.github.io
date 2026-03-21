@@ -3,9 +3,11 @@ import siteinfo from "../data/siteinfo.json";
 ---
 
 <div class="fixed right-0 left-0 py-2 z-50 bg-inherit rounded-b-lg">
-  <a href="/" class="absolute p-1 left-2 md:left-4 top-2">/home</a>
+  <a href="/" class="absolute p-1 left-2 md:left-4 top-2">
+    <i class="bi bi-house-fill"></i>
+  </a>
 
-  <div class="flex justify-center md:gap-3 md:text-lg">
+  <div class="flex justify-center md:gap-4 md:text-lg">
     {siteinfo.navLinks.map((navItem, index) => (
     (new URL(navItem.link, Astro.site).pathname === Astro.url.pathname) ? (
     <!-- The buttons are for nav items on the current page -->
@@ -14,7 +16,7 @@ import siteinfo from "../data/siteinfo.json";
       id=`nav_${navItem.name}`
       class=`p-1 text-zinc-600 dark:text-zinc-400 hover:opacity-50 cursor-pointer ${index >= 3 ? "hidden md:block" : ""}`
     >
-      /{navItem.name}
+      {navItem.name}
     </button>
     ) : (
     <!-- Links are for nav items not on the current page -->
@@ -22,7 +24,7 @@ import siteinfo from "../data/siteinfo.json";
       href={navItem.link}
       class=`p-1 !text-zinc-600 dark:!text-zinc-400 cursor-pointer ${index >= 3 ? "hidden md:block" : ""}`
     >
-      /{navItem.name}
+      {navItem.name}
     </a>
     )))}
   </div>

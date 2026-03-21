@@ -1,6 +1,20 @@
 ---
-layout: "@layouts/Default.astro"
+layout: "@layouts/Computers.astro"
 id: computers
+keyboardImages:
+    - src: "mode_eighty.jpg"
+      title: "Mode Eighty 2022 with Osume Match Keycaps"
+    - src: "IMG_7869.JPG"
+      title: "Mode Eighty 2022 Side Profile"
+    - src: "IMG_8732.JPG"
+      title: "SKErgo with GMK Olivia R2"
+    - src: "IMG_0981.JPG"
+      title: "Tofu 65 Acrylic (Tray Mount)"
+    - src: "IMG_0984.JPG"
+      title: "Devastating TKL with GMK Rainy Day 2"
+    - src: "IMG_0987.JPG"
+      title: "QK Alice Duo"
+
 ---
 
 # Custom Mechanical Keyboards
@@ -17,65 +31,20 @@ As for what really kept me interested in custom mechs, it's really a few things.
 
 Anyways, after building that first keyboard I dove headfirst into the hobby, buying parts and kits with each paycheck I got. Over the years I slowly amassed a collection of parts and knowledge which I've mostly kept to myself, but which I love to talk about when asked. In recent years, however, I've slowed my roll and am much more selective about what I intend to purchase, but my enthusiasm for this hobby is still very much present.
 
-![Mode Eighty 2022](@img/mode_eighty.jpg)
-*My Mode Eighty 2022*
-
 ## My Collection
 
 > This isn't extent of my collection, just a list of the few that I've particularly enjoyed.
 
-<div style="overflow-x: auto;">
-  <table>
-    <tr>
-      <th>Keyboard/Kit</th>
-      <th>Switches</th> 
-      <th>Keycaps</th>
-      <th>Notes</th>
-    </tr>
-    <tr>
-      <td>Mode Eighty 2022 (Green)</td>
-      <td>Gateron CJs</td>
-      <td>Osume Matcha</td>
-      <td>This is my nicest (and most expensive) board</td>
-    </tr>
-    <tr>
-      <td>KBDfans 65% Low Profile</td>
-      <td>Gateron Milky Yellows</td>
-      <td>Grey Scale</td>
-      <td>This was my first ever keyboard!</td>
-    </tr>
-    <tr>
-      <td>Tofu 65 Acrylic</td>
-      <td>Durock Smoky Teal (62g)</td>
-      <td>NicePBT Grey Scale</td>
-      <td>I like the switches in this one :)</td>
-    </tr>
-    <tr>
-      <td>SKErgo</td>
-      <td>Gateron Ink Blacks</td>
-      <td>GMK Olivia</td>
-      <td>My first ergo board</td>
-    </tr>
-    <tr>
-      <td>Corne V3</td>
-      <td>Cannon Keys Lilac Linears</td>
-      <td>Keycreative Blanks</td>
-      <td>My first dive into 40% split keyboards</td>
-    </tr>
-    <tr>
-      <td>Butterfly</td>
-      <td>Aquakings (52g)</td>
-      <td>NP Japanese</td>
-      <td>I designed this board! Check it out <a href="https://github.com/aaatipamula/butterfly">here</a>!</td>
-    </tr>
-    <tr>
-      <td>Devastating TKL</td>
-      <td>Cherry MX Purples</td>
-      <td>GMK Rainy Day</td>
-      <td></td>
-    </tr>
-  </table>
-</div>
+| Keyboard/Kit     | Switches                  | Keycaps                            | Notes                                                                         |
+| ---              | ---                       | ---                                | ---                                                                           |
+| Mode Eighty 2022 | Gateron CJs               | Osume Matcha                       | I used the top mount configuration with plenty of foam!                       |
+| KBDfans 65%      | Gateron Milky Yellows     | Generic Gray Scale                 | This was my first ever keyboard                                               |
+| Tofu 65% Acrylic | Durock Smoky Teal (62g)   | NicePBT Beige                      | This is one of the nicer typing experiences I've had on a "cheap" board       |
+| SKErgo           | Gateron Ink Blacks        | GMK Olivia R2                      | This is my first ergo board                                                   |
+| Corne V3         | Cannon Keys Lilac Linears | Keycreative Blanks                 | My first dive into small split boards!                                        |
+| Butterfly        | Aquaking (65g)            | NP Japanese                        | I built this board! You can check it out [here](https://github.com/butterfly) |
+| Devastating TKL  | Cherry MX Purples         | GMK Rainy Day                      | This one is particularly interesting imo                                      |
+| QK Alice Duo     | Cannon Keys Mauve Linears | NicePBT Blue Cadet Sublegend Beige | This is one of the coolest looking splits I've seen in a while                |
 
 # Computer Hardware
 
@@ -89,14 +58,14 @@ Similar to custom mechs, I find most of the joy in this hobby with the fact that
 
 As for my current PC's specs:
 
-*GPU*: ASUS 4070 Super
+*GPU* : ASUS 4070 Super
 
-*CPU*: AMD Ryzen 7800X3D
+*CPU* : AMD Ryzen 7800X3D
 
-*RAM*: 32GB G.Skill Flare DDR5-6000
+*RAM* : 32GB G.Skill Flare DDR5-6000
 
-*Storage*: 1TB Samsung Evo Pro + 2TB Seagate Barracuda
+*Storage* : 1TB Samsung Evo Pro + 2TB Seagate Barracuda
 
-*Case*: LianLi O11 Vision Compact
+*Case* : LianLi O11 Vision Compact
 
-*PSU*: Corsair RM-850W Gold
+*PSU* : Corsair RM-850W Gold
