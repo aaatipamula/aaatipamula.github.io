@@ -10,18 +10,19 @@ featuredArtists:
     - https://open.spotify.com/artist/11soTz40tSuidki8qC6OPl?si=RkbksGThQmqji_oNXfoz3Q # Persona Non Grata
     - https://open.spotify.com/artist/41Nu7NgAj9rJxjj7JDuXrV?si=BS0HOaqEQC2dBnfdaSpUYg # Peter Cat Recording Co.
 featuredTracks:
-    - https://open.spotify.com/track/4TUYyjQ9SvdYJP0BDXduT6?si=d19e2659e91e4dae # FASHION ICON
-    - https://open.spotify.com/track/1AJHaJFNM2Q4UpJ1fG1bIi?si=a5365341c985442b # Ssx
     - https://open.spotify.com/track/3v1QY51BNLI3OljwnoGcPF?si=b8b77b0414d24711 # Tom
     - https://open.spotify.com/track/46H9VQlQW2Aqf4zVY60cYR?si=84247c279f094819 # Analog Sentamentalism
     - https://open.spotify.com/track/0FAlG6uOeaXWuRdDxaeIQY?si=90b8b9678b16497f # I'll Take It
+    - https://open.spotify.com/track/4mMW7j3QfSOAR2MSsTKnaq?si=7f86f3e70f1143a6 # (T~~T)
+    - https://open.spotify.com/track/0vdw3w47fXIAT7bvMDruky?si=f6b662f3bab44ca2 # Future
+    - https://open.spotify.com/track/3uA8SjMyDtwtt0jLPMQbVD?si=d95b27098ddf4613 # D (Half Moon)
 ---
 
 # Music
 
 I'd describe my taste in music as "seasonal" or "vibes based". I'll usually just pick a few songs that I've liked and let the algorithm send stuff my way. I also have a friend who's extremely in touch with basically all the music in the world who will send me stuff (or I'll steal stuff from him). If you want to stalk my spotify my tag is [@Aniketh](https://open.spotify.com/user/nv8okcbb58h7nv3tkwszvh1ff?si=6c39aea1759345a8) (its a panda pfp).
 
-If I had to pick a singular favorite song right now, I would tell you that I can't. But, gun to my head, picking from across a few genres: [Dancing in My Dreams by Sakkaris](https://open.spotify.com/track/2AJLg7PR0Oom9kKJA4t6vK?si=a8996e92e8ef4d37), [Future by fhána ft. towana](https://open.spotify.com/track/0vdw3w47fXIAT7bvMDruky?si=f6b662f3bab44ca2), [Sparkle by Tatsuro Yamashita](https://www.youtube.com/watch?v=pqobRu9aR3M), [D(Half Moon) by Dean ft. Gaeko](https://open.spotify.com/track/3uA8SjMyDtwtt0jLPMQbVD?si=d95b27098ddf4613). Honorable mentions are [Brown Eyed Girl by Van Morrison](https://open.spotify.com/track/3yrSvpt2l1xhsV9Em88Pul), [Atop a Cake by Alvvays](https://open.spotify.com/track/6LC4cyrlOPeg2WXijaYrgj?si=7b76425e52994086), and [sucker punch by Worry Club](https://open.spotify.com/track/3mQf5o5DoE33NO4s2rWATD?si=ac54fed76fb34ae5).
+Check out the featured artists and tracks above, I try to keep them updated.
 
 # Movies/TV
 
