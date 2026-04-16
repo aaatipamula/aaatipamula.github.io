@@ -24,10 +24,13 @@ I'd describe my taste in music as "seasonal" or "vibes based". I'll usually just
 
 Check out the featured artists and tracks above, I try to keep them updated.
 
+> If you're extra invested in what I'm currently listening to, check out [this](https://open.spotify.com/playlist/0PfJ8774zq3ippFWJleapl?si=9ae4bd6971954ed7) playlist which is constantly updated with anything I find interesting or am currently listening to often.
+
 # Movies/TV
 
-I'm also a casual enjoyer of movies and TV. I don't really have a personal ranking or list or anything of the sort but I feel like I'm pretty well versed in most pop-culture media (with a few exceptions). I'm an avid enjoyer of sit-coms (since Friends) and Anime. I have a MAL, but I hate MAL so I won't share that here! Movie-wise I'll kinda watch anything and everything, but well shot visually appealing movies with strong soundtracks really stand out to me. No real deep cuts from me.
+I'm also a casual enjoyer of movies and TV. I don't really have a personal ranking or list or anything of the sort but I feel like I'm pretty well versed in most pop-culture media (with a few exceptions). I'm an avid enjoyer of sit-coms (since Friends) and (formerly avid now casual enjoyer of) Anime. I have a MAL, but I hate MAL so I won't share that here! Movie-wise I'll kinda watch anything and everything, but well shot, visually appealing movies with strong soundtracks really stand out to me. No real deep cuts from me.
 
 # Reading
 
-I'm a big fan of fantasy. Ever since I read the [Percy Jackson and the Olympians](https://rickriordan.com/series/percy-jackson-and-the-olympians/) series in 3rd grade I've been on a huge fantasy streak. I would and should list everything I read somehwere but I've read so much at this point it's really hard for me to remember specifics. Lately I haven't been picking up books, but I *have* been reading Manga/Manhwa ever since I discovered that in 2019. 
+I'm a big fan of fantasy. Ever since I read the [Percy Jackson and the Olympians](https://rickriordan.com/series/percy-jackson-and-the-olympians/) series in 3rd grade I've been on a huge fantasy streak. I would and should list everything I read somehwere but I've read so much at this point it's really hard for me to remember specifics. Lately I haven't been picking up books, but I *have* been reading Manga/Manhwa ever since I discovered that in 2019.
+
