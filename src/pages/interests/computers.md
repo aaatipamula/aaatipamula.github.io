@@ -35,16 +35,16 @@ Anyways, after building that first keyboard I dove headfirst into the hobby, buy
 
 > This isn't extent of my collection, just a list of the few that I've particularly enjoyed.
 
-| Keyboard/Kit     | Switches                  | Keycaps                            | Notes                                                                         |
-| ---              | ---                       | ---                                | ---                                                                           |
-| Mode Eighty 2022 | Gateron CJs               | Osume Matcha                       | I used the top mount configuration with plenty of foam!                       |
-| KBDfans 65%      | Gateron Milky Yellows     | Generic Gray Scale                 | This was my first ever keyboard                                               |
-| Tofu 65% Acrylic | Durock Smoky Teal (62g)   | NicePBT Beige                      | This is one of the nicer typing experiences I've had on a "cheap" board       |
-| SKErgo           | Gateron Ink Blacks        | GMK Olivia R2                      | This is my first ergo board                                                   |
-| Corne V3         | Cannon Keys Lilac Linears | Keycreative Blanks                 | My first dive into small split boards!                                        |
-| Butterfly        | Aquaking (65g)            | NP Japanese                        | I built this board! You can check it out [here](https://github.com/butterfly) |
-| Devastating TKL  | Cherry MX Purples         | GMK Rainy Day                      | This one is particularly interesting imo                                      |
-| QK Alice Duo     | Cannon Keys Mauve Linears | NicePBT Blue Cadet Sublegend Beige | This is one of the coolest looking splits I've seen in a while                |
+| Keyboard/Kit     | Switches                  | Keycaps                            | Notes                                                                                        |
+| ---              | ---                       | ---                                | ---                                                                                          |
+| Mode Eighty 2022 | Gateron CJs               | Osume Matcha                       | I used the top mount configuration with plenty of foam!                                      |
+| KBDfans 65%      | Gateron Milky Yellows     | Generic Gray Scale                 | This was my first ever keyboard                                                              |
+| Tofu 65% Acrylic | Durock Smoky Teal (62g)   | NicePBT Beige                      | This is one of the nicer typing experiences I've had on a "cheap" board                      |
+| SKErgo           | Gateron Ink Blacks        | GMK Olivia R2                      | This is my first ergo board                                                                  |
+| Corne V3         | Cannon Keys Lilac Linears | Keycreative Blanks                 | My first dive into small split boards!                                                       |
+| Butterfly        | Aquaking (65g)            | NP Japanese                        | I designed this board! You can check it out [here](https://github.com/aaatipamula/butterfly) |
+| Devastating TKL  | Cherry MX Purples         | GMK Rainy Day                      | This one is particularly interesting imo                                                     |
+| QK Alice Duo     | Cannon Keys Mauve Linears | NicePBT Blue Cadet Sublegend Beige | This is one of the coolest looking splits I've seen in a while                               |
 
 # Computer Hardware
 
