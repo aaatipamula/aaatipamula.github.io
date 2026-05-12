@@ -10,7 +10,6 @@
   src: url("/fonts/Fira_Code/FiraCode-VariableFont_wght.ttf");
 }
 
-
 :root {
   --accent-dark: hsl(15 64% 86%);
   --accent-light: hsl(105 16% 43%);

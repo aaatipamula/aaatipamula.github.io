@@ -1,0 +1,308 @@
+<html>
+
+<head>
+  <title>Reaction Time</title>
+</head>
+
+<body>
+  <div id="grid-container" class="wrapper">
+    <div class="item" id="item0"></div>
+    <div class="item" id="item1"></div>
+    <div class="item" id="item2"></div>
+    <div class="item" id="item3"></div>
+    <div class="item" id="item4"></div>
+    <div class="item" id="item5"></div>
+    <div class="item" id="item6"></div>
+    <div class="item" id="item7"></div>
+    <div class="item" id="item8"></div>
+    <div class="item" id="item9"></div>
+    <div class="item" id="item10"></div>
+    <div class="item" id="item11"></div>
+    <div class="item" id="item12"></div>
+    <div class="item" id="item13"></div>
+    <div class="item" id="item14"></div>
+    <div class="item" id="item15"></div>
+    <div class="item" id="item16"></div>
+    <div class="item" id="item17"></div>
+    <div class="item" id="item18"></div>
+    <div class="item" id="item19"></div>
+    <div class="item" id="item20"></div>
+    <div class="item" id="item21"></div>
+    <div class="item" id="item22"></div>
+    <div class="item" id="item23"></div>
+    <div class="item" id="item24"></div>
+    <div class="item" id="item25"></div>
+    <div class="item" id="item26"></div>
+    <div class="item" id="item27"></div>
+    <div class="item" id="item28"></div>
+    <div class="item" id="item29"></div>
+    <div class="item" id="item30"></div>
+    <div class="item" id="item31"></div>
+    <div class="item" id="item32"></div>
+    <div class="item" id="item33"></div>
+    <div class="item" id="item34"></div>
+    <div class="item" id="item35"></div>
+    <div class="item" id="item36"></div>
+    <div class="item" id="item37"></div>
+    <div class="item" id="item38"></div>
+    <div class="item" id="item39"></div>
+    <div class="item" id="item40"></div>
+    <div class="item" id="item41"></div>
+    <div class="item" id="item42"></div>
+    <div class="item" id="item43"></div>
+    <div class="item" id="item44"></div>
+    <div class="item" id="item45"></div>
+    <div class="item" id="item46"></div>
+    <div class="item" id="item47"></div>
+    <div class="item" id="item48"></div>
+    <div class="item" id="item49"></div>
+    <div class="item" id="item50"></div>
+    <div class="item" id="item51"></div>
+    <div class="item" id="item52"></div>
+    <div class="item" id="item53"></div>
+    <div class="item" id="item54"></div>
+    <div class="item" id="item55"></div>
+    <div class="item" id="item56"></div>
+    <div class="item" id="item57"></div>
+    <div class="item" id="item58"></div>
+    <div class="item" id="item59"></div>
+  </div>
+
+  <div class="scorebox">
+    Score:
+    <span id="score-count"></span>
+  </div>
+
+  <div id="final-modal-overlay" class="modal-overlay">
+    <h1>Your Score is <span id="final-score" class="green"></span></h1>
+    <h2>Past Scores:</h2>
+    <div id="past-scores" class="score-list">
+    </div>
+    <button onclick="resetHistory()">Clear History</button>
+    <button onclick="toggleOverlay('final-modal-overlay')">Play Again</button>
+  </div>
+
+  <div id="initial-overlay" class="modal-overlay active-overlay">
+    <h1>Reaction Time</h1>
+    <p>This game tests your reaction speed, the faster you click the boxes, the better you score is!</p>
+    <p>The highest theoretical score is x10 more than the number you pick below.</p>
+    <br>
+    <div class="button-container">
+      <button onclick="toggleOverlay('initial-overlay', 5)">Play 5</button>
+      <button onclick="toggleOverlay('initial-overlay', 10)">Play 10</button>
+      <button onclick="toggleOverlay('initial-overlay', 20)">Play 20</button>
+    </div>
+  </div>
+</body>
+
+<script>
+  const scoreCount = document.getElementById("score-count");
+  const gridContainer = document.getElementById("grid-container");
+  const pastScores = document.getElementById("past-scores");
+  const finalModal = document.getElementById("final-modal-overlay");
+  const finalScore = document.getElementById("final-score");
+
+  let MAX_CLICKS = 5;
+  let lastClick = Date.now();
+  let scoreHistory = JSON.parse(localStorage.getItem(`scoreHistory-${MAX_CLICKS}`)) || [];
+
+  let currentScore = 0;
+  let currentIndex = 0;
+
+  /**
+   * Pick a random box to highlight.
+   */
+  function pickRandomBox() {
+    currentIndex = Math.floor(Math.random() * 58);
+    const itemStringId = `item${currentIndex}`;
+    const item = document.getElementById(itemStringId);
+    item.style.backgroundColor = "white";
+
+    return new Promise(resolve => {
+      const handler = event => {
+        if (event.target.id === itemStringId) {
+          window.removeEventListener("mousedown", handler);
+          item.style.backgroundColor = "";
+          resolve(event);
+          lastClick = Date.now()
+        }
+      }
+      window.addEventListener("mousedown", handler)
+    });
+  }
+
+  /**
+   * Update the score by some arbitrary amount and update the scoring card.
+   */
+  function updateScore(amount) {
+    currentScore += amount;
+    scoreCount.innerText = currentScore.toFixed(4);
+  }
+
+  /**
+   * Update scoring history and the scoring history display.
+   */
+  function setScoreHistory() {
+    scoreHistory.unshift(currentScore);
+    scoreHistory.sort((a, b) => b - a);
+    localStorage.setItem(`scoreHistory-${MAX_CLICKS}`, JSON.stringify(scoreHistory));
+
+    pastScores.innerHTML = "";
+    for (const score of scoreHistory) {
+      const elem = document.createElement("div");
+      elem.innerText = score.toFixed(4);
+      if (currentScore === score) {
+        elem.classList.add("green");
+      }
+      pastScores.appendChild(elem);
+    }
+  }
+
+  /**
+   * Reset the score history to nothing
+   */
+  function resetHistory() {
+    scoreHistory = [];
+    setScoreHistory();
+  }
+
+  /**
+   * Reset the score/counters, update score history, and display results
+   */
+  async function mainLoop() {
+    currentScore = 0;
+    currentIndex = 0;
+    lastClick = Date.now();
+    updateScore(0);
+
+    for (let i = 0; i < MAX_CLICKS; i++) {
+      await pickRandomBox()
+    }
+
+    setScoreHistory();
+
+    finalScore.innerText = currentScore.toFixed(4);
+    finalModal.classList.toggle("active-overlay");
+  }
+
+  /**
+   * Toggle overlay modals and start the game
+   *
+   * @param { string } id
+   */
+  async function toggleOverlay(id, maxClicks) {
+    MAX_CLICKS = maxClicks || MAX_CLICKS;
+    const elem = document.getElementById(id);
+    elem.classList.toggle("active-overlay");
+    await mainLoop();
+  }
+
+
+  /**
+   * Add a click event listener to count the score
+   *
+   * Uses a quartic curve to add points (-10x^4+10)
+   *   and constant -5 for misclicks
+   */
+  for (let i = 0; i < gridContainer.childElementCount; i++) {
+    const item = gridContainer.children[i];
+    item.addEventListener("mousedown", () => {
+      const clickTimeSec = (Date.now() - lastClick) * 0.001
+      if (i === currentIndex) {
+        updateScore(-10 * Math.pow(clickTimeSec, 4) + 10);
+      } else {
+        updateScore(-5);
+      }
+    });
+  }
+</script>
+
+<style>
+  * {
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+  }
+
+  button {
+    color: black;
+    height: fit-content;
+    padding: 1.5rem;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  body {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+  }
+
+  .wrapper {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .item {
+    /* border: 1px solid gray; */
+  }
+
+  .item:active {
+    background-color: gray;
+  }
+
+  .scorebox {
+    position: fixed;
+    bottom: 10;
+    right: 10;
+  }
+
+  .modal-overlay {
+    display: flex;
+    /* Hidden by default */
+    flex-direction: column;
+    flex-wrap: wrap;
+    place-content: center;
+    position: fixed;
+    /* Stay in place */
+    z-index: 1000;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .active-overlay {
+    opacity: 100%;
+    pointer-events: all;
+  }
+
+  .green {
+    color: green;
+  }
+
+  .score-list {
+    height: 40%;
+    margin-bottom: 1rem;
+    overflow: auto;
+    scrollbar-color: gray rgba(0, 0, 0, 0);
+    border: 1px solid gray;
+    padding: 1rem;
+    font-size: large;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-content: space-around;
+  }
+</style>
+
+</html>
