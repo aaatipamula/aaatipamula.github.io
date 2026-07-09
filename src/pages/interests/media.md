@@ -3,22 +3,22 @@ layout: "@layouts/Media.astro"
 title: Media
 id: media
 featuredArtists:
-    - https://open.spotify.com/artist/7Fkc1Q81Zy25eZ5dmnURGl?si=DpXwGeS0Rpq5Xm3uCibalg # Worry Club
-    - https://open.spotify.com/artist/4S4HXXp7lMA41ttdFGpDIn?si=QG7-RhrQQFmsDPwHK8ajiw # Sakkaris
-    - https://open.spotify.com/artist/14d5KCX9nprUcxnKIShrr1?si=TqtFAvw3SUWuIEfDY9POew # Mass of the Fermenting Dregs
-    - https://open.spotify.com/artist/6rPCGt1PlG8UsBvQFjqshc?si=RuKHkg3iTHWQazzCeITmUg # Satellite Lovers
-    - https://open.spotify.com/artist/11soTz40tSuidki8qC6OPl?si=RkbksGThQmqji_oNXfoz3Q # Persona Non Grata
+  - https://open.spotify.com/artist/7Fkc1Q81Zy25eZ5dmnURGl?si=DpXwGeS0Rpq5Xm3uCibalg # Worry Club
+  - https://open.spotify.com/artist/4S4HXXp7lMA41ttdFGpDIn?si=QG7-RhrQQFmsDPwHK8ajiw # Sakkaris
+  - https://open.spotify.com/artist/14d5KCX9nprUcxnKIShrr1?si=TqtFAvw3SUWuIEfDY9POew # Mass of the Fermenting Dregs
+  - https://open.spotify.com/artist/6rPCGt1PlG8UsBvQFjqshc?si=RuKHkg3iTHWQazzCeITmUg # Satellite Lovers
+  - https://open.spotify.com/artist/11soTz40tSuidki8qC6OPl?si=RkbksGThQmqji_oNXfoz3Q # Persona Non Grata
 featuredTracks:
-    - https://open.spotify.com/track/3v1QY51BNLI3OljwnoGcPF?si=b8b77b0414d24711 # Tom
-    - https://open.spotify.com/track/46H9VQlQW2Aqf4zVY60cYR?si=84247c279f094819 # Analog Sentamentalism
-    - https://open.spotify.com/track/0FAlG6uOeaXWuRdDxaeIQY?si=90b8b9678b16497f # I'll Take It
-    - https://open.spotify.com/track/0vdw3w47fXIAT7bvMDruky?si=f6b662f3bab44ca2 # Future
-    - https://open.spotify.com/track/3uA8SjMyDtwtt0jLPMQbVD?si=d95b27098ddf4613 # D (Half Moon)
+  - https://open.spotify.com/track/3v1QY51BNLI3OljwnoGcPF?si=b8b77b0414d24711 # Tom
+  - https://open.spotify.com/track/46H9VQlQW2Aqf4zVY60cYR?si=84247c279f094819 # Analog Sentamentalism
+  - https://open.spotify.com/track/0FAlG6uOeaXWuRdDxaeIQY?si=90b8b9678b16497f # I'll Take It
+  - https://open.spotify.com/track/0vdw3w47fXIAT7bvMDruky?si=f6b662f3bab44ca2 # Future
+  - https://open.spotify.com/track/3uA8SjMyDtwtt0jLPMQbVD?si=d95b27098ddf4613 # D (Half Moon)
 featuredAlbums:
-   - https://open.spotify.com/album/53YDN7b4vQ5MLMSPcnh9Os?si=vgFd97p0SNCe-BMxTu0v9g # Sunshower
-   - https://open.spotify.com/album/20uJcpJbimpsyG7v9kL5Co?si=ZFJgJq9ORuyOJwiuN8IcMQ # trinket
-   - https://open.spotify.com/album/2yvR4wVM1XLEKVad6F3ja9?si=jyY01Vo5S2avWnPES9q6VQ # Mint Jams
-   - https://open.spotify.com/album/3bmnc6GjltS6zD8elSBjCq?si=jobgPFvARdydTalBDMUAmw # Bismillah
+  - https://open.spotify.com/album/53YDN7b4vQ5MLMSPcnh9Os?si=vgFd97p0SNCe-BMxTu0v9g # Sunshower
+  - https://open.spotify.com/album/20uJcpJbimpsyG7v9kL5Co?si=ZFJgJq9ORuyOJwiuN8IcMQ # trinket
+  - https://open.spotify.com/album/2yvR4wVM1XLEKVad6F3ja9?si=jyY01Vo5S2avWnPES9q6VQ # Mint Jams
+  - https://open.spotify.com/album/3bmnc6GjltS6zD8elSBjCq?si=jobgPFvARdydTalBDMUAmw # Bismillah
 ---
 
 # Music
@@ -35,5 +35,4 @@ I'm also a casual enjoyer of movies and TV. I don't really have a personal ranki
 
 # Reading
 
-I'm a big fan of fantasy. Ever since I read the [Percy Jackson and the Olympians](https://rickriordan.com/series/percy-jackson-and-the-olympians/) series in 3rd grade I've been on a huge fantasy streak. I would and should list everything I read somehwere but I've read so much at this point it's really hard for me to remember specifics. Lately I haven't been picking up books, but I *have* been reading Manga/Manhwa ever since I discovered that in 2019.
-
+I'm a big fan of fantasy. Ever since I read the [Percy Jackson and the Olympians](https://rickriordan.com/series/percy-jackson-and-the-olympians/) series in 3rd grade I've been on a huge fantasy streak. I would and should list everything I read somehwere but I've read so much at this point it's really hard for me to remember specifics. Lately I haven't been picking up books, but I _have_ been reading Manga/Manhwa ever since I discovered that in 2019.

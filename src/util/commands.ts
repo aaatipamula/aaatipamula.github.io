@@ -26,7 +26,8 @@ export const DEFAULT_ACTIONS: CommandPaletteAction[] = [
   {
     type: "Page",
     name: "Scroll To Bottom",
-    action: () => window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" }),
+    action: () =>
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" }),
   },
 ];
 
@@ -35,5 +36,5 @@ export function createScrollAction(location: NavLinkItem) {
     type: "Go To",
     name: location.name,
     action: () => scrollToSection(location.id),
-  }
+  };
 }

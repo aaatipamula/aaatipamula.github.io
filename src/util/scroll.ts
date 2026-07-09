@@ -10,4 +10,3 @@ export function scrollToSection(id: string) {
     raw.scrollIntoView({ behavior: "smooth" });
   }
 }
-

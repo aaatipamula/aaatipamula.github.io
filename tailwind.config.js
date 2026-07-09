@@ -1,8 +1,6 @@
 module.exports = {
-  content: [
-    './src/**/*.{astro,html,js,jsx,md,mdxts,tsx}',
-  ],
-  darkMode: 'class',
+  content: ["./src/**/*.{astro,html,js,jsx,md,mdxts,tsx}"],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
@@ -11,5 +9,4 @@ module.exports = {
       },
     },
   },
-}
-
+};

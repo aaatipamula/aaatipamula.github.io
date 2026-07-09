@@ -132,7 +132,7 @@ export class SpotifyError extends Error {
   constructor(
     public readonly status: number,
     message: string,
-    public readonly body?: unknown
+    public readonly body?: unknown,
   ) {
     super(`Spotify API Error ${status}: ${message}`);
     this.name = "SpotifyError";
@@ -165,7 +165,10 @@ export async function generatePKCEPair(): Promise<{
   crypto.getRandomValues(array);
   const codeVerifier = base64UrlEncode(array.buffer);
   const encoder = new TextEncoder();
-  const digest = await crypto.subtle.digest("SHA-256", encoder.encode(codeVerifier));
+  const digest = await crypto.subtle.digest(
+    "SHA-256",
+    encoder.encode(codeVerifier),
+  );
   const codeChallenge = base64UrlEncode(digest);
   return { codeVerifier, codeChallenge };
 }
@@ -197,7 +200,8 @@ export class SpotifyClient {
 
   /** Build the authorization URL to redirect the user to. */
   getAuthorizationUrl(state?: string): string {
-    if (!this.config.redirectUri) throw new SpotifyAuthError("redirectUri is required");
+    if (!this.config.redirectUri)
+      throw new SpotifyAuthError("redirectUri is required");
     const params = new URLSearchParams({
       response_type: "code",
       client_id: this.config.clientId,
@@ -210,8 +214,12 @@ export class SpotifyClient {
 
   /** Exchange the authorization code for tokens. */
   async exchangeCode(code: string): Promise<TokenStore> {
-    if (!this.config.clientSecret) throw new SpotifyAuthError("clientSecret required for Authorization Code Flow");
-    if (!this.config.redirectUri) throw new SpotifyAuthError("redirectUri is required");
+    if (!this.config.clientSecret)
+      throw new SpotifyAuthError(
+        "clientSecret required for Authorization Code Flow",
+      );
+    if (!this.config.redirectUri)
+      throw new SpotifyAuthError("redirectUri is required");
 
     const body = new URLSearchParams({
       grant_type: "authorization_code",
@@ -231,7 +239,8 @@ export class SpotifyClient {
     url: string;
     codeVerifier: string;
   }> {
-    if (!this.config.redirectUri) throw new SpotifyAuthError("redirectUri is required");
+    if (!this.config.redirectUri)
+      throw new SpotifyAuthError("redirectUri is required");
     const { codeVerifier, codeChallenge } = await generatePKCEPair();
     const params = new URLSearchParams({
       response_type: "code",
@@ -246,8 +255,12 @@ export class SpotifyClient {
   }
 
   /** Exchange the PKCE authorization code for tokens. */
-  async exchangePKCECode(code: string, codeVerifier: string): Promise<TokenStore> {
-    if (!this.config.redirectUri) throw new SpotifyAuthError("redirectUri is required");
+  async exchangePKCECode(
+    code: string,
+    codeVerifier: string,
+  ): Promise<TokenStore> {
+    if (!this.config.redirectUri)
+      throw new SpotifyAuthError("redirectUri is required");
 
     const body = new URLSearchParams({
       grant_type: "authorization_code",
@@ -266,7 +279,10 @@ export class SpotifyClient {
 
   /** Obtain a token using Client Credentials (no user context). */
   async authenticateAsApp(): Promise<TokenStore> {
-    if (!this.config.clientSecret) throw new SpotifyAuthError("clientSecret required for Client Credentials Flow");
+    if (!this.config.clientSecret)
+      throw new SpotifyAuthError(
+        "clientSecret required for Client Credentials Flow",
+      );
 
     const body = new URLSearchParams({ grant_type: "client_credentials" });
     return this.fetchToken(body);
@@ -319,7 +335,10 @@ export class SpotifyClient {
     return this.tokenStore!.accessToken;
   }
 
-  private async fetchToken(body: URLSearchParams, useBasicAuth = true): Promise<TokenStore> {
+  private async fetchToken(
+    body: URLSearchParams,
+    useBasicAuth = true,
+  ): Promise<TokenStore> {
     const headers: Record<string, string> = {
       "Content-Type": "application/x-www-form-urlencoded",
     };
@@ -338,7 +357,7 @@ export class SpotifyClient {
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
       throw new SpotifyAuthError(
-        `Token request failed (${res.status}): ${(err as any).error_description ?? res.statusText}`
+        `Token request failed (${res.status}): ${(err as any).error_description ?? res.statusText}`,
       );
     }
 
@@ -361,17 +380,20 @@ export class SpotifyClient {
     method: string,
     path: string,
     options: { params?: Record<string, string | number>; body?: unknown } = {},
-    retries = 3
+    retries = 3,
   ): Promise<T> {
     const token = await this.getValidAccessToken();
 
     let url = path.startsWith("http") ? path : `${API_BASE}${path}`;
     if (options.params) {
       const qs = new URLSearchParams(
-        Object.entries(options.params).reduce((acc, [k, v]) => {
-          acc[k] = String(v);
-          return acc;
-        }, {} as Record<string, string>)
+        Object.entries(options.params).reduce(
+          (acc, [k, v]) => {
+            acc[k] = String(v);
+            return acc;
+          },
+          {} as Record<string, string>,
+        ),
       );
       url += `?${qs}`;
     }
@@ -387,7 +409,7 @@ export class SpotifyClient {
 
     if (res.status === 429 && retries > 0) {
       const retryAfter = Number(res.headers.get("Retry-After") ?? 1);
-      await new Promise(resolve => setTimeout(resolve, retryAfter * 1000));
+      await new Promise((resolve) => setTimeout(resolve, retryAfter * 1000));
       return this.request<T>(method, path, options, retries - 1);
     }
 
@@ -399,7 +421,7 @@ export class SpotifyClient {
       throw new SpotifyError(
         res.status,
         data?.error?.message ?? res.statusText,
-        data
+        data,
       );
     }
 
@@ -443,7 +465,9 @@ export class SpotifyClient {
   }
 
   getTracks(trackIds: string[]): Promise<{ tracks: SpotifyTrack[] }> {
-    return this.get<{ tracks: SpotifyTrack[] }>("/tracks", { ids: trackIds.join(",") });
+    return this.get<{ tracks: SpotifyTrack[] }>("/tracks", {
+      ids: trackIds.join(","),
+    });
   }
 
   // -------------------------------------------------------------------------
@@ -454,16 +478,19 @@ export class SpotifyClient {
     return this.get<SpotifyArtist>(`/artists/${encodeURIComponent(artistId)}`);
   }
 
-  getArtistTopTracks(artistId: string, market = "US"): Promise<{ tracks: SpotifyTrack[] }> {
+  getArtistTopTracks(
+    artistId: string,
+    market = "US",
+  ): Promise<{ tracks: SpotifyTrack[] }> {
     return this.get<{ tracks: SpotifyTrack[] }>(
       `/artists/${encodeURIComponent(artistId)}/top-tracks`,
-      { market }
+      { market },
     );
   }
 
   getRelatedArtists(artistId: string): Promise<{ artists: SpotifyArtist[] }> {
     return this.get<{ artists: SpotifyArtist[] }>(
-      `/artists/${encodeURIComponent(artistId)}/related-artists`
+      `/artists/${encodeURIComponent(artistId)}/related-artists`,
     );
   }
 
@@ -477,11 +504,11 @@ export class SpotifyClient {
 
   getAlbumTracks(
     albumId: string,
-    options: { limit?: number; offset?: number } = {}
+    options: { limit?: number; offset?: number } = {},
   ): Promise<PagingObject<SpotifyTrack>> {
     return this.get<PagingObject<SpotifyTrack>>(
       `/albums/${encodeURIComponent(albumId)}/tracks`,
-      options as Record<string, number>
+      options as Record<string, number>,
     );
   }
 
@@ -490,40 +517,51 @@ export class SpotifyClient {
   // -------------------------------------------------------------------------
 
   getPlaylist(playlistId: string): Promise<SpotifyPlaylist> {
-    return this.get<SpotifyPlaylist>(`/playlists/${encodeURIComponent(playlistId)}`);
+    return this.get<SpotifyPlaylist>(
+      `/playlists/${encodeURIComponent(playlistId)}`,
+    );
   }
 
   getCurrentUserPlaylists(
-    options: { limit?: number; offset?: number } = {}
+    options: { limit?: number; offset?: number } = {},
   ): Promise<PagingObject<SpotifyPlaylist>> {
-    return this.get<PagingObject<SpotifyPlaylist>>("/me/playlists", options as Record<string, number>);
+    return this.get<PagingObject<SpotifyPlaylist>>(
+      "/me/playlists",
+      options as Record<string, number>,
+    );
   }
 
   createPlaylist(
     userId: string,
     name: string,
-    options: { description?: string; public?: boolean } = {}
+    options: { description?: string; public?: boolean } = {},
   ): Promise<SpotifyPlaylist> {
-    return this.post<SpotifyPlaylist>(`/users/${encodeURIComponent(userId)}/playlists`, {
-      name,
-      ...options,
-    });
+    return this.post<SpotifyPlaylist>(
+      `/users/${encodeURIComponent(userId)}/playlists`,
+      {
+        name,
+        ...options,
+      },
+    );
   }
 
-  addTracksToPlaylist(playlistId: string, uris: string[]): Promise<{ snapshot_id: string }> {
+  addTracksToPlaylist(
+    playlistId: string,
+    uris: string[],
+  ): Promise<{ snapshot_id: string }> {
     return this.post<{ snapshot_id: string }>(
       `/playlists/${encodeURIComponent(playlistId)}/tracks`,
-      { uris }
+      { uris },
     );
   }
 
   removeTracksFromPlaylist(
     playlistId: string,
-    uris: string[]
+    uris: string[],
   ): Promise<{ snapshot_id: string }> {
     return this.delete<{ snapshot_id: string }>(
       `/playlists/${encodeURIComponent(playlistId)}/tracks`,
-      { tracks: uris.map((uri) => ({ uri })) }
+      { tracks: uris.map((uri) => ({ uri })) },
     );
   }
 
@@ -534,7 +572,7 @@ export class SpotifyClient {
   search(
     query: string,
     types: SearchType[],
-    options: { limit?: number; offset?: number; market?: string } = {}
+    options: { limit?: number; offset?: number; market?: string } = {},
   ): Promise<SearchResult> {
     return this.get<SearchResult>("/search", {
       q: query,
@@ -552,10 +590,18 @@ export class SpotifyClient {
   }
 
   getRecentlyPlayed(limit = 20): Promise<PagingObject<unknown>> {
-    return this.get<PagingObject<unknown>>("/me/player/recently-played", { limit });
+    return this.get<PagingObject<unknown>>("/me/player/recently-played", {
+      limit,
+    });
   }
 
-  play(options: { uris?: string[]; context_uri?: string; position_ms?: number } = {}): Promise<void> {
+  play(
+    options: {
+      uris?: string[];
+      context_uri?: string;
+      position_ms?: number;
+    } = {},
+  ): Promise<void> {
     return this.put("/me/player/play", options);
   }
 

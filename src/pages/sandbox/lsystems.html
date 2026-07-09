@@ -1,399 +1,431 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>L-Systems</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="" />
-  <style>
-    * {
-      font-family: 'Courier New', Courier, monospace;
-      color: white;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <title>L-Systems</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="" />
+    <style>
+      * {
+        font-family: "Courier New", Courier, monospace;
+        color: white;
+      }
 
-    body {
-      background-color: black;
-      margin: 0;
-      padding: 0;
-      width: 100dvw;
-      height: 100dvh;
-    }
+      body {
+        background-color: black;
+        margin: 0;
+        padding: 0;
+        width: 100dvw;
+        height: 100dvh;
+      }
 
-    input, button {
-      background-color: black;
-      border: 1px solid white;
-      border-radius: 4px;
-      field-sizing: content;
-      padding: 0.4rem;
-      transition: opacity 0.2s;
-    }
+      input,
+      button {
+        background-color: black;
+        border: 1px solid white;
+        border-radius: 4px;
+        field-sizing: content;
+        padding: 0.4rem;
+        transition: opacity 0.2s;
+      }
 
-    input[type=submit]:hover, button:hover {
-      opacity: 50%;
-    }
+      input[type="submit"]:hover,
+      button:hover {
+        opacity: 50%;
+      }
 
-    .canvas-container {
-      width: 100%;
-      height: 100%;
+      .canvas-container {
+        width: 100%;
+        height: 100%;
 
-      display: flex;
-      flex-direction: column;
-      place-content: center;
-      flex-wrap: wrap;
-    }
+        display: flex;
+        flex-direction: column;
+        place-content: center;
+        flex-wrap: wrap;
+      }
 
-    .l-system-canvas {
-      height: 70%;
-      width: 80%;
-      border: 1px solid white;
-      border-radius: 4px;
-      position: relative;
-    }
+      .l-system-canvas {
+        height: 70%;
+        width: 80%;
+        border: 1px solid white;
+        border-radius: 4px;
+        position: relative;
+      }
 
-    .tinker-form {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      padding: 0;
-      width: 80%;
-      margin: 1rem 0.1rem;
-    }
+      .tinker-form {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0;
+        width: 80%;
+        margin: 1rem 0.1rem;
+      }
 
-    .modal-overlay {
-      display: none;
-      /* Hidden by default */
-      flex-direction: column;
-      flex-wrap: wrap;
-      place-content: center;
-      position: fixed;
-      /* Stay in place */
-      z-index: 1000;
-      /* Sit on top */
-      left: 0;
-      top: 0;
-      width: 100%;
-      /* Full width */
-      height: 100%;
-      /* Full height */
-      background: rgba(255, 255, 255, 0.5);
-      pointer-events: none;
-    }
+      .modal-overlay {
+        display: none;
+        /* Hidden by default */
+        flex-direction: column;
+        flex-wrap: wrap;
+        place-content: center;
+        position: fixed;
+        /* Stay in place */
+        z-index: 1000;
+        /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        background: rgba(255, 255, 255, 0.5);
+        pointer-events: none;
+      }
 
-    .active-overlay {
-      display: flex;
-      pointer-events: all;
-    }
+      .active-overlay {
+        display: flex;
+        pointer-events: all;
+      }
 
-    .option-wrapper {
-      width: 50%;
-      height: 50%;
-      display: flex;
-      align-content: center;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      flex-direction: column;
-    }
+      .option-wrapper {
+        width: 50%;
+        height: 50%;
+        display: flex;
+        align-content: center;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        flex-direction: column;
+      }
 
-    .system-button {
-      font-size: 20px;
-      padding: 1rem
-    }
+      .system-button {
+        font-size: 20px;
+        padding: 1rem;
+      }
 
-    .rules-float {
-      white-space: pre-wrap;
-    }
+      .rules-float {
+        white-space: pre-wrap;
+      }
 
-    .system-text {
-      width: 60%;
-      padding: 1rem;
-      background-color: black;
-      border: 1px solid white;
-      border-radius: 4px;
-      max-height: 75%;
-      overflow: auto;
-      scrollbar-color: white rgba(0, 0, 0, 0);
-      scrollbar-width: thin;
-    }
+      .system-text {
+        width: 60%;
+        padding: 1rem;
+        background-color: black;
+        border: 1px solid white;
+        border-radius: 4px;
+        max-height: 75%;
+        overflow: auto;
+        scrollbar-color: white rgba(0, 0, 0, 0);
+        scrollbar-width: thin;
+      }
 
-    .border {
-      border: 1px solid white;
-      border-radius: 4px;
-      padding: 1rem;
-      margin: 0;
-    }
-  </style>
-</head>
-<body>
+      .border {
+        border: 1px solid white;
+        border-radius: 4px;
+        padding: 1rem;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="canvas-container">
+      <h1>L-System Visualizer</h1>
+      <form class="tinker-form" id="submit-form">
+        <span class="border">
+          <label for="generations">Generations:</label>
+          <input
+            id="generations"
+            name="generations"
+            type="number"
+            min="1"
+            max="5"
+          />
+          <label for="degrees">Degrees:</label>
+          <input
+            id="degrees"
+            name="degrees"
+            type="number"
+            min="0"
+            max="360"
+            step="any"
+          />
+          <label for="axiom">Axiom:</label>
+          <input id="axiom" name="axiom" type="text" />
+          <input type="submit" value="Change" />
+        </span>
 
-  <div class="canvas-container">
-    <h1>L-System Visualizer</h1>
-    <form class="tinker-form" id="submit-form">
-      <span class="border">
-        <label for="generations">Generations:</label>
-        <input id="generations" name="generations" type="number" min="1" max="5">
-        <label for="degrees">Degrees:</label>
-        <input id="degrees" name="degrees" type="number" min="0" max="360" step="any">
-        <label for="axiom">Axiom:</label>
-        <input id="axiom" name="axiom" type="text">
-        <input type="submit" value="Change">
-      </span>
-
-      <button type="button" onclick="selectRandomRule()">Select Random</button>
-      <button type="button" onclick="toggleModal('system-text-modal')">View System Text</button>
-      <button type="button" onclick="toggleModal('system-option-modal')">Select System</button>
-    </form>
-    <canvas id="drawing-board" class="l-system-canvas">
-      <p id="rules" class="rules-float"></p>
-    </canvas>
-  </div>
-
-  <div id="system-option-modal" class="modal-overlay" onclick="toggleModal('system-option-modal')">
-    <div id="system-options" class="option-wrapper">
+        <button type="button" onclick="selectRandomRule()">
+          Select Random
+        </button>
+        <button type="button" onclick="toggleModal('system-text-modal')">
+          View System Text
+        </button>
+        <button type="button" onclick="toggleModal('system-option-modal')">
+          Select System
+        </button>
+      </form>
+      <canvas id="drawing-board" class="l-system-canvas">
+        <p id="rules" class="rules-float"></p>
+      </canvas>
     </div>
-  </div>
 
-  <div id="system-text-modal" class="modal-overlay" onclick="toggleModal('system-text-modal')">
-    <p id="system-text" class="system-text"></p>
-  </div>
+    <div
+      id="system-option-modal"
+      class="modal-overlay"
+      onclick="toggleModal('system-option-modal')"
+    >
+      <div id="system-options" class="option-wrapper"></div>
+    </div>
 
-  <script>
-    let GENERATIONS = 4;
-    const RULESETS = [
-      {
-        name: "Square Wave",
-        rules: {
-          "X": "+YF-XFX-FY+",
-          "Y": "-XF+YFY+FX-",
+    <div
+      id="system-text-modal"
+      class="modal-overlay"
+      onclick="toggleModal('system-text-modal')"
+    >
+      <p id="system-text" class="system-text"></p>
+    </div>
+
+    <script>
+      let GENERATIONS = 4;
+      const RULESETS = [
+        {
+          name: "Square Wave",
+          rules: {
+            X: "+YF-XFX-FY+",
+            Y: "-XF+YFY+FX-",
+          },
+          axiom: "X",
+          degrees: 90,
         },
-        axiom: "X",
-        degrees: 90,
-      },
-      {
-        name: "Branch",
-        rules: {
-          "F": "FF",
-          "X": "F-[[X]+X]+F[+FX]-X",
+        {
+          name: "Branch",
+          rules: {
+            F: "FF",
+            X: "F-[[X]+X]+F[+FX]-X",
+          },
+          axiom: "X",
+          degrees: 22.5,
         },
-        axiom: "X",
-        degrees: 22.5,
-      },
-      {
-        name: "Bush",
-        rules: {
-          "F": "FF+[+F-F-F]-[-F+F+F]",
+        {
+          name: "Bush",
+          rules: {
+            F: "FF+[+F-F-F]-[-F+F+F]",
+          },
+          axiom: "F",
+          degrees: 22.5,
         },
-        axiom: "F",
-        degrees: 22.5,
-      },
-      {
-        name: "Stick",
-        rules: {
-          "F": "FF",
-          "X": "F[+X]F[-X]+X",
+        {
+          name: "Stick",
+          rules: {
+            F: "FF",
+            X: "F[+X]F[-X]+X",
+          },
+          axiom: "X",
+          degrees: 20,
         },
-        axiom: "X",
-        degrees: 20,
-      },
-      {
-        name: "Triangle",
-        rules: {
-          "F": "F-F+F",
+        {
+          name: "Triangle",
+          rules: {
+            F: "F-F+F",
+          },
+          axiom: "F+F+F",
+          degrees: 120,
         },
-        axiom: "F+F+F",
-        degrees: 120,
-      },
-      {
-        name: "Pentaplexity",
-        rules: {
-          "F": "F++F++F|F-F++F",
+        {
+          name: "Pentaplexity",
+          rules: {
+            F: "F++F++F|F-F++F",
+          },
+          axiom: " F++F++F++F++F",
+          degrees: 36,
         },
-        axiom: " F++F++F++F++F",
-        degrees: 36,
-      },
-    ];
+      ];
 
-    let CURRENT_RULE = RULESETS[Math.floor(Math.random() * RULESETS.length)];
+      let CURRENT_RULE = RULESETS[Math.floor(Math.random() * RULESETS.length)];
 
-    const submitForm = document.getElementById("submit-form");
-    submitForm.addEventListener("submit", event => {
-      event.preventDefault();
+      const submitForm = document.getElementById("submit-form");
+      submitForm.addEventListener("submit", (event) => {
+        event.preventDefault();
 
-      const generationInput = document.getElementById("generations");
-      const degreeInput = document.getElementById("degrees");
-      const axiomInput = document.getElementById("axiom");
+        const generationInput = document.getElementById("generations");
+        const degreeInput = document.getElementById("degrees");
+        const axiomInput = document.getElementById("axiom");
 
-      GENERATIONS = parseInt(generationInput.value);
-      CURRENT_RULE.degrees = parseFloat(degreeInput.value);
-      CURRENT_RULE.axiom = axiomInput.value;
+        GENERATIONS = parseInt(generationInput.value);
+        CURRENT_RULE.degrees = parseFloat(degreeInput.value);
+        CURRENT_RULE.axiom = axiomInput.value;
 
-      redrawAndUpdate();
-    });
+        redrawAndUpdate();
+      });
 
-    function toggleModal(elementId) {
-      const modal = document.getElementById(elementId);
-      modal.classList.toggle("active-overlay");
-    }
-
-    function populateOptions() {
-      const systemOptions = document.getElementById("system-options");
-      for (const ruleset of RULESETS) {
-        const newButton = document.createElement('button');
-        newButton.innerText = ruleset.name;
-        newButton.classList.add('system-button');
-        newButton.onclick = () => {
-          CURRENT_RULE = ruleset;
-          redrawAndUpdate();
-        }
-        systemOptions.appendChild(newButton);
-      }
-    }
-
-    function updateForm() {
-      const generationInput = document.getElementById("generations");
-      const degreeInput = document.getElementById("degrees");
-      const axiomInput = document.getElementById("axiom");
-      const rulesParagraph = document.getElementById("rules");
-
-      generationInput.value = GENERATIONS;
-      degreeInput.value = CURRENT_RULE.degrees;
-      axiomInput.value = CURRENT_RULE.axiom;
-
-      let tempString = "";
-      for (const [letter, rule] of Object.entries(CURRENT_RULE.rules)) {
-        tempString += `${letter} -> ${rule}\n`;
-      }
-      rulesParagraph.innerText = tempString;
-    }
-
-    function create_l_system(axiom, rules, generations) {
-      let initial_string = axiom;
-      let next_string = '';
-      for (let i = 0; i < generations; i++) {
-        for (let j = 0; j < initial_string.length; j++) {
-          const letter = initial_string[j];
-          next_string += rules[letter] || letter
-        }
-        initial_string = next_string;
-        next_string = '';
+      function toggleModal(elementId) {
+        const modal = document.getElementById(elementId);
+        modal.classList.toggle("active-overlay");
       }
 
-      return initial_string;
-    }
-
-    // Returns delay in milliseconds, based on segment length
-    function computeDelay(len) {
-      // Prevent extreme speeds
-      const minDelay = 5;   // fastest possible
-      const maxDelay = 200; // slowest possible
-
-      // Logarithmic mapping (base tuned experimentally)
-      const delay = Math.log(len + 1) * 40;
-
-      // Clamp to a reasonable range
-      return Math.min(maxDelay, Math.max(minDelay, delay));
-    }
-
-
-    function draw_system(system, deg) {
-      // Setup canvas for high DPI screens
-      const canvas = document.getElementById("drawing-board");
-      const ctx = canvas.getContext('2d');
-
-      // CSS size
-      const canvasRect = canvas.getBoundingClientRect();
-
-      canvas.width = canvasRect.width;
-      canvas.height = canvasRect.height;
-
-      // Clean up previous drawing
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      ctx.strokeStyle = "white";
-
-      // Setup for drawing L-System
-      const stack = [];
-      let angle = -90;
-      let x = canvas.width / 2;
-      let y = canvas.height;
-
-      // Count how many "F" commands (forward draw) are in the final string
-      let fcount = (system.match(/F/g) || []).length;
-
-      // Determine segment length based on canvas width/height and drawing complexity
-      let len = Math.min(canvas.width, canvas.height) / (Math.log(fcount) + 1) ** 2;
-
-      const delay = computeDelay(len);
-
-      console.log("length:", len);
-
-      // Start drawing
-      ctx.beginPath();
-      ctx.moveTo(x, y);
-
-      if (CURRENT_RULE.name === "Pentaplexity") {
-        angle -= 18;
-      }
-
-      // Draw the system created by the L-System
-      for (const rule of system) {
-        setTimeout(() => {
-          switch (rule) {
-            case 'F':
-              const rad = angle * Math.PI / 180
-              x += len * Math.cos(rad);
-              y += len * Math.sin(rad);
-
-              ctx.lineTo(x, y);
-              ctx.stroke();
-              break;
-            case '+':
-              angle += deg;
-              break;
-            case '-':
-              angle -= deg;
-              break;
-            case '[':
-              stack.push([x, y, angle]);
-              break;
-            case ']':
-              [x, y, angle] = stack.pop();
-              ctx.moveTo(x, y);
-              break;
-            case '>':
-              len *= CURRENT_RULE.len_factor;
-              break;
-            case '<':
-              len /= CURRENT_RULE.len_factor;
-              break;
-            case '|':
-              angle += 180
-            default: break;
+      function populateOptions() {
+        const systemOptions = document.getElementById("system-options");
+        for (const ruleset of RULESETS) {
+          const newButton = document.createElement("button");
+          newButton.innerText = ruleset.name;
+          newButton.classList.add("system-button");
+          newButton.onclick = () => {
+            CURRENT_RULE = ruleset;
+            redrawAndUpdate();
           };
-          ctx.stroke();
-        }, delay)
+          systemOptions.appendChild(newButton);
+        }
       }
 
-      // ctx.stroke();
-    }
+      function updateForm() {
+        const generationInput = document.getElementById("generations");
+        const degreeInput = document.getElementById("degrees");
+        const axiomInput = document.getElementById("axiom");
+        const rulesParagraph = document.getElementById("rules");
 
-    function redrawAndUpdate() {
-      const systemText = document.getElementById("system-text");
-      // Create and draw the system
-      const system = create_l_system(CURRENT_RULE.axiom, CURRENT_RULE.rules, GENERATIONS);
-      systemText.innerText = system;
-      draw_system(system, CURRENT_RULE.degrees);
-      updateForm();
-    }
+        generationInput.value = GENERATIONS;
+        degreeInput.value = CURRENT_RULE.degrees;
+        axiomInput.value = CURRENT_RULE.axiom;
 
-    // Get and redraw a random rule
-    function selectRandomRule() {
-      CURRENT_RULE = RULESETS[Math.floor(Math.random() * RULESETS.length)];
+        let tempString = "";
+        for (const [letter, rule] of Object.entries(CURRENT_RULE.rules)) {
+          tempString += `${letter} -> ${rule}\n`;
+        }
+        rulesParagraph.innerText = tempString;
+      }
+
+      function create_l_system(axiom, rules, generations) {
+        let initial_string = axiom;
+        let next_string = "";
+        for (let i = 0; i < generations; i++) {
+          for (let j = 0; j < initial_string.length; j++) {
+            const letter = initial_string[j];
+            next_string += rules[letter] || letter;
+          }
+          initial_string = next_string;
+          next_string = "";
+        }
+
+        return initial_string;
+      }
+
+      // Returns delay in milliseconds, based on segment length
+      function computeDelay(len) {
+        // Prevent extreme speeds
+        const minDelay = 5; // fastest possible
+        const maxDelay = 200; // slowest possible
+
+        // Logarithmic mapping (base tuned experimentally)
+        const delay = Math.log(len + 1) * 40;
+
+        // Clamp to a reasonable range
+        return Math.min(maxDelay, Math.max(minDelay, delay));
+      }
+
+      function draw_system(system, deg) {
+        // Setup canvas for high DPI screens
+        const canvas = document.getElementById("drawing-board");
+        const ctx = canvas.getContext("2d");
+
+        // CSS size
+        const canvasRect = canvas.getBoundingClientRect();
+
+        canvas.width = canvasRect.width;
+        canvas.height = canvasRect.height;
+
+        // Clean up previous drawing
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.strokeStyle = "white";
+
+        // Setup for drawing L-System
+        const stack = [];
+        let angle = -90;
+        let x = canvas.width / 2;
+        let y = canvas.height;
+
+        // Count how many "F" commands (forward draw) are in the final string
+        let fcount = (system.match(/F/g) || []).length;
+
+        // Determine segment length based on canvas width/height and drawing complexity
+        let len =
+          Math.min(canvas.width, canvas.height) / (Math.log(fcount) + 1) ** 2;
+
+        const delay = computeDelay(len);
+
+        console.log("length:", len);
+
+        // Start drawing
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+
+        if (CURRENT_RULE.name === "Pentaplexity") {
+          angle -= 18;
+        }
+
+        // Draw the system created by the L-System
+        for (const rule of system) {
+          setTimeout(() => {
+            switch (rule) {
+              case "F":
+                const rad = (angle * Math.PI) / 180;
+                x += len * Math.cos(rad);
+                y += len * Math.sin(rad);
+
+                ctx.lineTo(x, y);
+                ctx.stroke();
+                break;
+              case "+":
+                angle += deg;
+                break;
+              case "-":
+                angle -= deg;
+                break;
+              case "[":
+                stack.push([x, y, angle]);
+                break;
+              case "]":
+                [x, y, angle] = stack.pop();
+                ctx.moveTo(x, y);
+                break;
+              case ">":
+                len *= CURRENT_RULE.len_factor;
+                break;
+              case "<":
+                len /= CURRENT_RULE.len_factor;
+                break;
+              case "|":
+                angle += 180;
+              default:
+                break;
+            }
+            ctx.stroke();
+          }, delay);
+        }
+
+        // ctx.stroke();
+      }
+
+      function redrawAndUpdate() {
+        const systemText = document.getElementById("system-text");
+        // Create and draw the system
+        const system = create_l_system(
+          CURRENT_RULE.axiom,
+          CURRENT_RULE.rules,
+          GENERATIONS,
+        );
+        systemText.innerText = system;
+        draw_system(system, CURRENT_RULE.degrees);
+        updateForm();
+      }
+
+      // Get and redraw a random rule
+      function selectRandomRule() {
+        CURRENT_RULE = RULESETS[Math.floor(Math.random() * RULESETS.length)];
+        redrawAndUpdate();
+      }
+
+      // Set values
+      populateOptions();
       redrawAndUpdate();
-    }
-
-    // Set values
-    populateOptions();
-    redrawAndUpdate();
-  </script>
-</body>
+    </script>
+  </body>
 </html>

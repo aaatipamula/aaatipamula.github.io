@@ -23,7 +23,9 @@
 }
 
 * {
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 html,
@@ -146,12 +148,16 @@ thead th {
   top: 0;
   z-index: 1;
   color: var(--accent-light);
-  background: var(--color-zinc-100); /* must be opaque — sticky elements are see-through by default */
+  background: var(
+    --color-zinc-100
+  ); /* must be opaque — sticky elements are see-through by default */
 }
 
 .dark th {
   color: var(--accent-dark);
-  background: var(--color-zinc-900); /* must be opaque — sticky elements are see-through by default */
+  background: var(
+    --color-zinc-900
+  ); /* must be opaque — sticky elements are see-through by default */
 }
 
 hr {

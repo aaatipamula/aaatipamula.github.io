@@ -20,5 +20,3 @@ I have a lot of personal interests `(!= “programming”)` which include some o
 
 - [Music](/interests/media#music)
 - [Movies](/interests/media#movies)
-
-

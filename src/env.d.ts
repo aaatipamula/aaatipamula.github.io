@@ -3,4 +3,3 @@ interface NavLinkItem {
   id: string;
   link: string;
 }
-
