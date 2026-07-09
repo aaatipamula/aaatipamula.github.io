@@ -8,21 +8,24 @@ featuredArtists:
     - https://open.spotify.com/artist/14d5KCX9nprUcxnKIShrr1?si=TqtFAvw3SUWuIEfDY9POew # Mass of the Fermenting Dregs
     - https://open.spotify.com/artist/6rPCGt1PlG8UsBvQFjqshc?si=RuKHkg3iTHWQazzCeITmUg # Satellite Lovers
     - https://open.spotify.com/artist/11soTz40tSuidki8qC6OPl?si=RkbksGThQmqji_oNXfoz3Q # Persona Non Grata
-    - https://open.spotify.com/artist/41Nu7NgAj9rJxjj7JDuXrV?si=BS0HOaqEQC2dBnfdaSpUYg # Peter Cat Recording Co.
 featuredTracks:
     - https://open.spotify.com/track/3v1QY51BNLI3OljwnoGcPF?si=b8b77b0414d24711 # Tom
     - https://open.spotify.com/track/46H9VQlQW2Aqf4zVY60cYR?si=84247c279f094819 # Analog Sentamentalism
     - https://open.spotify.com/track/0FAlG6uOeaXWuRdDxaeIQY?si=90b8b9678b16497f # I'll Take It
-    - https://open.spotify.com/track/4mMW7j3QfSOAR2MSsTKnaq?si=7f86f3e70f1143a6 # (T~~T)
     - https://open.spotify.com/track/0vdw3w47fXIAT7bvMDruky?si=f6b662f3bab44ca2 # Future
     - https://open.spotify.com/track/3uA8SjMyDtwtt0jLPMQbVD?si=d95b27098ddf4613 # D (Half Moon)
+featuredAlbums:
+   - https://open.spotify.com/album/53YDN7b4vQ5MLMSPcnh9Os?si=vgFd97p0SNCe-BMxTu0v9g # Sunshower
+   - https://open.spotify.com/album/20uJcpJbimpsyG7v9kL5Co?si=ZFJgJq9ORuyOJwiuN8IcMQ # trinket
+   - https://open.spotify.com/album/2yvR4wVM1XLEKVad6F3ja9?si=jyY01Vo5S2avWnPES9q6VQ # Mint Jams
+   - https://open.spotify.com/album/3bmnc6GjltS6zD8elSBjCq?si=jobgPFvARdydTalBDMUAmw # Bismillah
 ---
 
 # Music
 
 I'd describe my taste in music as "seasonal" or "vibes based". I'll usually just pick a few songs that I've liked and let the algorithm send stuff my way. I also have a friend who's extremely in touch with basically all the music in the world who will send me stuff (or I'll steal stuff from him). If you want to stalk my spotify my tag is [@Aniketh](https://open.spotify.com/user/nv8okcbb58h7nv3tkwszvh1ff?si=6c39aea1759345a8) (its a panda pfp).
 
-Check out the featured artists and tracks above, I try to keep them updated.
+Check out the featured stuff above, I try to keep them updated.
 
 > If you're extra invested in what I'm currently listening to, check out [this](https://open.spotify.com/playlist/0PfJ8774zq3ippFWJleapl?si=9ae4bd6971954ed7) playlist which is constantly updated with anything I find interesting or am currently listening to often.
 

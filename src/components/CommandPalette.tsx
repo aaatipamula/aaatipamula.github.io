@@ -69,7 +69,7 @@ function CommandPalette({ locations }: CommandPaletteProps) {
   }
 
   function handleWindowKeydown(event: KeyboardEvent) {
-    if (event.ctrlKey && event.key === "p") {
+    if (event.ctrlKey && event.key === "k") {
       event.preventDefault();
       toggleOverlay();
     } else if (event.code === "Escape") {

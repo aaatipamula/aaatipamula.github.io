@@ -17,6 +17,7 @@ interface MarkDownFrontmatter {
   id: string;
   featuredArtists: string[];
   featuredTracks: string[];
+  featuredAlbums: string[];
 }
 
 type Props = MarkdownLayoutProps<MarkDownFrontmatter>;
@@ -55,10 +56,19 @@ const { frontmatter, headings } = Astro.props;
 <Base headings={headings}>
   <Section name={frontmatter.id}>
     {frontmatter.title && <h1>{frontmatter.title}</h1>}
+
     <h2>Artist Spotlights</h2>
+    <p class="text-zinc-500">Artists I really like, maybe you do too</p>
     <SpotifyMedia artists={frontmatter.featuredArtists}/>
+
     <h2>Track Spotlights</h2>
+    <p class="text-zinc-500">Songs that I've taken a liking to, recently and a long time ago</p>
     <SpotifyMedia tracks={frontmatter.featuredTracks}/>
+
+    <h2>Album Spotlights</h2>
+    <p class="text-zinc-500">These albums are bangers</p>
+    <SpotifyMedia albums={frontmatter.featuredAlbums}/>
+
     <slot />
   </Section>
 </Base>
