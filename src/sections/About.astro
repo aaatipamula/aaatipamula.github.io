@@ -6,7 +6,6 @@ import Websites from "@components/Websites.astro";
 
 import blogPng from "@img/2026-01-17-133100_hyprshot.png";
 import gardenPng from "@img/2026-01-17-133131_hyprshot.png";
-import terminalPng from "@img/2026-01-17-133143_hyprshot.png";
 import previewPng from "@img/2026-01-17-133223_hyprshot.png";
 
 const WEBSITES: DisplayItem[] = [ 
@@ -23,12 +22,6 @@ const WEBSITES: DisplayItem[] = [
     note: "Some notes 'n reference stuff",
   },
   {
-    image: terminalPng,
-    caption: "terminal.aniketh.dev",
-    link: "https://terminal.aniketh.dev",
-    note: "A terminal-like experience for browsing GitHub",
-  },
-  {
     image: previewPng,
     caption: "preview.aniketh.dev",
     link: "https://preview.aniketh.dev",
@@ -39,12 +32,11 @@ const WEBSITES: DisplayItem[] = [
 
 <Section name="about">
   <h1>About Me</h1>
-  <span class="tagline">Hey, I'm Aniketh, a developer, student, and hobbyist.</span>
+  <span class="tagline">Hey, I'm Aniketh, a developer, and hobbyist.</span>
   <p>
-I'm currently pursuing a <em>B.S. in Computer Science</em> with a Minor in Math at <a href="https://eecs.ku.edu"> University of Kansas</a>.
+    I am currently working in the Aviation segment at <a href="https://garmin.com">Garmin</a>
   </p>
 
-  <h2 class="text-center">Other Websites</h2>
   <Websites items={WEBSITES} />
 
 </Section>
