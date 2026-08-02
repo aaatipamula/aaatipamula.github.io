@@ -9,16 +9,17 @@ featuredArtists:
   - https://open.spotify.com/artist/6rPCGt1PlG8UsBvQFjqshc?si=RuKHkg3iTHWQazzCeITmUg # Satellite Lovers
   - https://open.spotify.com/artist/11soTz40tSuidki8qC6OPl?si=RkbksGThQmqji_oNXfoz3Q # Persona Non Grata
 featuredTracks:
+  - https://open.spotify.com/track/6Z3mpXWlxpH91pkxtvhfYK?si=2691807b6cf5402d # Lao Shi
+  - https://open.spotify.com/track/0vdw3w47fXIAT7bvMDruky?si=f6b662f3bab44ca2 # Future
   - https://open.spotify.com/track/3v1QY51BNLI3OljwnoGcPF?si=b8b77b0414d24711 # Tom
   - https://open.spotify.com/track/46H9VQlQW2Aqf4zVY60cYR?si=84247c279f094819 # Analog Sentamentalism
-  - https://open.spotify.com/track/0FAlG6uOeaXWuRdDxaeIQY?si=90b8b9678b16497f # I'll Take It
-  - https://open.spotify.com/track/0vdw3w47fXIAT7bvMDruky?si=f6b662f3bab44ca2 # Future
   - https://open.spotify.com/track/3uA8SjMyDtwtt0jLPMQbVD?si=d95b27098ddf4613 # D (Half Moon)
 featuredAlbums:
-  - https://open.spotify.com/album/53YDN7b4vQ5MLMSPcnh9Os?si=vgFd97p0SNCe-BMxTu0v9g # Sunshower
+  - https://open.spotify.com/album/4T7qu6MdxoGjzZPErRWgsO?si=-fBuLtRVQW6DMRT9dfBsdg # Halo
   - https://open.spotify.com/album/20uJcpJbimpsyG7v9kL5Co?si=ZFJgJq9ORuyOJwiuN8IcMQ # trinket
-  - https://open.spotify.com/album/2yvR4wVM1XLEKVad6F3ja9?si=jyY01Vo5S2avWnPES9q6VQ # Mint Jams
   - https://open.spotify.com/album/3bmnc6GjltS6zD8elSBjCq?si=jobgPFvARdydTalBDMUAmw # Bismillah
+  - https://open.spotify.com/album/2yvR4wVM1XLEKVad6F3ja9?si=jyY01Vo5S2avWnPES9q6VQ # Mint Jams
+  - https://open.spotify.com/album/53YDN7b4vQ5MLMSPcnh9Os?si=vgFd97p0SNCe-BMxTu0v9g # Sunshower
 ---
 
 # Music

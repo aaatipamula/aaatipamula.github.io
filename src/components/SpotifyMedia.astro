@@ -47,14 +47,14 @@ async function getArtistInfo(uri: string): Promise<DisplayItem> {
     throw new Error("No Track ID found.");
   }
 
-  // // Use placeholders for development to avoid rate-limits
-  // if (import.meta.env.DEV) {
-  //   return {
-  //     image: {url: "https://placehold.co/640x640", width: 640, height: 640},
-  //     caption: "ARTIST - PLACEHOLDER",
-  //     link: uri,
-  //   } as DisplayItem;
-  // }
+  // Use placeholders for development to avoid rate-limits
+  if (import.meta.env.DEV) {
+    return {
+      image: {url: "https://placehold.co/640x640", width: 640, height: 640},
+      caption: "ARTIST - PLACEHOLDER",
+      link: uri,
+    } as DisplayItem;
+  }
 
   const artist = await client.getArtist(trackId);
 
@@ -78,14 +78,14 @@ async function getTrackInfo(uri: string): Promise<DisplayItem> {
     throw new Error("No Track ID found.");
   }
 
-  // // Use placeholders for development to avoid rate-limits
-  // if (import.meta.env.DEV) {
-  //   return {
-  //     image: {url: "https://placehold.co/640x640", width: 640, height: 640},
-  //     caption: "TRACK - PLACEHOLDER",
-  //     link: uri,
-  //   } as DisplayItem;
-  // }
+  // Use placeholders for development to avoid rate-limits
+  if (import.meta.env.DEV) {
+    return {
+      image: {url: "https://placehold.co/640x640", width: 640, height: 640},
+      caption: "TRACK - PLACEHOLDER",
+      link: uri,
+    } as DisplayItem;
+  }
 
   const track = await client.getTrack(trackId);
 
@@ -109,14 +109,14 @@ async function getAlbumInfo(uri: string): Promise<DisplayItem> {
     throw new Error("No Track ID found.");
   }
 
-  // // Use placeholders for development to avoid rate-limits
-  // if (import.meta.env.DEV) {
-  //   return {
-  //     image: {url: "https://placehold.co/640x640", width: 640, height: 640},
-  //     caption: "ALBUM - PLACEHOLDER",
-  //     link: uri,
-  //   } as DisplayItem;
-  // }
+  // Use placeholders for development to avoid rate-limits
+  if (import.meta.env.DEV) {
+    return {
+      image: {url: "https://placehold.co/640x640", width: 640, height: 640},
+      caption: "ALBUM - PLACEHOLDER",
+      link: uri,
+    } as DisplayItem;
+  }
 
   const album = await client.getAlbum(albumId);
 
@@ -144,26 +144,81 @@ if (artists && tracks && albums) {
 }
 ---
 
-<div class="flex justify-center md:justify-start flex-wrap gap-2">
-  {displayItems.map(item => (
-  <div class="flex not-even:flex-row-reverse not-even:text-right justify-between items-center py-4">
-    <a href={item.link} class="text-center">
-      {item.image && (
-        <img src={item.image.url} width={item.image.width} height={item.image.height} alt=`img-${item.caption}` />
+<div class="mosaic">
+  <div class="mosaic-main">
+    <a class="mosaic-frame" href={displayItems[0].link}>
+      {displayItems[0].image && (
+        <img class="mosaic-img" src={displayItems[0].image.url} width={displayItems[0].image.width} height={displayItems[0].image.height} alt=`img-${displayItems[0].caption}` />
       )}
-      <div class="img-caption">{item.caption}</div>
+      <div class="img-caption">{displayItems[0].caption}</div>
     </a>
   </div>
-  ))}
+  <div class="mosaic-tiles">
+    {displayItems.slice(1).map(item => (
+    <div class="mosaic-tile">
+      <a class="mosaic-frame" href={item.link}>
+        {item.image && (
+          <img class="mosaic-img" src={item.image.url} width={item.image.width} height={item.image.height} alt=`img-${item.caption}` />
+        )}
+        <div class="img-caption">{item.caption}</div>
+      </a>
+    </div>
+    ))}
+  </div>
 </div>
 
 <style>
-.img-caption {
-  width: 15em;
+.mosaic {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  text-align: center;
 }
 
-img {
-  width: 15em;
+.mosaic-tiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  align-content: start;
+}
+
+.mosaic-frame {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.mosaic-frame:hover {
+  opacity: 1;
+}
+
+.mosaic-img {
+  display: block;
+  width: 100%;
   aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.img-caption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 0.5rem;
+  background: linear-gradient(to top, rgb(0 0 0 / 80%), transparent);
+  color: #fff;
+  font-size: 0.875rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.mosaic-frame:hover .img-caption,
+.mosaic-frame:focus-visible .img-caption {
+  opacity: 1;
+}
+
+@media (max-width: 480px) {
+  .mosaic {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
