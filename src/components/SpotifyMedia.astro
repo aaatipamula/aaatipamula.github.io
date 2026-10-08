@@ -12,9 +12,11 @@ export interface DisplayItem {
 
 interface Props {
   // items: DisplayItem[];
-  tracks?: string[]
-  artists?: string[]
-  albums?: string[]
+  title: string;
+  subtitle: string;
+  tracks?: string[];
+  artists?: string[];
+  albums?: string[];
 }
 
 const client = new SpotifyClient({
@@ -48,13 +50,13 @@ async function getArtistInfo(uri: string): Promise<DisplayItem> {
   }
 
   // Use placeholders for development to avoid rate-limits
-  if (import.meta.env.DEV) {
-    return {
-      image: {url: "https://placehold.co/640x640", width: 640, height: 640},
-      caption: "ARTIST - PLACEHOLDER",
-      link: uri,
-    } as DisplayItem;
-  }
+  // if (import.meta.env.DEV) {
+  //   return {
+  //     image: {url: "https://placehold.co/640x640", width: 640, height: 640},
+  //     caption: "ARTIST - PLACEHOLDER",
+  //     link: uri,
+  //   } as DisplayItem;
+  // }
 
   const artist = await client.getArtist(trackId);
 
@@ -79,13 +81,13 @@ async function getTrackInfo(uri: string): Promise<DisplayItem> {
   }
 
   // Use placeholders for development to avoid rate-limits
-  if (import.meta.env.DEV) {
-    return {
-      image: {url: "https://placehold.co/640x640", width: 640, height: 640},
-      caption: "TRACK - PLACEHOLDER",
-      link: uri,
-    } as DisplayItem;
-  }
+  // if (import.meta.env.DEV) {
+  //   return {
+  //     image: {url: "https://placehold.co/640x640", width: 640, height: 640},
+  //     caption: "TRACK - PLACEHOLDER",
+  //     link: uri,
+  //   } as DisplayItem;
+  // }
 
   const track = await client.getTrack(trackId);
 
@@ -110,13 +112,13 @@ async function getAlbumInfo(uri: string): Promise<DisplayItem> {
   }
 
   // Use placeholders for development to avoid rate-limits
-  if (import.meta.env.DEV) {
-    return {
-      image: {url: "https://placehold.co/640x640", width: 640, height: 640},
-      caption: "ALBUM - PLACEHOLDER",
-      link: uri,
-    } as DisplayItem;
-  }
+  // if (import.meta.env.DEV) {
+  //   return {
+  //     image: {url: "https://placehold.co/640x640", width: 640, height: 640},
+  //     caption: "ALBUM - PLACEHOLDER",
+  //     link: uri,
+  //   } as DisplayItem;
+  // }
 
   const album = await client.getAlbum(albumId);
 
@@ -127,12 +129,12 @@ async function getAlbumInfo(uri: string): Promise<DisplayItem> {
   } as DisplayItem;
 }
 
-const { tracks, artists, albums } = Astro.props;
+const { title, subtitle, tracks, artists, albums } = Astro.props;
 
 let displayItems: DisplayItem[];
 
 if (artists && tracks && albums) {
-  throw new Error("Cannot define both artists and tracks!");
+  throw new Error("Cannot define artists and tracks and albums!");
 } else if (artists) {
   displayItems = await Promise.all(artists.map(getArtistInfo));
 } else if (tracks) {
@@ -140,9 +142,12 @@ if (artists && tracks && albums) {
 } else if (albums) {
   displayItems = await Promise.all(albums.map(getAlbumInfo));
 } else {
-  throw new Error("Must have at either tracks or artists displayed");
+  throw new Error("Must have at either tracks or artists or albums displayed");
 }
 ---
+
+<h2>{title}</h2>
+<p class="text-zinc-500">{subtitle}</p>
 
 <div class="mosaic">
   <div class="mosaic-main">
@@ -173,6 +178,7 @@ if (artists && tracks && albums) {
   grid-template-columns: 1fr 1fr;
   gap: 0.75rem;
   text-align: center;
+  margin-bottom: 2rem;
 }
 
 .mosaic-tiles {
@@ -220,5 +226,17 @@ if (artists && tracks && albums) {
   .mosaic {
     grid-template-columns: 1fr;
   }
+
+  .img-caption {
+    opacity: 1;
+  }
+}
+
+h2 {
+  margin-bottom: 0;
+}
+
+p {
+  margin-top: 0;
 }
 </style>

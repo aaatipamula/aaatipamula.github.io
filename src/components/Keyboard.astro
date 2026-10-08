@@ -3,7 +3,7 @@ import { range } from "@util/arrays.ts";
 ---
 
 <!-- Responsive keyboard --> 
-<div class="flex flex-col justify-center gap-[0.3em]">
+<div class="hidden lg:flex flex-col justify-center gap-[0.3em]">
   <!-- Main board -->
   {range(0, 2).map(index_a => (
   <div class="flex justify-center gap-[0.2em]">
@@ -40,6 +40,10 @@ import { range } from "@util/arrays.ts";
     ))}
   </div>
 </div>
+
+<span class="hidden lg:block text-zinc-500 mt-6">
+  <code class="bg-zinc-200 dark:bg-zinc-800 rounded-md p-1">Ctrl+K</code> to Open Command Palette
+</span>
 
 <script>
 // Global keys pressed
